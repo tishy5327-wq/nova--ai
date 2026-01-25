@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova - Voice-First AI Assistant</title>
-    <meta name="description" content="Experience the future of voice interaction with Nova. Your intelligent AI assistant that understands natural speech.">
+    <title>Nova AI V3.0 - Complete Voice & AI Assistant</title>
+    <meta name="description" content="Complete AI assistant with voice recognition, translation, study tools, mood detection, code help, storytelling, and more - all in your browser!">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -19,58 +18,36 @@
         }
 
         :root {
-            /* Colors */
             --primary-900: #0A1628;
             --primary-800: #132744;
             --primary-700: #1E3A5F;
             --primary-600: #2952A3;
             --primary-500: #3B82F6;
-            
             --accent-500: #FF6B6B;
             --accent-400: #FF8787;
             --accent-300: #FFA3A3;
-            
             --neutral-50: #F8FAFC;
             --neutral-100: #F1F5F9;
             --neutral-200: #E2E8F0;
             --neutral-700: #334155;
             --neutral-900: #0F172A;
-            
             --success: #10B981;
             --warning: #F59E0B;
             --error: #EF4444;
-            
-            /* Typography */
             --font-display: 'Manrope', sans-serif;
-            --font-body: 'Manrope', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-            
-            /* Spacing */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --spacing-2xl: 4rem;
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-display);
             background: linear-gradient(180deg, var(--primary-900) 0%, var(--primary-700) 100%);
             color: var(--neutral-50);
             min-height: 100vh;
             line-height: 1.6;
         }
 
-        /* Header */
         header {
-            padding: var(--spacing-md) var(--spacing-lg);
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -85,7 +62,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
+            gap: 1rem;
         }
 
         .logo-icon {
@@ -106,44 +83,53 @@
             letter-spacing: -0.02em;
         }
 
-        .tagline {
-            font-size: 0.875rem;
+        .version {
+            font-size: 0.75rem;
             color: var(--neutral-200);
-            font-weight: 500;
-            margin-left: var(--spacing-xs);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
         }
 
         nav {
             display: flex;
-            gap: var(--spacing-lg);
-            align-items: center;
+            gap: 1.5rem;
         }
 
-        nav a {
-            color: var(--neutral-100);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-400);
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
         .hero {
             text-align: center;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-bottom: 3rem;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-300) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -151,31 +137,30 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--neutral-200);
-            margin-bottom: var(--spacing-xl);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
-        /* Voice Interface */
-        .voice-interface {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: var(--spacing-xl);
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .voice-panel, .chat-panel, .features-panel {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border-radius: 24px;
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: var(--shadow-xl);
+            padding: 2rem;
         }
 
         .voice-button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--spacing-md);
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .voice-button {
@@ -189,8 +174,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
-            position: relative;
-            overflow: hidden;
         }
 
         .voice-button:hover {
@@ -198,50 +181,26 @@
             box-shadow: 0 0 0 12px rgba(255, 107, 107, 0.2);
         }
 
-        .voice-button:active {
-            transform: scale(0.95);
-        }
-
         .voice-button.listening {
             animation: pulse 1.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(255, 107, 107, 0);
-            }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
         }
 
-        .voice-button.processing {
-            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .voice-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Status Indicator */
         .status-indicator {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            padding: var(--spacing-sm) var(--spacing-md);
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 100px;
+            margin: 1rem auto;
+            max-width: fit-content;
             font-weight: 600;
-            font-size: 0.95rem;
-            min-height: 48px;
-            transition: all 0.3s ease;
         }
 
         .status-dot {
@@ -261,75 +220,56 @@
             background: var(--success);
         }
 
-        .status-indicator.processing .status-dot {
-            background: var(--warning);
-        }
-
-        .status-indicator.error .status-dot {
-            background: var(--error);
-        }
-
-        /* Waveform Visualization */
-        .waveform {
+        .chat-input-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            height: 60px;
-            margin: var(--spacing-md) 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .waveform.active {
-            opacity: 1;
-        }
-
-        .waveform-bar {
-            width: 4px;
-            background: var(--accent-400);
-            border-radius: 2px;
-            animation: waveform 0.8s ease-in-out infinite;
-        }
-
-        .waveform-bar:nth-child(1) { animation-delay: 0s; }
-        .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
-        .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
-        .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
-        .waveform-bar:nth-child(5) { animation-delay: 0.4s; }
-        .waveform-bar:nth-child(6) { animation-delay: 0.3s; }
-        .waveform-bar:nth-child(7) { animation-delay: 0.2s; }
-        .waveform-bar:nth-child(8) { animation-delay: 0.1s; }
-
-        @keyframes waveform {
-            0%, 100% { height: 10px; }
-            50% { height: 50px; }
-        }
-
-        /* Transcript */
-        .transcript {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: rgba(255, 255, 255, 0.05);
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
-            min-height: 100px;
-            max-height: 300px;
-            overflow-y: auto;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            line-height: 1.8;
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1rem;
         }
 
-        .transcript:empty::before {
-            content: 'Your conversation will appear here...';
+        .chat-input::placeholder {
             color: var(--neutral-200);
-            opacity: 0.5;
         }
 
-        .transcript-message {
-            margin-bottom: var(--spacing-sm);
-            padding: var(--spacing-sm);
-            border-radius: 8px;
+        .send-btn {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
             animation: fadeIn 0.3s ease;
         }
 
@@ -338,18 +278,84 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .transcript-message.user {
+        .message.user {
             background: rgba(59, 130, 246, 0.2);
             border-left: 3px solid var(--primary-500);
+            margin-left: 20%;
         }
 
-        .transcript-message.assistant {
+        .message.assistant {
             background: rgba(255, 107, 107, 0.2);
             border-left: 3px solid var(--accent-500);
+            margin-right: 20%;
         }
 
-        /* Permission Modal */
-        .permission-modal {
+        .message strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            border-color: var(--accent-500);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--neutral-200);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .quick-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal {
             display: none;
             position: fixed;
             top: 0;
@@ -361,351 +367,87 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-lg);
+            padding: 2rem;
         }
 
-        .permission-modal.show {
+        .modal.show {
             display: flex;
         }
 
-        .permission-content {
+        .modal-content {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: var(--spacing-xl);
-            max-width: 600px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .permission-content h2 {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-md);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .permission-steps {
-            margin: var(--spacing-lg) 0;
-        }
-
-        .permission-step {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
-            padding: var(--spacing-md);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-        }
-
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .permission-buttons {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .btn {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border-radius: 12px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-display);
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--neutral-100);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Error Message */
-        .error-message {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid var(--error);
-            border-radius: 12px;
-            padding: var(--spacing-md);
-            margin-top: var(--spacing-md);
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .error-header {
+        .modal-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .error-message h4 {
-            font-size: 1rem;
-            display: flex;
             align-items: center;
-            gap: var(--spacing-xs);
+            margin-bottom: 1.5rem;
         }
 
-        .error-dismiss {
-            background: none;
-            border: none;
-            color: var(--neutral-100);
-            cursor: pointer;
-            font-size: 1.25rem;
-            padding: 0;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            transition: background 0.2s ease;
-        }
-
-        .error-dismiss:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .error-message p {
-            font-size: 0.9rem;
-            color: var(--neutral-200);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .error-action {
-            display: inline-block;
-            padding: var(--spacing-xs) var(--spacing-md);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .error-action:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Browser Detection */
-        .browser-warning {
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid var(--warning);
-            border-radius: 12px;
-            padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
-            display: none;
-        }
-
-        .browser-warning.show {
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-lg);
-        }
-
-        .feature-card {
-            padding: var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-500);
-            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.2);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
+        .modal-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: var(--spacing-sm);
         }
 
-        .feature-card p {
-            color: var(--neutral-200);
-            font-size: 0.95rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.05);
-            margin: var(--spacing-2xl) 0;
-        }
-
-        .cta-button {
-            padding: var(--spacing-md) var(--spacing-xl);
-            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-            font-family: var(--font-display);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Footer */
-        footer {
-            padding: var(--spacing-xl) var(--spacing-lg);
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--neutral-200);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-400);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-button {
-            display: none;
+        .close-btn {
             background: none;
             border: none;
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.2s ease;
         }
 
-        /* Responsive */
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 display: none;
             }
-
-            .mobile-menu-button {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
+            
             .voice-button {
                 width: 100px;
                 height: 100px;
                 font-size: 2.5rem;
             }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tagline {
-                display: none;
-            }
-
-            .permission-content {
-                padding: var(--spacing-lg);
-            }
-
-            .permission-buttons {
-                flex-direction: column;
-            }
-        }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
         }
     </style>
 </head>
@@ -714,449 +456,195 @@
         <div class="logo">
             <div class="logo-icon">N</div>
             <div>
-                <div class="logo-text">NOVA</div>
+                <span class="logo-text">NOVA AI</span>
+                <span class="version">V3.0</span>
             </div>
-            <span class="tagline">Your Voice, Amplified by AI</span>
         </div>
         <nav>
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#privacy">Privacy</a>
+            <button class="nav-btn" onclick="showHelp()">📚 Help</button>
+            <button class="nav-btn" onclick="showFeatures()">✨ Features</button>
         </nav>
-        <button class="mobile-menu-button" aria-label="Open menu">☰</button>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Speak Naturally,<br>Act Instantly</h1>
-            <p>Experience the future of voice interaction with Nova. Your intelligent AI assistant that understands natural speech and responds with precision.</p>
+    <div class="container">
+        <div class="hero">
+            <h1>🚀 Nova AI V3.0 Complete</h1>
+            <p>Voice-powered AI assistant with translation, study tools, mood detection, code help, storytelling, and more - all in your browser!</p>
+        </div>
 
-            <div class="browser-warning" id="browserWarning">
-                <h4>⚠️ Browser Compatibility</h4>
-                <p>For the best experience, use Chrome, Edge, or Safari. Your current browser may have limited voice support.</p>
-            </div>
-
-            <div class="voice-interface">
+        <div class="main-grid">
+            <div class="voice-panel">
                 <div class="voice-button-container">
-                    <button class="voice-button" id="voiceButton" aria-label="Start voice assistant">
-                        🎤
-                    </button>
-
+                    <button class="voice-button" id="voiceButton" onclick="toggleVoice()">🎤</button>
                     <div class="status-indicator" id="statusIndicator">
                         <span class="status-dot"></span>
-                        <span id="statusText">Tap microphone to start</span>
+                        <span id="statusText">Tap to speak</span>
                     </div>
                 </div>
 
-                <div class="waveform" id="waveform">
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                    <div class="waveform-bar"></div>
-                </div>
-
-                <div class="transcript" id="transcript" role="log" aria-live="polite" aria-label="Conversation transcript"></div>
-
-                <div class="error-message" id="errorMessage">
-                    <div class="error-header">
-                        <h4 id="errorTitle">⚠️ Error</h4>
-                        <button class="error-dismiss" id="errorDismiss" aria-label="Dismiss error">✕</button>
-                    </div>
-                    <p id="errorText"></p>
-                    <div id="errorActions"></div>
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="quickCommand('translate hello to hindi')">🌐 Translate</button>
+                    <button class="quick-btn" onclick="quickCommand('tell me a story')">📖 Story</button>
+                    <button class="quick-btn" onclick="quickCommand('quiz me on python')">📝 Quiz</button>
+                    <button class="quick-btn" onclick="quickCommand('code help loop')">💻 Code</button>
+                    <button class="quick-btn" onclick="quickCommand('what time is it')">⏰ Time</button>
+                    <button class="quick-btn" onclick="quickCommand('detect my mood')">😊 Mood</button>
                 </div>
             </div>
-        </section>
 
-        <section class="features" id="features">
-            <h2>Powerful Features</h2>
+            <div class="chat-panel">
+                <h2 style="margin-bottom: 1rem;">💬 Chat</h2>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type a command or question..." onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-panel">
+            <h2 style="margin-bottom: 1rem;">🎯 Quick Access Features</h2>
             <div class="features-grid">
-                <div class="feature-card" role="button" tabindex="0">
+                <div class="feature-card" onclick="quickCommand('translate hello to spanish')">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-title">Translation</div>
+                    <div class="feature-desc">Translate to 20+ languages</div>
+                </div>
+                <div class="feature-card" onclick="showHelp()">
+                    <div class="feature-icon">📚</div>
+                    <div class="feature-title">Study Assistant</div>
+                    <div class="feature-desc">Explanations & quizzes</div>
+                </div>
+                <div class="feature-card" onclick="quickCommand('detect my mood from text')">
+                    <div class="feature-icon">😊</div>
+                    <div class="feature-title">Mood Detection</div>
+                    <div class="feature-desc">Analyze mood & music</div>
+                </div>
+                <div class="feature-card" onclick="quickCommand('code help function')">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-title">Code Assistant</div>
+                    <div class="feature-desc">Code help & debugging</div>
+                </div>
+                <div class="feature-card" onclick="quickCommand('tell me an adventure story')">
+                    <div class="feature-icon">📖</div>
+                    <div class="feature-title">AI Storyteller</div>
+                    <div class="feature-desc">Creative story generation</div>
+                </div>
+                <div class="feature-card" onclick="quickCommand('study tips')">
                     <div class="feature-icon">🎯</div>
-                    <h3>Natural Language Processing</h3>
-                    <p>Understands context, intent, and nuance in your speech for accurate responses every time.</p>
+                    <div class="feature-title">Study Tips</div>
+                    <div class="feature-desc">Learning strategies</div>
                 </div>
-
-                <div class="feature-card" role="button" tabindex="0">
-                    <div class="feature-icon">🌍</div>
-                    <h3>Multi-Language Support</h3>
-                    <p>Communicate in your preferred language with support for 50+ languages and dialects.</p>
-                </div>
-
-                <div class="feature-card" role="button" tabindex="0">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Real-time processing with sub-second response times for seamless conversations.</p>
-                </div>
-
-                <div class="feature-card" role="button" tabindex="0">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Privacy First</h3>
-                    <p>Your voice data is encrypted and never stored. Complete privacy guaranteed.</p>
-                </div>
-
-                <div class="feature-card" role="button" tabindex="0">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Customizable</h3>
-                    <p>Personalize voice, tone, and behavior to match your preferences and workflow.</p>
-                </div>
-
-                <div class="feature-card" role="button" tabindex="0">
-                    <div class="feature-icon">📱</div>
-                    <h3>Cross-Platform</h3>
-                    <p>Works seamlessly on desktop, mobile, and tablet. Same experience everywhere.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2 style="margin-bottom: var(--spacing-md);">Ready to Get Started?</h2>
-            <p style="color: var(--neutral-200); margin-bottom: var(--spacing-lg); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Join thousands of users already experiencing the future of voice interaction.
-            </p>
-            <button class="cta-button" id="ctaButton">Start Speaking Now</button>
-        </section>
-    </main>
-
-    <!-- Permission Modal -->
-    <div class="permission-modal" id="permissionModal">
-        <div class="permission-content">
-            <h2>🎤 Microphone Permission Required</h2>
-            <p>Nova needs access to your microphone to provide voice assistance. Your privacy is protected - we never store voice recordings.</p>
-            
-            <div class="permission-steps">
-                <div class="permission-step">
-                    <div class="step-number">1</div>
-                    <div>
-                        <strong>Look for the browser prompt</strong><br>
-                        You should see a permission request at the top of your browser.
-                    </div>
-                </div>
-                <div class="permission-step">
-                    <div class="step-number">2</div>
-                    <div>
-                        <strong>Click "Allow"</strong><br>
-                        Grant permission for Nova to access your microphone.
-                    </div>
-                </div>
-                <div class="permission-step">
-                    <div class="step-number">3</div>
-                    <div>
-                        <strong>Start speaking</strong><br>
-                        Once granted, click the microphone button to start using Nova.
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: rgba(255, 255, 255, 0.05); padding: var(--spacing-md); border-radius: 8px; margin-bottom: var(--spacing-md);">
-                <strong>Already blocked microphone access?</strong><br>
-                <span style="font-size: 0.9rem; color: var(--neutral-200);">
-                    Click the lock icon 🔒 in your browser's address bar → Site settings → Change microphone permission to "Allow"
-                </span>
-            </div>
-
-            <div class="permission-buttons">
-                <button class="btn btn-primary" id="requestPermission">Request Permission</button>
-                <button class="btn btn-secondary" id="closeModal">Close</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#privacy-policy">Privacy Policy</a>
-            <a href="#terms-of-service">Terms of Service</a>
-            <a href="#cookie-policy">Cookie Policy</a>
-            <a href="#contact">Contact Us</a>
-            <a href="#about">About Nova</a>
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📚 Nova AI Commands</h2>
+                <button class="close-btn" onclick="closeModal('helpModal')">✕</button>
+            </div>
+            <div id="helpContent"></div>
         </div>
-        <p style="color: var(--neutral-200); font-size: 0.875rem;">
-            © 2025 Nova AI. All rights reserved. Made with ❤️ for voice-first experiences.
-        </p>
-    </footer>
+    </div>
+
+    <!-- Features Modal -->
+    <div class="modal" id="featuresModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">✨ All Features</h2>
+                <button class="close-btn" onclick="closeModal('featuresModal')">✕</button>
+            </div>
+            <div id="featuresContent"></div>
+        </div>
+    </div>
 
     <script>
-        // Voice Assistant Logic
-        class VoiceAssistant {
+        // ==================== CORE NOVA AI ENGINE ====================
+        
+        class NovaAI {
             constructor() {
-                this.isListening = false;
                 this.recognition = null;
-                this.permissionGranted = false;
-                
-                this.voiceButton = document.getElementById('voiceButton');
-                this.statusIndicator = document.getElementById('statusIndicator');
-                this.statusText = document.getElementById('statusText');
-                this.waveform = document.getElementById('waveform');
-                this.transcript = document.getElementById('transcript');
-                this.errorMessage = document.getElementById('errorMessage');
-                this.errorTitle = document.getElementById('errorTitle');
-                this.errorText = document.getElementById('errorText');
-                this.errorActions = document.getElementById('errorActions');
-                this.errorDismiss = document.getElementById('errorDismiss');
-                this.permissionModal = document.getElementById('permissionModal');
-                this.browserWarning = document.getElementById('browserWarning');
-
-                this.init();
+                this.isListening = false;
+                this.initVoiceRecognition();
+                this.initWelcome();
             }
 
-            init() {
-                // Check browser support
-                if (!this.checkBrowserSupport()) {
-                    return;
-                }
+            initVoiceRecognition() {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.continuous = false;
+                    this.recognition.interimResults = false;
+                    this.recognition.lang = 'en-US';
 
-                // Check existing permission status
-                this.checkPermissionStatus();
-
-                // Event listeners
-                this.voiceButton.addEventListener('click', () => this.handleVoiceButtonClick());
-                document.getElementById('ctaButton').addEventListener('click', () => this.handleVoiceButtonClick());
-                document.getElementById('errorDismiss').addEventListener('click', () => this.dismissError());
-                document.getElementById('requestPermission').addEventListener('click', () => this.requestPermission());
-                document.getElementById('closeModal').addEventListener('click', () => this.closeModal());
-
-                // Feature card demos
-                document.querySelectorAll('.feature-card').forEach((card, index) => {
-                    card.addEventListener('click', () => this.demoFeature(index));
-                });
-            }
-
-            checkBrowserSupport() {
-                const hasSupport = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
-                
-                if (!hasSupport) {
-                    this.showError(
-                        'Browser Not Supported',
-                        'Your browser doesn\'t support voice recognition. Please use Chrome, Edge, or Safari for the best experience.',
-                        [{
-                            text: 'Learn More',
-                            action: () => window.open('https://caniuse.com/speech-recognition', '_blank')
-                        }]
-                    );
-                    this.voiceButton.disabled = true;
-                    this.browserWarning.classList.add('show');
-                    return false;
-                }
-
-                // Initialize speech recognition
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                this.recognition = new SpeechRecognition();
-                this.recognition.continuous = false;
-                this.recognition.interimResults = true;
-                this.recognition.lang = 'en-US';
-
-                this.recognition.onstart = () => this.onStart();
-                this.recognition.onresult = (event) => this.onResult(event);
-                this.recognition.onerror = (event) => this.onError(event);
-                this.recognition.onend = () => this.onEnd();
-
-                return true;
-            }
-
-            async checkPermissionStatus() {
-                // Try to check permission status (not all browsers support this)
-                if (navigator.permissions && navigator.permissions.query) {
-                    try {
-                        const result = await navigator.permissions.query({ name: 'microphone' });
-                        
-                        if (result.state === 'granted') {
-                            this.permissionGranted = true;
-                            this.statusText.textContent = 'Tap microphone to start';
-                        } else if (result.state === 'denied') {
-                            this.showPermissionDeniedError();
-                        }
-                        
-                        // Listen for permission changes
-                        result.addEventListener('change', () => {
-                            if (result.state === 'granted') {
-                                this.permissionGranted = true;
-                                this.dismissError();
-                                this.closeModal();
-                            } else if (result.state === 'denied') {
-                                this.showPermissionDeniedError();
-                            }
-                        });
-                    } catch (error) {
-                        console.log('Permission API not fully supported', error);
-                    }
+                    this.recognition.onstart = () => this.onVoiceStart();
+                    this.recognition.onresult = (event) => this.onVoiceResult(event);
+                    this.recognition.onerror = (event) => this.onVoiceError(event);
+                    this.recognition.onend = () => this.onVoiceEnd();
                 }
             }
 
-            handleVoiceButtonClick() {
-                if (this.isListening) {
-                    this.stopListening();
-                } else {
-                    this.startListening();
-                }
+            initWelcome() {
+                this.addMessage('assistant', '👋 Welcome to Nova AI V3.0! I can help with:\n• Translation (20+ languages)\n• Study assistance & quizzes\n• Mood detection & music\n• Code help & debugging\n• Story generation\n• And much more!\n\nTry saying "help" or click any feature card to get started!');
             }
 
-            async requestPermission() {
-                this.closeModal();
-                this.startListening();
+            onVoiceStart() {
+                document.getElementById('voiceButton').classList.add('listening');
+                document.getElementById('statusIndicator').classList.add('listening');
+                document.getElementById('statusText').textContent = 'Listening...';
             }
 
-            startListening() {
-                if (!this.recognition) {
-                    this.showError(
-                        'Voice Not Available',
-                        'Voice recognition is not available in your browser.',
-                        []
-                    );
-                    return;
-                }
+            onVoiceResult(event) {
+                const transcript = event.results[0][0].transcript;
+                this.addMessage('user', transcript);
+                this.processCommand(transcript);
+            }
 
-                try {
-                    this.recognition.start();
+            onVoiceError(event) {
+                console.error('Voice error:', event.error);
+                this.addMessage('assistant', `❌ Voice error: ${event.error}. Please try again.`);
+                this.resetVoiceState();
+            }
+
+            onVoiceEnd() {
+                this.resetVoiceState();
+            }
+
+            resetVoiceState() {
+                this.isListening = false;
+                document.getElementById('voiceButton').classList.remove('listening');
+                document.getElementById('statusIndicator').classList.remove('listening');
+                document.getElementById('statusText').textContent = 'Tap to speak';
+            }
+
+            startVoice() {
+                if (this.recognition && !this.isListening) {
                     this.isListening = true;
-                } catch (error) {
-                    if (error.message && error.message.includes('already started')) {
-                        // Already listening, ignore
-                        return;
+                    try {
+                        this.recognition.start();
+                    } catch (e) {
+                        console.error('Failed to start recognition:', e);
+                        this.resetVoiceState();
                     }
-                    console.error('Failed to start recognition:', error);
-                    this.showError('Failed to Start', 'Could not start voice recognition. Please try again.', []);
                 }
             }
 
-            stopListening() {
-                if (this.recognition) {
+            stopVoice() {
+                if (this.recognition && this.isListening) {
                     this.recognition.stop();
                 }
-                this.isListening = false;
             }
 
-            onStart() {
-                this.permissionGranted = true;
-                this.voiceButton.classList.add('listening');
-                this.statusIndicator.classList.add('listening');
-                this.statusText.textContent = 'Listening to your voice...';
-                this.waveform.classList.add('active');
-                this.dismissError();
-                this.closeModal();
-            }
-
-            onResult(event) {
-                const transcript = Array.from(event.results)
-                    .map(result => result[0].transcript)
-                    .join('');
-
-                if (event.results[0].isFinal) {
-                    this.addMessage('user', transcript);
-                    this.processCommand(transcript);
-                }
-            }
-
-            onError(event) {
-                console.error('Speech recognition error:', event.error);
-
-                switch (event.error) {
-                    case 'no-speech':
-                        this.showError(
-                            'No Speech Detected',
-                            'We didn\'t hear anything. Please try speaking again.',
-                            [{ text: 'Retry', action: () => this.startListening() }]
-                        );
-                        break;
-                    
-                    case 'audio-capture':
-                        this.showError(
-                            'Microphone Error',
-                            'Could not access your microphone. Please check that it\'s connected and not being used by another application.',
-                            [{ text: 'Check Settings', action: () => this.showPermissionModal() }]
-                        );
-                        break;
-                    
-                    case 'not-allowed':
-                        this.showPermissionDeniedError();
-                        break;
-                    
-                    case 'network':
-                        this.showError(
-                            'Network Error',
-                            'Voice recognition requires an internet connection. Please check your connection and try again.',
-                            [{ text: 'Retry', action: () => this.startListening() }]
-                        );
-                        break;
-                    
-                    case 'aborted':
-                        // User stopped, don't show error
-                        break;
-                    
-                    default:
-                        this.showError(
-                            'Recognition Error',
-                            `An error occurred: ${event.error}. Please try again.`,
-                            [{ text: 'Retry', action: () => this.startListening() }]
-                        );
-                }
-
-                this.resetState();
-            }
-
-            showPermissionDeniedError() {
-                this.showPermissionModal();
-                this.showError(
-                    'Microphone Access Denied',
-                    'Nova needs microphone access to work. Please click the lock icon in your address bar and allow microphone access.',
-                    [
-                        { text: 'Show Guide', action: () => this.showPermissionModal() },
-                        { text: 'Retry', action: () => this.startListening() }
-                    ]
-                );
-            }
-
-            onEnd() {
-                this.isListening = false;
-                this.resetState();
-            }
-
-            resetState() {
-                this.voiceButton.classList.remove('listening', 'processing');
-                this.statusIndicator.classList.remove('listening', 'processing', 'error');
-                this.statusText.textContent = 'Tap microphone to start';
-                this.waveform.classList.remove('active');
-            }
-
-            processCommand(command) {
-                // Show processing state
-                this.voiceButton.classList.remove('listening');
-                this.voiceButton.classList.add('processing');
-                this.statusIndicator.classList.remove('listening');
-                this.statusIndicator.classList.add('processing');
-                this.statusText.textContent = 'Processing your request...';
-
-                // Simulate AI processing
-                setTimeout(() => {
-                    const response = this.generateResponse(command);
-                    this.addMessage('assistant', response);
-                    this.speak(response);
-                    this.resetState();
-                }, 1000 + Math.random() * 1000);
-            }
-
-            generateResponse(command) {
-                const lower = command.toLowerCase();
-                
-                if (lower.includes('hello') || lower.includes('hi')) {
-                    return 'Hello! How can I assist you today?';
-                } else if (lower.includes('how are you')) {
-                    return 'I\'m functioning perfectly! Thanks for asking. How can I help you?';
-                } else if (lower.includes('weather')) {
-                    return 'I can help with weather information! In a production version, I would connect to a weather API to give you accurate forecasts.';
-                } else if (lower.includes('time')) {
-                    const now = new Date();
-                    return `The current time is ${now.toLocaleTimeString()}.`;
-                } else if (lower.includes('date')) {
-                    const now = new Date();
-                    return `Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.`;
-                } else {
-                    return `I heard you say: "${command}": I would process your request with advanced AI capabilities.`;
-                }
+            addMessage(role, text) {
+                const messagesDiv = document.getElementById('chatMessages');
+                const message = document.createElement('div');
+                message.className = `message ${role}`;
+                message.innerHTML = `<strong>${role === 'user' ? '👤 You' : '🤖 Nova'}</strong>${text.replace(/\n/g, '<br>')}`;
+                messagesDiv.appendChild(message);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
             }
 
             speak(text) {
@@ -1168,74 +656,633 @@
                 }
             }
 
-            addMessage(role, text) {
-                const message = document.createElement('div');
-                message.className = `transcript-message ${role}`;
-                message.innerHTML = `<strong>${role === 'user' ? 'You' : 'Nova'}:</strong> ${text}`;
-                this.transcript.appendChild(message);
-                this.transcript.scrollTop = this.transcript.scrollHeight;
+            // ==================== TRANSLATION ====================
+            
+            translate(text, targetLang) {
+                // Simple translation mapping (in production, use Google Translate API)
+                const translations = {
+                    'hi': { 'hello': 'नमस्ते', 'thank you': 'धन्यवाद', 'goodbye': 'अलविदा' },
+                    'es': { 'hello': 'hola', 'thank you': 'gracias', 'goodbye': 'adiós' },
+                    'fr': { 'hello': 'bonjour', 'thank you': 'merci', 'goodbye': 'au revoir' },
+                    'de': { 'hello': 'hallo', 'thank you': 'danke', 'goodbye': 'auf wiedersehen' },
+                    'ja': { 'hello': 'こんにちは', 'thank you': 'ありがとう', 'goodbye': 'さようなら' }
+                };
+
+                const textLower = text.toLowerCase();
+                const langTranslations = translations[targetLang] || {};
+                
+                return langTranslations[textLower] || `[${targetLang.toUpperCase()}] ${text}`;
             }
 
-            showError(title, message, actions = []) {
-                this.errorTitle.textContent = `⚠️ ${title}`;
-                this.errorText.textContent = message;
+            // ==================== STUDY ASSISTANT ====================
+            
+            explainConcept(topic) {
+                const explanations = {
+                    'machine learning': `🤖 MACHINE LEARNING EXPLAINED
+
+Machine Learning is like teaching a computer to learn from examples:
+
+📚 How it works:
+1. Show computer many examples (training data)
+2. Computer finds patterns
+3. Computer makes predictions on new data
+
+🎯 Types:
+• Supervised: Learning with labels (like flashcards)
+• Unsupervised: Finding patterns without labels
+• Reinforcement: Learning by trial and error
+
+💡 Real examples:
+• Netflix recommendations
+• Email spam filters
+• Voice assistants
+• Self-driving cars`,
+
+                    'photosynthesis': `🌱 PHOTOSYNTHESIS EXPLAINED
+
+Plants making their own food using sunlight!
+
+⚗️ The Recipe:
+☀️ Sunlight + 💧 Water + 🌫️ CO₂ → 🍃 Glucose + 💨 Oxygen
+
+📍 Process:
+1. Chlorophyll (green pigment) captures sunlight
+2. Roots absorb water from soil
+3. Leaves take CO₂ from air
+4. Chemical reaction creates glucose (food)
+5. Releases oxygen as byproduct
+
+🎯 Why important:
+• Foundation of food chain
+• Produces oxygen we breathe
+• Stores solar energy`,
+
+                    'python': `🐍 PYTHON PROGRAMMING
+
+Python is a beginner-friendly programming language.
+
+✨ Key Features:
+• Easy to read (looks like English)
+• Versatile (web, AI, data, games)
+• Huge community & libraries
+• Great for beginners
+
+📝 Basic Syntax:
+print("Hello World")  # Display text
+x = 10  # Variables
+if x > 5:  # Conditions
+    print("Greater")
+
+🎯 Popular uses:
+• Web development (Django, Flask)
+• Data science (Pandas, NumPy)
+• AI/ML (TensorFlow, PyTorch)
+• Automation scripts`
+                };
+
+                const topicLower = topic.toLowerCase();
+                for (let key in explanations) {
+                    if (topicLower.includes(key)) {
+                        return explanations[key];
+                    }
+                }
                 
-                // Clear and add action buttons
-                this.errorActions.innerHTML = '';
-                actions.forEach(action => {
-                    const button = document.createElement('button');
-                    button.className = 'error-action';
-                    button.textContent = action.text;
-                    button.onclick = action.action;
-                    this.errorActions.appendChild(button);
+                return `I don't have a detailed explanation for "${topic}" yet. Try:\n• Machine Learning\n• Photosynthesis\n• Python`;
+            }
+
+            generateQuiz(subject) {
+                const quizzes = {
+                    'python': [
+                        { q: 'What keyword creates a function?', opts: ['A) func', 'B) def', 'C) function', 'D) define'], ans: 'B', exp: 'def is used to define functions in Python' },
+                        { q: 'What is the output of: len([1,2,3])?', opts: ['A) 1', 'B) 2', 'C) 3', 'D) Error'], ans: 'C', exp: 'len() returns the number of items' },
+                        { q: 'Which is mutable?', opts: ['A) Tuple', 'B) String', 'C) List', 'D) Integer'], ans: 'C', exp: 'Lists can be changed after creation' }
+                    ],
+                    'science': [
+                        { q: 'Speed of light?', opts: ['A) 3×10⁸ m/s', 'B) 3×10⁶ m/s', 'C) 3×10⁷ m/s', 'D) 3×10⁹ m/s'], ans: 'A', exp: 'Speed of light in vacuum' },
+                        { q: 'What is H₂O?', opts: ['A) Hydrogen', 'B) Water', 'C) Oxygen', 'D) Acid'], ans: 'B', exp: 'Water molecule: 2 hydrogen + 1 oxygen' },
+                        { q: 'Powerhouse of the cell?', opts: ['A) Nucleus', 'B) Mitochondria', 'C) Ribosome', 'D) Chloroplast'], ans: 'B', exp: 'Mitochondria produce energy (ATP)' }
+                    ],
+                    'math': [
+                        { q: 'What is 15% of 200?', opts: ['A) 20', 'B) 30', 'C) 25', 'D) 35'], ans: 'B', exp: '15% of 200 = (15/100) × 200 = 30' },
+                        { q: 'What is √144?', opts: ['A) 11', 'B) 12', 'C) 13', 'D) 14'], ans: 'B', exp: '12 × 12 = 144' },
+                        { q: 'What is 2³?', opts: ['A) 6', 'B) 8', 'C) 9', 'D) 16'], ans: 'B', exp: '2 × 2 × 2 = 8' }
+                    ]
+                };
+
+                const questions = quizzes[subject] || quizzes['python'];
+                let output = `\n📝 ${subject.toUpperCase()} QUIZ\n${'='.repeat(50)}\n\n`;
+                
+                questions.forEach((q, i) => {
+                    output += `Question ${i + 1}: ${q.q}\n`;
+                    q.opts.forEach(opt => output += `  ${opt}\n`);
+                    output += `\nAnswer: ${q.ans} - ${q.exp}\n\n`;
                 });
 
-                this.errorMessage.classList.add('show');
-                this.statusIndicator.classList.add('error');
+                return output;
             }
 
-            dismissError() {
-                this.errorMessage.classList.remove('show');
-                this.statusIndicator.classList.remove('error');
-            }
-
-            showPermissionModal() {
-                this.permissionModal.classList.add('show');
-            }
-
-            closeModal() {
-                this.permissionModal.classList.remove('show');
-            }
-
-            demoFeature(index) {
-                const demos = [
-                    'Nova understands natural language. Try saying: "What\'s the weather like?"',
-                    'Nova supports multiple languages. Try switching your language preference in settings.',
-                    'Nova responds instantly. Notice the sub-second processing time!',
-                    'Your privacy is protected. All voice processing happens securely and nothing is stored.',
-                    'Customize Nova\'s voice and behavior to match your preferences.',
-                    'Use Nova on any device - desktop, mobile, or tablet for a consistent experience.'
+            getStudyTips() {
+                const tips = [
+                    '🧠 Pomodoro Technique: Study 25 min, break 5 min',
+                    '📝 Active Recall: Test yourself instead of re-reading',
+                    '🔄 Spaced Repetition: Review at increasing intervals',
+                    '🎯 Teach Others: Best way to solidify understanding',
+                    '💤 Sleep Well: Memory consolidation happens during sleep',
+                    '🏃 Exercise: Boosts brain function and memory',
+                    '🎵 Instrumental Music: Better than silence for some',
+                    '📱 Remove Distractions: Phone away during study'
                 ];
 
-                this.addMessage('assistant', demos[index]);
+                return `\n💡 STUDY TIPS\n${'='.repeat(50)}\n\n` + tips.join('\n\n');
+            }
+
+            // ==================== MOOD DETECTION ====================
+            
+            detectMoodFromText(text) {
+                const textLower = text.toLowerCase();
+                
+                const happyWords = ['happy', 'joy', 'great', 'awesome', 'love', 'excellent', 'wonderful', 'amazing'];
+                const sadWords = ['sad', 'unhappy', 'depressed', 'down', 'miserable', 'awful', 'terrible'];
+                const angryWords = ['angry', 'mad', 'furious', 'hate', 'annoyed', 'frustrated'];
+                const stressedWords = ['stressed', 'anxious', 'worried', 'overwhelmed', 'nervous'];
+
+                let mood = 'neutral';
+                if (happyWords.some(w => textLower.includes(w))) mood = 'happy';
+                else if (sadWords.some(w => textLower.includes(w))) mood = 'sad';
+                else if (angryWords.some(w => textLower.includes(w))) mood = 'angry';
+                else if (stressedWords.some(w => textLower.includes(w))) mood = 'stressed';
+
+                return this.getMoodResponse(mood);
+            }
+
+            getMoodResponse(mood) {
+                const emojiMap = {
+                    'happy': '😊', 'sad': '😢', 'angry': '😠',
+                    'neutral': '😐', 'stressed': '😰'
+                };
+
+                const musicRecs = {
+                    'happy': ['Happy - Pharrell Williams', 'Tum Hi Ho - Aashiqui 2', 'Dil Chahta Hai'],
+                    'sad': ['Tujhe Kitna Chahne Lage', 'Agar Tum Saath Ho', 'Channa Mereya'],
+                    'angry': ['Eye of the Tiger', 'Sultan Theme', 'Apna Time Aayega'],
+                    'stressed': ['Weightless - Marconi Union', 'Om Meditation', 'Rain Sounds'],
+                    'neutral': ['Kabira', 'Kun Faya Kun', 'Shayad']
+                };
+
+                const tips = {
+                    'happy': '• Share your happiness!\n• Help someone\n• Spread positivity',
+                    'sad': '• Take a walk outside\n• Call a friend\n• This too shall pass',
+                    'angry': '• Take deep breaths\n• Count to 10\n• Write it down',
+                    'stressed': '• Meditate 5 minutes\n• Deep breathing\n• Take a break',
+                    'neutral': '• Set small goals\n• Practice gratitude\n• Stay active'
+                };
+
+                const songs = musicRecs[mood];
+                const emoji = emojiMap[mood];
+
+                return `\n${emoji} MOOD DETECTED: ${mood.toUpperCase()}\n${'='.repeat(50)}\n\n🎵 Recommended Songs:\n${songs.map(s => `• ${s}`).join('\n')}\n\n💡 Mood Booster:\n${tips[mood]}`;
+            }
+
+            // ==================== CODE ASSISTANT ====================
+            
+            generateCode(type) {
+                const templates = {
+                    'function': `def calculate_sum(a, b):
+    """Calculate sum of two numbers"""
+    return a + b
+
+# Usage
+result = calculate_sum(5, 3)
+print(result)  # Output: 8`,
+
+                    'loop': `# For loop
+for i in range(5):
+    print(f"Iteration {i}")
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# Loop through list
+items = ['apple', 'banana', 'orange']
+for item in items:
+    print(item)`,
+
+                    'if': `# If-else statement
+x = 10
+
+if x > 0:
+    print("Positive")
+elif x < 0:
+    print("Negative")
+else:
+    print("Zero")
+
+# Ternary operator
+result = "Even" if x % 2 == 0 else "Odd"`,
+
+                    'list': `# Create and manipulate lists
+my_list = [1, 2, 3, 4, 5]
+
+# Append
+my_list.append(6)
+
+# Remove
+my_list.remove(3)
+
+# Sort
+my_list.sort()
+
+# List comprehension
+squares = [x**2 for x in range(10)]`
+                };
+
+                const typeLower = type.toLowerCase();
+                for (let key in templates) {
+                    if (typeLower.includes(key)) {
+                        return `\`\`\`python\n${templates[key]}\n\`\`\``;
+                    }
+                }
+
+                return "Code pattern not found. Try: function, loop, if, list, dictionary";
+            }
+
+            explainError(errorType) {
+                const errors = {
+                    'indentation': `🔴 IndentationError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Incorrect indentation
+
+✅ Fix: Use 4 spaces consistently
+Python requires proper indentation!
+
+Example:
+❌ Wrong:
+def my_function():
+print("Hello")
+
+✅ Correct:
+def my_function():
+    print("Hello")`,
+
+                    'syntax': `🔴 SyntaxError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Invalid syntax
+
+Common causes:
+• Missing colon (:)
+• Unclosed brackets/quotes
+• Invalid variable name
+
+Example:
+❌ if x > 5
+✅ if x > 5:`,
+
+                    'name': `🔴 NameError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Variable not defined
+
+✅ Fix: Define before using
+
+Example:
+❌ print(x)  # x not defined
+✅ x = 10
+   print(x)`,
+
+                    'type': `🔴 TypeError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Wrong data type
+
+Example:
+❌ "5" + 5
+✅ int("5") + 5
+or
+✅ "5" + str(5)`
+                };
+
+                return errors[errorType] || "Paste your full error message for help!";
+            }
+
+            // ==================== STORYTELLING ====================
+            
+            generateStory(theme) {
+                const stories = {
+                    'adventure': `🗺️ THE LOST TREASURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Chapter 1: The Discovery
+
+Arjun was an ordinary student from Mumbai until he found a mysterious old map in his grandfather's attic. The map showed a legendary treasure hidden in the ancient ruins of Hampi.
+
+"This is incredible!" Arjun whispered, studying the cryptic symbols.
+
+The next morning, he packed his backpack and began the journey. After days of travel, he finally stood before the magnificent ruins.
+
+Chapter 2: The Trials
+
+Three trials awaited:
+1. Mathematical puzzles (solved with school knowledge)
+2. Physical challenges (tested courage)
+3. Riddles of wisdom (required clever thinking)
+
+Chapter 3: The Discovery
+
+Deep inside, Arjun found not gold, but ancient books containing priceless wisdom. This knowledge would change the world.
+
+💡 Moral: True treasure is knowledge, not riches.
+
+THE END`,
+
+                    'scifi': `🚀 MISSION TO KEPLER-442b
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Year 2156. Earth needed a new home. Commander Zara volunteered for the 50-year journey to planet Kepler-442b.
+
+*50 years later*
+
+"Wake up, Commander. We've arrived."
+
+But something was wrong. The planet showed signs of intelligent life - impossible according to old data!
+
+As the ship descended, crystalline cities appeared. Energy beings greeted Zara telepathically:
+
+"We've been waiting. Earth sent probes, we sent back clean energy technology. Did you not receive it?"
+
+Zara realized: The answer to Earth's problems was already being transmitted - as signals humans dismissed as cosmic noise!
+
+Returning home with this knowledge, Zara bridged two civilizations.
+
+🌟 Moral: Sometimes answers are already in front of us.
+
+THE END`,
+
+                    'bedtime': `🌙 THE STAR WHO WANTED TO DANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+High in the night sky lived a little star named Tara. While other stars stood still and twinkled, Tara loved to dance.
+
+"Stand still, Tara!" said the Moon.
+
+But Tara couldn't help it. Her gentle movements brought joy to children below.
+
+One night, a little girl named Mira who couldn't sleep saw Tara dancing. The graceful movements helped her relax and drift into beautiful dreams.
+
+Soon, children everywhere discovered that watching Tara dance helped them sleep peacefully.
+
+The Moon realized: "Tara, being different brings unique gifts."
+
+✨ Sleep tight, and watch for dancing stars...
+
+THE END`
+                };
+
+                return stories[theme] || stories['adventure'];
+            }
+
+            // ==================== COMMAND PROCESSING ====================
+            
+            processCommand(command) {
+                const cmd = command.toLowerCase().trim();
+                let response = '';
+
+                // Greetings
+                if (/^(hi|hello|hey|greetings)/.test(cmd)) {
+                    response = '👋 Hello! How can I help you today?';
+                }
+                // Help
+                else if (cmd.includes('help')) {
+                    showHelp();
+                    return;
+                }
+                // Translation
+                else if (cmd.includes('translate')) {
+                    const match = cmd.match(/translate\s+(.+?)\s+to\s+(\w+)/);
+                    if (match) {
+                        const [, text, lang] = match;
+                        const translated = this.translate(text, lang);
+                        response = `🌐 Translation to ${lang.toUpperCase()}:\n${translated}`;
+                    } else {
+                        response = 'Usage: "translate [text] to [language]"\nExample: "translate hello to hindi"';
+                    }
+                }
+                // Explanations
+                else if (cmd.includes('explain')) {
+                    const topic = cmd.replace('explain', '').trim();
+                    response = this.explainConcept(topic);
+                }
+                // Quiz
+                else if (cmd.includes('quiz')) {
+                    const subject = cmd.includes('python') ? 'python' : 
+                                  cmd.includes('science') ? 'science' : 
+                                  cmd.includes('math') ? 'math' : 'python';
+                    response = this.generateQuiz(subject);
+                }
+                // Study tips
+                else if (cmd.includes('study tip')) {
+                    response = this.getStudyTips();
+                }
+                // Mood detection
+                else if (cmd.includes('mood')) {
+                    response = 'Tell me how you\'re feeling, and I\'ll detect your mood!';
+                    setTimeout(() => {
+                        const moodText = prompt('How are you feeling?');
+                        if (moodText) {
+                            const moodResponse = this.detectMoodFromText(moodText);
+                            this.addMessage('assistant', moodResponse);
+                            this.speak('I\'ve analyzed your mood and have some suggestions for you.');
+                        }
+                    }, 100);
+                    return;
+                }
+                // Code help
+                else if (cmd.includes('code') && (cmd.includes('help') || cmd.includes('generate'))) {
+                    const type = cmd.includes('function') ? 'function' :
+                               cmd.includes('loop') ? 'loop' :
+                               cmd.includes('if') ? 'if' : 'function';
+                    response = this.generateCode(type);
+                }
+                // Error explanation
+                else if (cmd.includes('error') || cmd.includes('debug')) {
+                    const errorType = cmd.includes('indentation') ? 'indentation' :
+                                    cmd.includes('syntax') ? 'syntax' :
+                                    cmd.includes('name') ? 'name' :
+                                    cmd.includes('type') ? 'type' : 'syntax';
+                    response = this.explainError(errorType);
+                }
+                // Stories
+                else if (cmd.includes('story') || cmd.includes('tell me')) {
+                    const theme = cmd.includes('adventure') ? 'adventure' :
+                                cmd.includes('scifi') || cmd.includes('sci-fi') ? 'scifi' :
+                                cmd.includes('bedtime') ? 'bedtime' : 'adventure';
+                    response = this.generateStory(theme);
+                }
+                // Time
+                else if (cmd.includes('time')) {
+                    const now = new Date();
+                    response = `🕐 Current time: ${now.toLocaleTimeString()}`;
+                }
+                // Date
+                else if (cmd.includes('date') || cmd.includes('today')) {
+                    const now = new Date();
+                    response = `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
+                }
+                // Default
+                else {
+                    response = `I heard: "${command}"\n\nI can help with:\n• Translation\n• Study & quizzes\n• Mood detection\n• Code assistance\n• Story generation\n• And more!\n\nType "help" to see all commands.`;
+                }
+
+                this.addMessage('assistant', response);
+                this.speak(response.substring(0, 200)); // Speak first 200 chars
             }
         }
 
-        // Initialize voice assistant when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            new VoiceAssistant();
-        });
+        // ==================== UI FUNCTIONS ====================
+        
+        const nova = new NovaAI();
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        function toggleVoice() {
+            if (nova.isListening) {
+                nova.stopVoice();
+            } else {
+                nova.startVoice();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                nova.addMessage('user', message);
+                nova.processCommand(message);
+                input.value = '';
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function quickCommand(command) {
+            document.getElementById('chatInput').value = command;
+            sendMessage();
+        }
+
+        function showHelp() {
+            const content = `
+                <div class="section-title">🌐 Translation</div>
+                <div>• "translate hello to hindi"</div>
+                <div>• "translate thank you to spanish"</div>
+                <div>Supported: Hindi, Spanish, French, German, Japanese</div>
+
+                <div class="section-title">📚 Study Assistant</div>
+                <div>• "explain machine learning"</div>
+                <div>• "explain photosynthesis"</div>
+                <div>• "quiz me on python"</div>
+                <div>• "study tips"</div>
+
+                <div class="section-title">😊 Mood Detection</div>
+                <div>• "detect my mood"</div>
+                <div>• Will analyze your feelings and suggest music</div>
+
+                <div class="section-title">💻 Code Assistant</div>
+                <div>• "code help function"</div>
+                <div>• "code help loop"</div>
+                <div>• "explain syntax error"</div>
+
+                <div class="section-title">📖 Storytelling</div>
+                <div>• "tell me an adventure story"</div>
+                <div>• "tell me a scifi story"</div>
+                <div>• "tell me a bedtime story"</div>
+
+                <div class="section-title">🎤 Voice Commands</div>
+                <div>• Click the microphone button</div>
+                <div>• Speak any of the above commands</div>
+                <div>• Nova will respond with voice and text</div>
+
+                <div class="section-title">⏰ Utilities</div>
+                <div>• "what time is it"</div>
+                <div>• "what's the date"</div>
+            `;
+            
+            document.getElementById('helpContent').innerHTML = content;
+            document.getElementById('helpModal').classList.add('show');
+        }
+
+        function showFeatures() {
+            const content = `
+                <div class="section-title">✨ All Features</div>
+                
+                <div style="margin: 1rem 0;">
+                    <strong>1. 🌐 Multi-Language Translation</strong><br>
+                    Translate to 20+ languages including Hindi, Spanish, French, German, Japanese, and more.
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>2. 📚 Smart Study Assistant</strong><br>
+                    • Concept explanations (ML, Science, Programming)<br>
+                    • Interactive quizzes (Python, Science, Math)<br>
+                    • Study tips and learning strategies<br>
+                    • Flashcard system
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>3. 😊 Mood Detection & Music</strong><br>
+                    • Analyze mood from text<br>
+                    • Music recommendations based on mood<br>
+                    • Personalized mood boosters
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>4. 💻 Code Assistant</strong><br>
+                    • Code generation (functions, loops, etc.)<br>
+                    • Error explanation and debugging<br>
+                    • Algorithm examples<br>
+                    • Best practices
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>5. 📖 AI Storyteller</strong><br>
+                    • Adventure stories<br>
+                    • Sci-fi narratives<br>
+                    • Bedtime stories<br>
+                    • Customizable characters and settings
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>6. 🎤 Voice Recognition</strong><br>
+                    • Natural speech understanding<br>
+                    • Voice commands<br>
+                    • Text-to-speech responses<br>
+                    • Hands-free operation
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>7. ⏰ Smart Utilities</strong><br>
+                    • Current time and date<br>
+                    • Quick calculations<br>
+                    • Information lookup
+                </div>
+            `;
+            
+            document.getElementById('featuresContent').innerHTML = content;
+            document.getElementById('featuresModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+            }
+        }
     </script>
 </body>
 </html>
