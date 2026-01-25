@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova - Voice-First AI Assistant</title>
+    <meta name="description" content="Experience the future of voice interaction with Nova. Your intelligent AI assistant that understands natural speech.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-900: #0A1628;
+            --primary-800: #132744;
+            --primary-700: #1E3A5F;
+            --primary-600: #2952A3;
+            --primary-500: #3B82F6;
+            
+            --accent-500: #FF6B6B;
+            --accent-400: #FF8787;
+            --accent-300: #FFA3A3;
+            
+            --neutral-50: #F8FAFC;
+            --neutral-100: #F1F5F9;
+            --neutral-200: #E2E8F0;
+            --neutral-700: #334155;
+            --neutral-900: #0F172A;
+            
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            
+            /* Typography */
+            --font-display: 'Manrope', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(180deg, var(--primary-900) 0%, var(--primary-700) 100%);
+            color: var(--neutral-50);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-300) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 0.875rem;
+            color: var(--neutral-200);
+            font-weight: 500;
+            margin-left: var(--spacing-xs);
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--neutral-100);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-400);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-300) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--neutral-200);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Voice Interface */
+        .voice-interface {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .voice-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .voice-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .voice-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 12px rgba(255, 107, 107, 0.2);
+        }
+
+        .voice-button:active {
+            transform: scale(0.95);
+        }
+
+        .voice-button.listening {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(255, 107, 107, 0);
+            }
+        }
+
+        .voice-button.processing {
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .voice-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Status Indicator */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 48px;
+            transition: all 0.3s ease;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neutral-200);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .status-indicator.listening .status-dot {
+            background: var(--success);
+        }
+
+        .status-indicator.processing .status-dot {
+            background: var(--warning);
+        }
+
+        .status-indicator.error .status-dot {
+            background: var(--error);
+        }
+
+        /* Waveform Visualization */
+        .waveform {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 60px;
+            margin: var(--spacing-md) 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .waveform.active {
+            opacity: 1;
+        }
+
+        .waveform-bar {
+            width: 4px;
+            background: var(--accent-400);
+            border-radius: 2px;
+            animation: waveform 0.8s ease-in-out infinite;
+        }
+
+        .waveform-bar:nth-child(1) { animation-delay: 0s; }
+        .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+        .waveform-bar:nth-child(5) { animation-delay: 0.4s; }
+        .waveform-bar:nth-child(6) { animation-delay: 0.3s; }
+        .waveform-bar:nth-child(7) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(8) { animation-delay: 0.1s; }
+
+        @keyframes waveform {
+            0%, 100% { height: 10px; }
+            50% { height: 50px; }
+        }
+
+        /* Transcript */
+        .transcript {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .transcript:empty::before {
+            content: 'Your conversation will appear here...';
+            color: var(--neutral-200);
+            opacity: 0.5;
+        }
+
+        .transcript-message {
+            margin-bottom: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .transcript-message.user {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 3px solid var(--primary-500);
+        }
+
+        .transcript-message.assistant {
+            background: rgba(255, 107, 107, 0.2);
+            border-left: 3px solid var(--accent-500);
+        }
+
+        /* Permission Modal */
+        .permission-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg);
+        }
+
+        .permission-modal.show {
+            display: flex;
+        }
+
+        .permission-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: var(--spacing-xl);
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .permission-content h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .permission-steps {
+            margin: var(--spacing-lg) 0;
+        }
+
+        .permission-step {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .permission-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-display);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--neutral-100);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .error-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .error-message h4 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .error-dismiss {
+            background: none;
+            border: none;
+            color: var(--neutral-100);
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .error-dismiss:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .error-message p {
+            font-size: 0.9rem;
+            color: var(--neutral-200);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .error-action {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .error-action:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Browser Detection */
+        .browser-warning {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--warning);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            display: none;
+        }
+
+        .browser-warning.show {
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-500);
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-card p {
+            color: var(--neutral-200);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.05);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cta-button {
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            font-family: var(--font-display);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--neutral-200);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-400);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .voice-button {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tagline {
+                display: none;
+            }
+
+            .permission-content {
+                padding: var(--spacing-lg);
+            }
+
+            .permission-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <div>
+                <div class="logo-text">NOVA</div>
+            </div>
+            <span class="tagline">Your Voice, Amplified by AI</span>
+        </div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#privacy">Privacy</a>
+        </nav>
+        <button class="mobile-menu-button" aria-label="Open menu">☰</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Speak Naturally,<br>Act Instantly</h1>
+            <p>Experience the future of voice interaction with Nova. Your intelligent AI assistant that understands natural speech and responds with precision.</p>
+
+            <div class="browser-warning" id="browserWarning">
+                <h4>⚠️ Browser Compatibility</h4>
+                <p>For the best experience, use Chrome, Edge, or Safari. Your current browser may have limited voice support.</p>
+            </div>
+
+            <div class="voice-interface">
+                <div class="voice-button-container">
+                    <button class="voice-button" id="voiceButton" aria-label="Start voice assistant">
+                        🎤
+                    </button>
+
+                    <div class="status-indicator" id="statusIndicator">
+                        <span class="status-dot"></span>
+                        <span id="statusText">Tap microphone to start</span>
+                    </div>
+                </div>
+
+                <div class="waveform" id="waveform">
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                </div>
+
+                <div class="transcript" id="transcript" role="log" aria-live="polite" aria-label="Conversation transcript"></div>
+
+                <div class="error-message" id="errorMessage">
+                    <div class="error-header">
+                        <h4 id="errorTitle">⚠️ Error</h4>
+                        <button class="error-dismiss" id="errorDismiss" aria-label="Dismiss error">✕</button>
+                    </div>
+                    <p id="errorText"></p>
+                    <div id="errorActions"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2>Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Natural Language Processing</h3>
+                    <p>Understands context, intent, and nuance in your speech for accurate responses every time.</p>
+                </div>
+
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Language Support</h3>
+                    <p>Communicate in your preferred language with support for 50+ languages and dialects.</p>
+                </div>
+
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Real-time processing with sub-second response times for seamless conversations.</p>
+                </div>
+
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your voice data is encrypted and never stored. Complete privacy guaranteed.</p>
+                </div>
+
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Customizable</h3>
+                    <p>Personalize voice, tone, and behavior to match your preferences and workflow.</p>
+                </div>
+
+                <div class="feature-card" role="button" tabindex="0">
+                    <div class="feature-icon">📱</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Works seamlessly on desktop, mobile, and tablet. Same experience everywhere.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2 style="margin-bottom: var(--spacing-md);">Ready to Get Started?</h2>
+            <p style="color: var(--neutral-200); margin-bottom: var(--spacing-lg); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join thousands of users already experiencing the future of voice interaction.
+            </p>
+            <button class="cta-button" id="ctaButton">Start Speaking Now</button>
+        </section>
+    </main>
+
+    <!-- Permission Modal -->
+    <div class="permission-modal" id="permissionModal">
+        <div class="permission-content">
+            <h2>🎤 Microphone Permission Required</h2>
+            <p>Nova needs access to your microphone to provide voice assistance. Your privacy is protected - we never store voice recordings.</p>
+            
+            <div class="permission-steps">
+                <div class="permission-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Look for the browser prompt</strong><br>
+                        You should see a permission request at the top of your browser.
+                    </div>
+                </div>
+                <div class="permission-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Click "Allow"</strong><br>
+                        Grant permission for Nova to access your microphone.
+                    </div>
+                </div>
+                <div class="permission-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Start speaking</strong><br>
+                        Once granted, click the microphone button to start using Nova.
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); padding: var(--spacing-md); border-radius: 8px; margin-bottom: var(--spacing-md);">
+                <strong>Already blocked microphone access?</strong><br>
+                <span style="font-size: 0.9rem; color: var(--neutral-200);">
+                    Click the lock icon 🔒 in your browser's address bar → Site settings → Change microphone permission to "Allow"
+                </span>
+            </div>
+
+            <div class="permission-buttons">
+                <button class="btn btn-primary" id="requestPermission">Request Permission</button>
+                <button class="btn btn-secondary" id="closeModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#privacy-policy">Privacy Policy</a>
+            <a href="#terms-of-service">Terms of Service</a>
+            <a href="#cookie-policy">Cookie Policy</a>
+            <a href="#contact">Contact Us</a>
+            <a href="#about">About Nova</a>
+        </div>
+        <p style="color: var(--neutral-200); font-size: 0.875rem;">
+            © 2025 Nova AI. All rights reserved. Made with ❤️ for voice-first experiences.
+        </p>
+    </footer>
+
+    <script>
+        // Voice Assistant Logic
+        class VoiceAssistant {
+            constructor() {
+                this.isListening = false;
+                this.recognition = null;
+                this.permissionGranted = false;
+                
+                this.voiceButton = document.getElementById('voiceButton');
+                this.statusIndicator = document.getElementById('statusIndicator');
+                this.statusText = document.getElementById('statusText');
+                this.waveform = document.getElementById('waveform');
+                this.transcript = document.getElementById('transcript');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.errorTitle = document.getElementById('errorTitle');
+                this.errorText = document.getElementById('errorText');
+                this.errorActions = document.getElementById('errorActions');
+                this.errorDismiss = document.getElementById('errorDismiss');
+                this.permissionModal = document.getElementById('permissionModal');
+                this.browserWarning = document.getElementById('browserWarning');
+
+                this.init();
+            }
+
+            init() {
+                // Check browser support
+                if (!this.checkBrowserSupport()) {
+                    return;
+                }
+
+                // Check existing permission status
+                this.checkPermissionStatus();
+
+                // Event listeners
+                this.voiceButton.addEventListener('click', () => this.handleVoiceButtonClick());
+                document.getElementById('ctaButton').addEventListener('click', () => this.handleVoiceButtonClick());
+                document.getElementById('errorDismiss').addEventListener('click', () => this.dismissError());
+                document.getElementById('requestPermission').addEventListener('click', () => this.requestPermission());
+                document.getElementById('closeModal').addEventListener('click', () => this.closeModal());
+
+                // Feature card demos
+                document.querySelectorAll('.feature-card').forEach((card, index) => {
+                    card.addEventListener('click', () => this.demoFeature(index));
+                });
+            }
+
+            checkBrowserSupport() {
+                const hasSupport = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+                
+                if (!hasSupport) {
+                    this.showError(
+                        'Browser Not Supported',
+                        'Your browser doesn\'t support voice recognition. Please use Chrome, Edge, or Safari for the best experience.',
+                        [{
+                            text: 'Learn More',
+                            action: () => window.open('https://caniuse.com/speech-recognition', '_blank')
+                        }]
+                    );
+                    this.voiceButton.disabled = true;
+                    this.browserWarning.classList.add('show');
+                    return false;
+                }
+
+                // Initialize speech recognition
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                this.recognition = new SpeechRecognition();
+                this.recognition.continuous = false;
+                this.recognition.interimResults = true;
+                this.recognition.lang = 'en-US';
+
+                this.recognition.onstart = () => this.onStart();
+                this.recognition.onresult = (event) => this.onResult(event);
+                this.recognition.onerror = (event) => this.onError(event);
+                this.recognition.onend = () => this.onEnd();
+
+                return true;
+            }
+
+            async checkPermissionStatus() {
+                // Try to check permission status (not all browsers support this)
+                if (navigator.permissions && navigator.permissions.query) {
+                    try {
+                        const result = await navigator.permissions.query({ name: 'microphone' });
+                        
+                        if (result.state === 'granted') {
+                            this.permissionGranted = true;
+                            this.statusText.textContent = 'Tap microphone to start';
+                        } else if (result.state === 'denied') {
+                            this.showPermissionDeniedError();
+                        }
+                        
+                        // Listen for permission changes
+                        result.addEventListener('change', () => {
+                            if (result.state === 'granted') {
+                                this.permissionGranted = true;
+                                this.dismissError();
+                                this.closeModal();
+                            } else if (result.state === 'denied') {
+                                this.showPermissionDeniedError();
+                            }
+                        });
+                    } catch (error) {
+                        console.log('Permission API not fully supported', error);
+                    }
+                }
+            }
+
+            handleVoiceButtonClick() {
+                if (this.isListening) {
+                    this.stopListening();
+                } else {
+                    this.startListening();
+                }
+            }
+
+            async requestPermission() {
+                this.closeModal();
+                this.startListening();
+            }
+
+            startListening() {
+                if (!this.recognition) {
+                    this.showError(
+                        'Voice Not Available',
+                        'Voice recognition is not available in your browser.',
+                        []
+                    );
+                    return;
+                }
+
+                try {
+                    this.recognition.start();
+                    this.isListening = true;
+                } catch (error) {
+                    if (error.message && error.message.includes('already started')) {
+                        // Already listening, ignore
+                        return;
+                    }
+                    console.error('Failed to start recognition:', error);
+                    this.showError('Failed to Start', 'Could not start voice recognition. Please try again.', []);
+                }
+            }
+
+            stopListening() {
+                if (this.recognition) {
+                    this.recognition.stop();
+                }
+                this.isListening = false;
+            }
+
+            onStart() {
+                this.permissionGranted = true;
+                this.voiceButton.classList.add('listening');
+                this.statusIndicator.classList.add('listening');
+                this.statusText.textContent = 'Listening to your voice...';
+                this.waveform.classList.add('active');
+                this.dismissError();
+                this.closeModal();
+            }
+
+            onResult(event) {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0].transcript)
+                    .join('');
+
+                if (event.results[0].isFinal) {
+                    this.addMessage('user', transcript);
+                    this.processCommand(transcript);
+                }
+            }
+
+            onError(event) {
+                console.error('Speech recognition error:', event.error);
+
+                switch (event.error) {
+                    case 'no-speech':
+                        this.showError(
+                            'No Speech Detected',
+                            'We didn\'t hear anything. Please try speaking again.',
+                            [{ text: 'Retry', action: () => this.startListening() }]
+                        );
+                        break;
+                    
+                    case 'audio-capture':
+                        this.showError(
+                            'Microphone Error',
+                            'Could not access your microphone. Please check that it\'s connected and not being used by another application.',
+                            [{ text: 'Check Settings', action: () => this.showPermissionModal() }]
+                        );
+                        break;
+                    
+                    case 'not-allowed':
+                        this.showPermissionDeniedError();
+                        break;
+                    
+                    case 'network':
+                        this.showError(
+                            'Network Error',
+                            'Voice recognition requires an internet connection. Please check your connection and try again.',
+                            [{ text: 'Retry', action: () => this.startListening() }]
+                        );
+                        break;
+                    
+                    case 'aborted':
+                        // User stopped, don't show error
+                        break;
+                    
+                    default:
+                        this.showError(
+                            'Recognition Error',
+                            `An error occurred: ${event.error}. Please try again.`,
+                            [{ text: 'Retry', action: () => this.startListening() }]
+                        );
+                }
+
+                this.resetState();
+            }
+
+            showPermissionDeniedError() {
+                this.showPermissionModal();
+                this.showError(
+                    'Microphone Access Denied',
+                    'Nova needs microphone access to work. Please click the lock icon in your address bar and allow microphone access.',
+                    [
+                        { text: 'Show Guide', action: () => this.showPermissionModal() },
+                        { text: 'Retry', action: () => this.startListening() }
+                    ]
+                );
+            }
+
+            onEnd() {
+                this.isListening = false;
+                this.resetState();
+            }
+
+            resetState() {
+                this.voiceButton.classList.remove('listening', 'processing');
+                this.statusIndicator.classList.remove('listening', 'processing', 'error');
+                this.statusText.textContent = 'Tap microphone to start';
+                this.waveform.classList.remove('active');
+            }
+
+            processCommand(command) {
+                // Show processing state
+                this.voiceButton.classList.remove('listening');
+                this.voiceButton.classList.add('processing');
+                this.statusIndicator.classList.remove('listening');
+                this.statusIndicator.classList.add('processing');
+                this.statusText.textContent = 'Processing your request...';
+
+                // Simulate AI processing
+                setTimeout(() => {
+                    const response = this.generateResponse(command);
+                    this.addMessage('assistant', response);
+                    this.speak(response);
+                    this.resetState();
+                }, 1000 + Math.random() * 1000);
+            }
+
+            generateResponse(command) {
+                const lower = command.toLowerCase();
+                
+                if (lower.includes('hello') || lower.includes('hi')) {
+                    return 'Hello! How can I assist you today?';
+                } else if (lower.includes('how are you')) {
+                    return 'I\'m functioning perfectly! Thanks for asking. How can I help you?';
+                } else if (lower.includes('weather')) {
+                    return 'I can help with weather information! In a production version, I would connect to a weather API to give you accurate forecasts.';
+                } else if (lower.includes('time')) {
+                    const now = new Date();
+                    return `The current time is ${now.toLocaleTimeString()}.`;
+                } else if (lower.includes('date')) {
+                    const now = new Date();
+                    return `Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.`;
+                } else {
+                    return `I heard you say: "${command}": I would process your request with advanced AI capabilities.`;
+                }
+            }
+
+            speak(text) {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 1.1;
+                    utterance.pitch = 1.0;
+                    window.speechSynthesis.speak(utterance);
+                }
+            }
+
+            addMessage(role, text) {
+                const message = document.createElement('div');
+                message.className = `transcript-message ${role}`;
+                message.innerHTML = `<strong>${role === 'user' ? 'You' : 'Nova'}:</strong> ${text}`;
+                this.transcript.appendChild(message);
+                this.transcript.scrollTop = this.transcript.scrollHeight;
+            }
+
+            showError(title, message, actions = []) {
+                this.errorTitle.textContent = `⚠️ ${title}`;
+                this.errorText.textContent = message;
+                
+                // Clear and add action buttons
+                this.errorActions.innerHTML = '';
+                actions.forEach(action => {
+                    const button = document.createElement('button');
+                    button.className = 'error-action';
+                    button.textContent = action.text;
+                    button.onclick = action.action;
+                    this.errorActions.appendChild(button);
+                });
+
+                this.errorMessage.classList.add('show');
+                this.statusIndicator.classList.add('error');
+            }
+
+            dismissError() {
+                this.errorMessage.classList.remove('show');
+                this.statusIndicator.classList.remove('error');
+            }
+
+            showPermissionModal() {
+                this.permissionModal.classList.add('show');
+            }
+
+            closeModal() {
+                this.permissionModal.classList.remove('show');
+            }
+
+            demoFeature(index) {
+                const demos = [
+                    'Nova understands natural language. Try saying: "What\'s the weather like?"',
+                    'Nova supports multiple languages. Try switching your language preference in settings.',
+                    'Nova responds instantly. Notice the sub-second processing time!',
+                    'Your privacy is protected. All voice processing happens securely and nothing is stored.',
+                    'Customize Nova\'s voice and behavior to match your preferences.',
+                    'Use Nova on any device - desktop, mobile, or tablet for a consistent experience.'
+                ];
+
+                this.addMessage('assistant', demos[index]);
+            }
+        }
+
+        // Initialize voice assistant when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new VoiceAssistant();
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
