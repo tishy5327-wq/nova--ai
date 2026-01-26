@@ -432,6 +432,107 @@
             gap: 0.5rem;
         }
 
+        .legal-section {
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h3 {
+            color: var(--accent-400);
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-section p, .legal-section ul {
+            margin-bottom: 1rem;
+            color: var(--neutral-200);
+        }
+
+        .legal-section ul {
+            padding-left: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-500) 0%, var(--primary-500) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .team-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            color: var(--accent-400);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 1.5rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-400);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--neutral-200);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--neutral-200);
+        }
+
         @media (max-width: 1024px) {
             .main-grid {
                 grid-template-columns: 1fr;
@@ -440,7 +541,12 @@
 
         @media (max-width: 768px) {
             nav {
-                display: none;
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
             }
             
             .voice-button {
@@ -461,6 +567,7 @@
             </div>
         </div>
         <nav>
+            <button class="nav-btn" onclick="showAbout()">👥 About</button>
             <button class="nav-btn" onclick="showHelp()">📚 Help</button>
             <button class="nav-btn" onclick="showFeatures()">✨ Features</button>
         </nav>
@@ -539,6 +646,53 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Nova AI</h4>
+                <p>Your intelligent voice-powered assistant for learning, creativity, and productivity. Built by Shah Tishy.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showAbout(); return false;">About Us</a></li>
+                    <li><a href="#" onclick="showFeatures(); return false;">Features</a></li>
+                    <li><a href="#" onclick="showHelp(); return false;">Help & Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showTerms(); return false;">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li>📧 tishy5327@gmail.com</li>
+                    <li>👨‍💻 Shah Tishy</li>
+                    <li>📍 Ahmedabad, Gujarat, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nova AI by Shah Tishy. All rights reserved. | Made with ❤️ for learners worldwide</p>
+        </div>
+    </footer>
+
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">👥 About Nova AI</h2>
+                <button class="close-btn" onclick="closeModal('aboutModal')">✕</button>
+            </div>
+            <div id="aboutContent"></div>
+        </div>
+    </div>
+
     <!-- Help Modal -->
     <div class="modal" id="helpModal">
         <div class="modal-content">
@@ -558,6 +712,28 @@
                 <button class="close-btn" onclick="closeModal('featuresModal')">✕</button>
             </div>
             <div id="featuresContent"></div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🔒 Privacy Policy</h2>
+                <button class="close-btn" onclick="closeModal('privacyModal')">✕</button>
+            </div>
+            <div id="privacyContent"></div>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📜 Terms & Conditions</h2>
+                <button class="close-btn" onclick="closeModal('termsModal')">✕</button>
+            </div>
+            <div id="termsContent"></div>
         </div>
     </div>
 
@@ -659,7 +835,6 @@
             // ==================== TRANSLATION ====================
             
             translate(text, targetLang) {
-                // Simple translation mapping (in production, use Google Translate API)
                 const translations = {
                     'hi': { 'hello': 'नमस्ते', 'thank you': 'धन्यवाद', 'goodbye': 'अलविदा' },
                     'es': { 'hello': 'hola', 'thank you': 'gracias', 'goodbye': 'adiós' },
@@ -1047,16 +1222,13 @@ THE END`
                 const cmd = command.toLowerCase().trim();
                 let response = '';
 
-                // Greetings
                 if (/^(hi|hello|hey|greetings)/.test(cmd)) {
                     response = '👋 Hello! How can I help you today?';
                 }
-                // Help
                 else if (cmd.includes('help')) {
                     showHelp();
                     return;
                 }
-                // Translation
                 else if (cmd.includes('translate')) {
                     const match = cmd.match(/translate\s+(.+?)\s+to\s+(\w+)/);
                     if (match) {
@@ -1067,23 +1239,19 @@ THE END`
                         response = 'Usage: "translate [text] to [language]"\nExample: "translate hello to hindi"';
                     }
                 }
-                // Explanations
                 else if (cmd.includes('explain')) {
                     const topic = cmd.replace('explain', '').trim();
                     response = this.explainConcept(topic);
                 }
-                // Quiz
                 else if (cmd.includes('quiz')) {
                     const subject = cmd.includes('python') ? 'python' : 
                                   cmd.includes('science') ? 'science' : 
                                   cmd.includes('math') ? 'math' : 'python';
                     response = this.generateQuiz(subject);
                 }
-                // Study tips
                 else if (cmd.includes('study tip')) {
                     response = this.getStudyTips();
                 }
-                // Mood detection
                 else if (cmd.includes('mood')) {
                     response = 'Tell me how you\'re feeling, and I\'ll detect your mood!';
                     setTimeout(() => {
@@ -1096,14 +1264,12 @@ THE END`
                     }, 100);
                     return;
                 }
-                // Code help
                 else if (cmd.includes('code') && (cmd.includes('help') || cmd.includes('generate'))) {
                     const type = cmd.includes('function') ? 'function' :
                                cmd.includes('loop') ? 'loop' :
                                cmd.includes('if') ? 'if' : 'function';
                     response = this.generateCode(type);
                 }
-                // Error explanation
                 else if (cmd.includes('error') || cmd.includes('debug')) {
                     const errorType = cmd.includes('indentation') ? 'indentation' :
                                     cmd.includes('syntax') ? 'syntax' :
@@ -1111,30 +1277,26 @@ THE END`
                                     cmd.includes('type') ? 'type' : 'syntax';
                     response = this.explainError(errorType);
                 }
-                // Stories
                 else if (cmd.includes('story') || cmd.includes('tell me')) {
                     const theme = cmd.includes('adventure') ? 'adventure' :
                                 cmd.includes('scifi') || cmd.includes('sci-fi') ? 'scifi' :
                                 cmd.includes('bedtime') ? 'bedtime' : 'adventure';
                     response = this.generateStory(theme);
                 }
-                // Time
                 else if (cmd.includes('time')) {
                     const now = new Date();
                     response = `🕐 Current time: ${now.toLocaleTimeString()}`;
                 }
-                // Date
                 else if (cmd.includes('date') || cmd.includes('today')) {
                     const now = new Date();
                     response = `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
                 }
-                // Default
                 else {
                     response = `I heard: "${command}"\n\nI can help with:\n• Translation\n• Study & quizzes\n• Mood detection\n• Code assistance\n• Story generation\n• And more!\n\nType "help" to see all commands.`;
                 }
 
                 this.addMessage('assistant', response);
-                this.speak(response.substring(0, 200)); // Speak first 200 chars
+                this.speak(response.substring(0, 200));
             }
         }
 
@@ -1170,6 +1332,82 @@ THE END`
         function quickCommand(command) {
             document.getElementById('chatInput').value = command;
             sendMessage();
+        }
+
+        function showAbout() {
+            const content = `
+                <div class="legal-section">
+                    <h3>🚀 My Mission</h3>
+                    <p>Nova AI was created by me, a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners worldwide. I'm building tools that make learning easier, more engaging, and more fun.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>💡 The Story</h3>
+                    <p>Started as a personal product in 2025, Nova AI began when I noticed students struggling with language barriers, coding challenges, and study organization. I asked myself: "What if I could build an AI assistant that understands students' needs?"</p>
+                    <p>Today, Nova AI combines voice recognition, natural language processing, and educational tools to help students learn better and faster. Built with passion and dedication by a solo developer who believes in the power of accessible education.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>👨‍💻 Meet the Developer</h3>
+                    <div class="team-grid">
+                        <div class="team-member" style="max-width: 300px; margin: 0 auto;">
+                            <div class="team-avatar">👨‍💻</div>
+                            <div class="team-name">Shah Tishy</div>
+                            <div class="team-role">Full-Stack Developer</div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--neutral-200);">
+                                Professional software engineer passionate about AI and education, building tools to help students learn better.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legal-section">
+                    <h3>🎯 What I Do</h3>
+                    <ul>
+                        <li><strong>Free & Accessible:</strong> Nova AI runs entirely in your browser - no downloads, no subscriptions</li>
+                        <li><strong>Student-First:</strong> Features designed specifically for learning and education</li>
+                        <li><strong>Privacy-Focused:</strong> Your conversations stay in your browser</li>
+                        <li><strong>Constantly Improving:</strong> Regular updates and new features based on user feedback</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>🌟 My Values</h3>
+                    <ul>
+                        <li><strong>Education:</strong> Making learning accessible to everyone</li>
+                        <li><strong>Innovation:</strong> Leveraging professional expertise to push boundaries with AI technology</li>
+                        <li><strong>Community:</strong> Built by a professional developer, for students and learners</li>
+                        <li><strong>Transparency:</strong> Open about what I do and how I do it</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>📍 Product Status</h3>
+                    <p><strong>Type:</strong> Professional AI Innovation Product</p>
+                    <p><strong>Developer:</strong> Shah Tishy</p>
+                    <p><strong>Location:</strong> Ahmedabad, Gujarat, India</p>
+                    <p><strong>Status:</strong> Active Development (V3.0)</p>
+                    <p><strong>License:</strong> Educational Use</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>📧 Get in Touch</h3>
+                    <p>I love hearing from users! Whether you have feedback, suggestions, or just want to say hi:</p>
+                    <ul>
+                        <li>Email: tishy5327@gmail.com</li>
+                        <li>Developer: Shah Tishy</li>
+                        <li>Feedback: Use the chat to tell me what you think!</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>🙏 Acknowledgments</h3>
+                    <p>Special thanks to the open-source communities, AI/ML researchers, and early beta testers who helped shape Nova AI into what it is today. Your feedback and support mean everything!</p>
+                </div>
+            `;
+            
+            document.getElementById('aboutContent').innerHTML = content;
+            document.getElementById('aboutModal').classList.add('show');
         }
 
         function showHelp() {
@@ -1273,11 +1511,309 @@ THE END`
             document.getElementById('featuresModal').classList.add('show');
         }
 
+        function showPrivacy() {
+            const content = `
+                <div class="legal-section">
+                    <p><strong>Effective Date:</strong> January 26, 2026</p>
+                    <p><strong>Last Updated:</strong> January 26, 2026</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>1. Introduction</h3>
+                    <p>Nova AI ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our voice-powered AI assistant service.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>2. Information We Collect</h3>
+                    <h4>2.1 Information You Provide</h4>
+                    <ul>
+                        <li>Voice commands and text inputs you provide to Nova AI</li>
+                        <li>Feedback and communications you send to us</li>
+                    </ul>
+                    
+                    <h4>2.2 Automatically Collected Information</h4>
+                    <ul>
+                        <li>Browser type and version</li>
+                        <li>Device information</li>
+                        <li>Usage statistics (features used, session duration)</li>
+                        <li>Error logs and performance data</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>3. How We Use Your Information</h3>
+                    <ul>
+                        <li>To provide and improve Nova AI services</li>
+                        <li>To process your voice commands and text queries</li>
+                        <li>To analyze usage patterns and enhance features</li>
+                        <li>To respond to your inquiries and support requests</li>
+                        <li>To detect and prevent technical issues</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>4. Data Storage and Security</h3>
+                    <p><strong>Local Storage:</strong> Nova AI primarily operates in your browser. Most data is processed locally and not transmitted to our servers.</p>
+                    <p><strong>Security Measures:</strong> We implement industry-standard security measures to protect your information from unauthorized access, alteration, or destruction.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>5. Voice Recognition</h3>
+                    <p>Voice recognition is handled by your browser's built-in Web Speech API. Voice data is processed locally on your device when possible. We do not store voice recordings unless explicitly stated and consented to.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>6. Third-Party Services</h3>
+                    <p>Nova AI may use third-party services for:</p>
+                    <ul>
+                        <li>Web hosting</li>
+                        <li>Analytics (anonymized)</li>
+                        <li>Error tracking</li>
+                    </ul>
+                    <p>These services have their own privacy policies governing their use of information.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>7. Cookies and Local Storage</h3>
+                    <p>We use browser local storage to:</p>
+                    <ul>
+                        <li>Remember your preferences</li>
+                        <li>Maintain session continuity</li>
+                        <li>Improve user experience</li>
+                    </ul>
+                    <p>You can clear this data through your browser settings at any time.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>8. Data Retention</h3>
+                    <p>We retain data only for as long as necessary to provide services and comply with legal obligations. You can request deletion of your data at any time by contacting us.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>9. Your Rights</h3>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access your personal information</li>
+                        <li>Request correction of inaccurate data</li>
+                        <li>Request deletion of your data</li>
+                        <li>Opt-out of data collection</li>
+                        <li>Export your data</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>10. Children's Privacy</h3>
+                    <p>Nova AI is designed for educational use, including by students. We do not knowingly collect personal information from children under 13 without parental consent. If you believe we have collected such information, please contact us immediately.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>11. International Users</h3>
+                    <p>Nova AI is operated from India. If you access our service from outside India, your information may be transferred to and processed in India.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>12. Changes to This Privacy Policy</h3>
+                    <p>We may update this Privacy Policy from time to time. We will notify users of significant changes through the application or via email.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>13. Contact Us</h3>
+                    <p>For privacy-related questions or requests:</p>
+                    <ul>
+                        <li>Email: tishy5327@gmail.com</li>
+                        <li>Developer: Shah Tishy</li>
+                        <li>Address: Ahmedabad, Gujarat, India</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>14. Consent</h3>
+                    <p>By using Nova AI, you consent to this Privacy Policy and our processing of information as described herein.</p>
+                </div>
+            `;
+            
+            document.getElementById('privacyContent').innerHTML = content;
+            document.getElementById('privacyModal').classList.add('show');
+        }
+
+        function showTerms() {
+            const content = `
+                <div class="legal-section">
+                    <p><strong>Effective Date:</strong> January 26, 2026</p>
+                    <p><strong>Last Updated:</strong> January 26, 2026</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>1. Acceptance of Terms</h3>
+                    <p>By accessing and using Nova AI, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our service.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>2. Description of Service</h3>
+                    <p>Nova AI is a voice-powered AI assistant that provides:</p>
+                    <ul>
+                        <li>Multi-language translation</li>
+                        <li>Study assistance and educational content</li>
+                        <li>Mood detection and recommendations</li>
+                        <li>Code assistance and debugging help</li>
+                        <li>AI-powered storytelling</li>
+                        <li>Voice recognition and text-to-speech</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>3. User Eligibility</h3>
+                    <p>You must be at least 13 years old to use Nova AI. Users under 18 should have parental or guardian consent.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>4. User Responsibilities</h3>
+                    <p>You agree to:</p>
+                    <ul>
+                        <li>Use Nova AI for lawful purposes only</li>
+                        <li>Not attempt to hack, disrupt, or damage the service</li>
+                        <li>Not use the service to generate harmful, illegal, or inappropriate content</li>
+                        <li>Not misrepresent yourself or your affiliation</li>
+                        <li>Respect intellectual property rights</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>5. Prohibited Uses</h3>
+                    <p>You may NOT use Nova AI to:</p>
+                    <ul>
+                        <li>Generate or distribute harmful, offensive, or illegal content</li>
+                        <li>Harass, threaten, or harm others</li>
+                        <li>Violate any laws or regulations</li>
+                        <li>Infringe on intellectual property rights</li>
+                        <li>Distribute malware or viruses</li>
+                        <li>Attempt to reverse engineer the service</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>6. Intellectual Property</h3>
+                    <p><strong>Our Rights:</strong> Nova AI, including its design, code, features, and content, is owned by us and protected by intellectual property laws.</p>
+                    <p><strong>Your Content:</strong> You retain rights to content you create using Nova AI. However, you grant us a license to use, store, and process this content to provide the service.</p>
+                    <p><strong>Generated Content:</strong> AI-generated content (translations, stories, code) is provided as-is. You are responsible for verifying accuracy before use.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>7. Disclaimer of Warranties</h3>
+                    <p>Nova AI is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied, including but not limited to:</p>
+                    <ul>
+                        <li>Accuracy or completeness of information</li>
+                        <li>Uninterrupted or error-free service</li>
+                        <li>Fitness for a particular purpose</li>
+                        <li>Non-infringement</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>8. Educational Use Disclaimer</h3>
+                    <p><strong>Important:</strong> Nova AI is an educational tool designed to assist learning. It should not be used as a substitute for:</p>
+                    <ul>
+                        <li>Professional medical advice</li>
+                        <li>Legal counsel</li>
+                        <li>Financial advice</li>
+                        <li>Professional mental health services</li>
+                        <li>Verified academic sources for research</li>
+                    </ul>
+                    <p>Always verify important information from authoritative sources.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>9. Limitation of Liability</h3>
+                    <p>To the maximum extent permitted by law, Nova AI and its creators shall not be liable for:</p>
+                    <ul>
+                        <li>Any indirect, incidental, special, or consequential damages</li>
+                        <li>Loss of profits, data, or use</li>
+                        <li>Damages resulting from use or inability to use the service</li>
+                        <li>Damages arising from reliance on AI-generated content</li>
+                        <li>Third-party actions or content</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>10. Accuracy of Information</h3>
+                    <p>While we strive for accuracy, Nova AI:</p>
+                    <ul>
+                        <li>May provide incorrect or outdated information</li>
+                        <li>Should not be solely relied upon for critical decisions</li>
+                        <li>Requires user verification for important matters</li>
+                        <li>Is continuously learning and improving</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>11. Service Modifications</h3>
+                    <p>We reserve the right to:</p>
+                    <ul>
+                        <li>Modify, suspend, or discontinue any feature</li>
+                        <li>Update these Terms and Conditions</li>
+                        <li>Change pricing (with notice)</li>
+                        <li>Impose usage limits</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>12. Privacy</h3>
+                    <p>Your use of Nova AI is also governed by our Privacy Policy. Please review it to understand how we collect, use, and protect your information.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>13. Termination</h3>
+                    <p>We may terminate or suspend your access to Nova AI:</p>
+                    <ul>
+                        <li>For violation of these Terms</li>
+                        <li>For illegal or harmful use</li>
+                        <li>At our discretion with or without cause</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>14. Indemnification</h3>
+                    <p>You agree to indemnify and hold harmless Nova AI and its creators from any claims, damages, or expenses arising from your use of the service or violation of these Terms.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>15. Governing Law</h3>
+                    <p>These Terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Gujarat, India.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>16. Severability</h3>
+                    <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full force and effect.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h3>17. Contact Information</h3>
+                    <p>For questions about these Terms:</p>
+                    <ul>
+                        <li>Email: tishy5327@gmail.com</li>
+                        <li>Developer: Shah Tishy</li>
+                        <li>Address: Ahmedabad, Gujarat, India</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h3>18. Acknowledgment</h3>
+                    <p>By using Nova AI, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+                </div>
+
+                <div class="legal-section" style="margin-top: 2rem; padding: 1rem; background: rgba(255, 107, 107, 0.1); border-left: 3px solid var(--accent-500);">
+                    <p><strong>Product Notice:</strong> Nova AI is a professional AI innovation product developed by an experienced software engineer. While I strive for excellence, please use this service with the understanding that it is continuously evolving and improving based on user feedback and technological advancements.</p>
+                </div>
+            `;
+            
+            document.getElementById('termsContent').innerHTML = content;
+            document.getElementById('termsModal').classList.add('show');
+        }
+
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('show');
         }
 
-        // Close modals when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.classList.remove('show');
