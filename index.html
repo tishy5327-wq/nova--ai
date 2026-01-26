@@ -832,6 +832,196 @@
                 }
             }
 
+            // ==================== BASIC Q&A SYSTEM ====================
+            
+            answerBasicQuestion(question) {
+                const q = question.toLowerCase();
+                
+                // Questions about Shah Tishy / Developer
+                if (q.includes('who is shah tishy') || q.includes('who\'s shah tishy') || q.includes('shah tishy')) {
+                    return `👨‍💻 SHAH TISHY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Shah Tishy is a talented Full-Stack Developer and the creator of Nova AI!
+
+🎯 Professional Background:
+• Software Development Engineer
+• Passionate about AI and Education Technology
+• Based in Ahmedabad, Gujarat, India
+
+💡 What He Does:
+• Builds innovative AI-powered applications
+• Specializes in web development
+• Creates educational tools for students
+• Believes in making technology accessible to everyone
+
+🚀 Current Project:
+Nova AI V3.0 - An intelligent voice-powered assistant designed to help students learn better through AI technology.
+
+📧 Contact: tishy5327@gmail.com
+
+Shah Tishy is dedicated to creating tools that make learning easier and more engaging for students worldwide!`;
+                }
+                
+                // Questions about Nova AI
+                if (q.includes('what is nova') || q.includes('about nova') || q.includes('nova ai')) {
+                    return `🤖 ABOUT NOVA AI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nova AI is a comprehensive voice-powered AI assistant created by Shah Tishy!
+
+✨ Key Features:
+• 🌐 Multi-language translation (20+ languages)
+• 📚 Study assistance and explanations
+• 😊 Mood detection with music recommendations
+• 💻 Code help and debugging assistance
+• 📖 AI-powered storytelling
+• 🎤 Voice recognition and text-to-speech
+• 🎯 Interactive quizzes
+
+🎯 Purpose:
+Built to help students and learners worldwide access quality education and AI assistance - completely free in your browser!
+
+🏆 Version: V3.0
+👨‍💻 Developer: Shah Tishy
+📍 Location: Ahmedabad, Gujarat, India
+
+Type "help" to see all available commands!`;
+                }
+                
+                // Questions about the creator/developer
+                if (q.includes('who created') || q.includes('who made') || q.includes('who developed') || q.includes('who built')) {
+                    return `👨‍💻 NOVA AI CREATOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nova AI was created by Shah Tishy!
+
+He's a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners.
+
+🎯 Developer Info:
+• Name: Shah Tishy
+• Role: Full-Stack Developer
+• Expertise: AI, Web Development, Educational Technology
+• Email: tishy5327@gmail.com
+• Location: Ahmedabad, Gujarat, India
+
+💡 His Vision:
+To build tools that make learning easier, more engaging, and more fun for students worldwide!
+
+Want to know more? Ask "who is Shah Tishy?"`;
+                }
+
+                // Questions about the website/site
+                if (q.includes('this website') || q.includes('this site') || q.includes('your website')) {
+                    return `🌐 ABOUT THIS WEBSITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This is Nova AI V3.0 - an intelligent AI assistant platform!
+
+🎯 What This Site Offers:
+• Voice-powered AI interactions
+• Educational tools and study assistance
+• Translation services (20+ languages)
+• Code help and debugging
+• Mood detection and recommendations
+• Interactive storytelling
+• And much more!
+
+👨‍💻 Developed By: Shah Tishy
+📅 Version: V3.0
+🆓 Completely Free to Use
+🌍 Accessible Worldwide
+
+💡 How It Works:
+Runs entirely in your browser - no downloads, no subscriptions needed!
+
+Privacy-focused: Your conversations stay in your browser.
+
+Try asking me anything or click the feature cards to get started!`;
+                }
+
+                // Questions about contact
+                if (q.includes('contact') || q.includes('email') || q.includes('reach')) {
+                    return `📧 CONTACT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Want to get in touch? Here's how:
+
+📧 Email: tishy5327@gmail.com
+👨‍💻 Developer: Shah Tishy
+📍 Location: Ahmedabad, Gujarat, India
+
+💬 Feedback:
+I love hearing from users! Whether you have:
+• Feature suggestions
+• Bug reports
+• Questions
+• Or just want to say hi!
+
+Feel free to reach out anytime. Your feedback helps make Nova AI better!`;
+                }
+
+                // Questions about location
+                if (q.includes('where') && (q.includes('located') || q.includes('from') || q.includes('based'))) {
+                    return `📍 LOCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nova AI is developed in:
+🌆 Ahmedabad, Gujarat, India
+
+This is where Shah Tishy (the creator) is based and where Nova AI was born!
+
+🌍 But Nova AI is for everyone:
+Available worldwide, completely free, and accessible from any browser!`;
+                }
+
+                // Questions about capabilities
+                if (q.includes('what can you do') || q.includes('your capabilities') || q.includes('what do you do')) {
+                    return `💪 MY CAPABILITIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+I can help you with:
+
+🌐 Translation:
+• Translate to 20+ languages
+• Support for Hindi, Spanish, French, German, Japanese, and more
+
+📚 Study Assistance:
+• Explain complex concepts
+• Generate interactive quizzes
+• Provide study tips and learning strategies
+
+😊 Mood & Wellness:
+• Detect mood from text
+• Recommend music based on mood
+• Provide mood-boosting tips
+
+💻 Code Help:
+• Generate code examples
+• Explain programming errors
+• Help with debugging
+
+📖 Creative Writing:
+• Generate adventure stories
+• Create sci-fi narratives
+• Tell bedtime stories
+
+🎤 Voice Features:
+• Voice recognition
+• Text-to-speech responses
+• Hands-free operation
+
+⏰ Utilities:
+• Current time and date
+• Quick calculations
+• Information lookup
+
+Type "help" to see specific commands!`;
+                }
+
+                return null; // Return null if no match found
+            }
+
             // ==================== TRANSLATION ====================
             
             translate(text, targetLang) {
@@ -1222,6 +1412,15 @@ THE END`
                 const cmd = command.toLowerCase().trim();
                 let response = '';
 
+                // First check for basic Q&A
+                const basicAnswer = this.answerBasicQuestion(cmd);
+                if (basicAnswer) {
+                    this.addMessage('assistant', basicAnswer);
+                    this.speak(basicAnswer.substring(0, 200));
+                    return;
+                }
+
+                // Continue with other commands
                 if (/^(hi|hello|hey|greetings)/.test(cmd)) {
                     response = '👋 Hello! How can I help you today?';
                 }
@@ -1292,7 +1491,7 @@ THE END`
                     response = `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
                 }
                 else {
-                    response = `I heard: "${command}"\n\nI can help with:\n• Translation\n• Study & quizzes\n• Mood detection\n• Code assistance\n• Story generation\n• And more!\n\nType "help" to see all commands.`;
+                    response = `I heard: "${command}"\n\nI can help with:\n• Translation\n• Study & quizzes\n• Mood detection\n• Code assistance\n• Story generation\n• Questions about Nova AI or Shah Tishy\n• And more!\n\nType "help" to see all commands or ask "who is Shah Tishy?"`;
                 }
 
                 this.addMessage('assistant', response);
@@ -1412,6 +1611,13 @@ THE END`
 
         function showHelp() {
             const content = `
+                <div class="section-title">❓ Ask Me About</div>
+                <div>• "Who is Shah Tishy?"</div>
+                <div>• "What is Nova AI?"</div>
+                <div>• "Who created this?"</div>
+                <div>• "About this website"</div>
+                <div>• "Contact information"</div>
+
                 <div class="section-title">🌐 Translation</div>
                 <div>• "translate hello to hindi"</div>
                 <div>• "translate thank you to spanish"</div>
@@ -1504,6 +1710,14 @@ THE END`
                     • Current time and date<br>
                     • Quick calculations<br>
                     • Information lookup
+                </div>
+
+                <div style="margin: 1rem 0;">
+                    <strong>8. ❓ Q&A System</strong><br>
+                    • Ask about the developer (Shah Tishy)<br>
+                    • Learn about Nova AI<br>
+                    • Get contact information<br>
+                    • Understand the website
                 </div>
             `;
             
