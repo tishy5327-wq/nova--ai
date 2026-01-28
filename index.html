@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova AI V3.0 - Complete Voice & AI Assistant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Complete AI assistant with voice recognition, translation, study tools, mood detection, code help, storytelling, and more - all in your browser!">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,1970 +11,1641 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-:root {
---primary-900: #0A0E27;
---primary-800: #1A1F3A;
---primary-700: #252B4A;
---primary-600: #3D4A7A;
---primary-500: #5B6FA8;
---accent-500: #FF6B6B;
---accent-400: #FF8787;
---accent-300: #FFA3A3;
---accent-glow: #FF6B6B40;
---electric-blue: #00D9FF;
---electric-purple: #B066FF;
---neutral-50: #F8FAFC;
---neutral-100: #F1F5F9;
---neutral-200: #E2E8F0;
---neutral-700: #334155;
---neutral-900: #0F172A;
---success: #10B981;
---warning: #F59E0B;
---error: #EF4444;
---font-display: 'Syne', sans-serif;
---font-body: 'DM Sans', sans-serif;
---font-mono: 'JetBrains Mono', monospace;
-}
-
-body {
-font-family: var(--font-body);
-background: var(--primary-900);
-color: var(--neutral-50);
-min-height: 100vh;
-line-height: 1.6;
-overflow-x: hidden;
-}
-
-/* Animated gradient background */
-body::before {
-content: '';
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background:
-radial-gradient(circle at 20% 50%, var(--accent-glow) 0%, transparent 50%),
-radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
-radial-gradient(circle at 40% 90%, rgba(176, 102, 255, 0.1) 0%, transparent 50%),
-linear-gradient(180deg, var(--primary-900) 0%, #0a1628 50%, var(--primary-800) 100%);
-z-index: -1;
-animation: bgShift 20s ease-in-out infinite;
-}
-
-@keyframes bgShift {
-0%, 100% { opacity: 1; }
-50% { opacity: 0.8; }
-}
-
-/* Floating particles effect */
-.particles {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-overflow: hidden;
-z-index: 0;
-pointer-events: none;
-}
-
-.particle {
-position: absolute;
-width: 3px;
-height: 3px;
-background: rgba(255, 255, 255, 0.3);
-border-radius: 50%;
-animation: float 15s ease-in-out infinite;
-}
-
-@keyframes float {
-0%, 100% {
-transform: translateY(0) translateX(0);
-opacity: 0;
-}
-10% {
-opacity: 1;
-}
-90% {
-opacity: 1;
-}
-100% {
-transform: translateY(-100vh) translateX(50px);
-opacity: 0;
-}
-}
-
-header {
-padding: 1.25rem 1.5rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-background: rgba(26, 31, 58, 0.6);
-backdrop-filter: blur(20px);
-position: sticky;
-top: 0;
-z-index: 100;
-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-animation: slideDown 0.6s ease-out;
-}
-
-@keyframes slideDown {
-from {
-transform: translateY(-100%);
-opacity: 0;
-}
-to {
-transform: translateY(0);
-opacity: 1;
-}
-}
-
-.logo {
-display: flex;
-align-items: center;
-gap: 1rem;
-}
-
-.logo-icon {
-width: 48px;
-height: 48px;
-background: linear-gradient(135deg, var(--accent-500) 0%, var(--electric-purple) 100%);
-border-radius: 14px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: 800;
-font-size: 1.75rem;
-box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
-animation: pulse-glow 3s ease-in-out infinite;
-position: relative;
-}
-
-.logo-icon::after {
-content: '';
-position: absolute;
-inset: -2px;
-border-radius: 14px;
-background: linear-gradient(135deg, var(--accent-500), var(--electric-purple));
-z-index: -1;
-opacity: 0.5;
-filter: blur(8px);
-}
-
-@keyframes pulse-glow {
-0%, 100% { box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3); }
-50% { box-shadow: 0 8px 32px rgba(255, 107, 107, 0.5), 0 0 40px rgba(255, 107, 107, 0.2); }
-}
-
-.logo-text {
-font-size: 1.75rem;
-font-weight: 800;
-font-family: var(--font-display);
-letter-spacing: -0.03em;
-background: linear-gradient(135deg, #FFFFFF 0%, var(--electric-blue) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
-
-.version {
-font-size: 0.75rem;
-color: var(--accent-400);
-background: rgba(255, 107, 107, 0.15);
-padding: 0.25rem 0.65rem;
-border-radius: 6px;
-margin-left: 0.5rem;
-font-weight: 600;
-border: 1px solid rgba(255, 107, 107, 0.3);
-}
-
-nav {
-display: flex;
-gap: 1rem;
-}
-
-.nav-btn {
-background: rgba(255, 255, 255, 0.08);
-border: 1px solid rgba(255, 255, 255, 0.15);
-color: white;
-padding: 0.65rem 1.25rem;
-border-radius: 10px;
-cursor: pointer;
-font-family: var(--font-body);
-font-weight: 600;
-font-size: 0.95rem;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-position: relative;
-overflow: hidden;
-}
-
-.nav-btn::before {
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-width: 0;
-height: 0;
-border-radius: 50%;
-background: rgba(255, 255, 255, 0.2);
-transform: translate(-50%, -50%);
-transition: width 0.6s, height 0.6s;
-}
-
-.nav-btn:hover::before {
-width: 300px;
-height: 300px;
-}
-
-.nav-btn:hover {
-background: rgba(255, 255, 255, 0.15);
-border-color: var(--accent-400);
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
-}
-
-.container {
-max-width: 1400px;
-margin: 0 auto;
-padding: 2rem 1.5rem;
-position: relative;
-z-index: 1;
-}
-
-.hero {
-text-align: center;
-margin-bottom: 4rem;
-padding: 3rem 0;
-animation: fadeInUp 0.8s ease-out 0.2s backwards;
-}
-
-@keyframes fadeInUp {
-from {
-opacity: 0;
-transform: translateY(30px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-.hero h1 {
-font-size: clamp(2.5rem, 6vw, 4.5rem);
-font-weight: 800;
-line-height: 1.1;
-margin-bottom: 1.5rem;
-font-family: var(--font-display);
-background: linear-gradient(135deg, #FFFFFF 0%, var(--electric-blue) 50%, var(--electric-purple) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-position: relative;
-display: inline-block;
-}
-
-.hero h1::after {
-content: '';
-position: absolute;
-bottom: -10px;
-left: 50%;
-transform: translateX(-50%);
-width: 60%;
-height: 4px;
-background: linear-gradient(90deg, transparent, var(--accent-500), transparent);
-border-radius: 2px;
-}
-
-.hero p {
-font-size: 1.25rem;
-color: var(--neutral-200);
-max-width: 750px;
-margin: 0 auto 2.5rem;
-line-height: 1.7;
-}
-
-.cta-group {
-display: flex;
-gap: 1rem;
-justify-content: center;
-flex-wrap: wrap;
-margin-bottom: 3rem;
-}
-
-.cta-primary, .cta-secondary {
-padding: 1rem 2.5rem;
-border-radius: 12px;
-font-weight: 700;
-font-size: 1.1rem;
-cursor: pointer;
-transition: all 0.3s ease;
-border: none;
-font-family: var(--font-body);
-}
-
-.cta-primary {
-background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-color: white;
-box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
-}
-
-.cta-primary:hover {
-transform: translateY(-3px);
-box-shadow: 0 12px 32px rgba(255, 107, 107, 0.5);
-}
-
-.cta-secondary {
-background: rgba(255, 255, 255, 0.1);
-color: white;
-border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.cta-secondary:hover {
-background: rgba(255, 255, 255, 0.15);
-border-color: var(--electric-blue);
-}
-
-/* Demo Video Section */
-.demo-section {
-max-width: 900px;
-margin: 0 auto 4rem;
-padding: 2rem;
-background: rgba(255, 255, 255, 0.05);
-backdrop-filter: blur(20px);
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-animation: fadeInUp 0.8s ease-out 0.4s backwards;
-}
-
-.demo-placeholder {
-width: 100%;
-aspect-ratio: 16/9;
-background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-gap: 1rem;
-border: 2px dashed rgba(255, 255, 255, 0.2);
-position: relative;
-overflow: hidden;
-}
-
-.demo-placeholder::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-0% { left: -100%; }
-100% { left: 100%; }
-}
-
-.demo-placeholder svg {
-width: 80px;
-height: 80px;
-color: var(--accent-400);
-}
-
-.main-grid {
-display: grid;
-grid-template-columns: 1fr 1.8fr;
-gap: 2rem;
-margin-bottom: 3rem;
-animation: fadeInUp 0.8s ease-out 0.6s backwards;
-}
-
-.voice-panel, .chat-panel, .features-panel {
-background: rgba(26, 31, 58, 0.6);
-backdrop-filter: blur(30px);
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-padding: 2.5rem;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.voice-panel:hover, .chat-panel:hover {
-transform: translateY(-4px);
-box-shadow: 0 12px 48px rgba(255, 107, 107, 0.15);
-}
-
-.voice-button-container {
-text-align: center;
-margin-bottom: 2.5rem;
-}
-
-.voice-button {
-width: 140px;
-height: 140px;
-border-radius: 50%;
-border: none;
-background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-color: white;
-font-size: 3.5rem;
-cursor: pointer;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
-position: relative;
-}
-
-.voice-button::before {
-content: '';
-position: absolute;
-inset: -4px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--accent-500), var(--accent-400));
-z-index: -1;
-opacity: 0;
-transition: opacity 0.4s ease;
-}
-
-.voice-button:hover {
-transform: scale(1.08);
-box-shadow: 0 12px 48px rgba(255, 107, 107, 0.5);
-}
-
-.voice-button:hover::before {
-opacity: 0.6;
-filter: blur(12px);
-}
-
-.voice-button.listening {
-animation: pulse-voice 1.2s ease-in-out infinite;
-}
-
-@keyframes pulse-voice {
-0%, 100% {
-transform: scale(1);
-box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
-}
-50% {
-transform: scale(1.05);
-box-shadow: 0 8px 48px rgba(255, 107, 107, 0.6), 0 0 60px rgba(255, 107, 107, 0.3);
-}
-}
-
-.status-indicator {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.75rem;
-padding: 0.85rem 1.75rem;
-background: rgba(255, 255, 255, 0.08);
-border-radius: 100px;
-margin: 1.5rem auto;
-max-width: fit-content;
-font-weight: 600;
-border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.status-dot {
-width: 10px;
-height: 10px;
-border-radius: 50%;
-background: var(--neutral-200);
-animation: blink 2s ease-in-out infinite;
-}
-
-@keyframes blink {
-0%, 100% { opacity: 1; }
-50% { opacity: 0.3; }
-}
-
-.status-indicator.listening {
-background: rgba(16, 185, 129, 0.15);
-border-color: var(--success);
-}
-
-.status-indicator.listening .status-dot {
-background: var(--success);
-}
-
-.chat-input-container {
-display: flex;
-gap: 0.75rem;
-margin-bottom: 1rem;
-}
-
-.chat-input {
-flex: 1;
-padding: 1.1rem 1.3rem;
-background: rgba(255, 255, 255, 0.08);
-border: 1px solid rgba(255, 255, 255, 0.15);
-border-radius: 14px;
-color: white;
-font-family: var(--font-body);
-font-size: 1rem;
-transition: all 0.3s ease;
-}
-
-.chat-input:focus {
-outline: none;
-background: rgba(255, 255, 255, 0.12);
-border-color: var(--accent-400);
-box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
-}
-
-.chat-input::placeholder {
-color: var(--neutral-200);
-}
-
-.send-btn {
-padding: 1.1rem 2rem;
-background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%);
-border: none;
-border-radius: 14px;
-color: white;
-font-weight: 700;
-cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
-}
-
-.send-btn:hover {
-transform: translateY(-2px);
-box-shadow: 0 6px 24px rgba(255, 107, 107, 0.4);
-}
-
-.chat-messages {
-height: 450px;
-overflow-y: auto;
-margin-bottom: 1rem;
-padding: 1.5rem;
-background: rgba(0, 0, 0, 0.2);
-border-radius: 14px;
-border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.chat-messages::-webkit-scrollbar {
-width: 8px;
-}
-
-.chat-messages::-webkit-scrollbar-track {
-background: rgba(255, 255, 255, 0.05);
-border-radius: 10px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb {
-background: rgba(255, 107, 107, 0.4);
-border-radius: 10px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb:hover {
-background: rgba(255, 107, 107, 0.6);
-}
-
-.message {
-margin-bottom: 1.25rem;
-padding: 1.25rem;
-border-radius: 14px;
-animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(10px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.message.user {
-background: rgba(59, 130, 246, 0.15);
-border-left: 3px solid var(--primary-500);
-margin-left: 15%;
-}
-
-.message.assistant {
-background: rgba(255, 107, 107, 0.15);
-border-left: 3px solid var(--accent-500);
-margin-right: 15%;
-}
-
-.message strong {
-display: block;
-margin-bottom: 0.6rem;
-font-size: 0.95rem;
-opacity: 0.9;
-font-weight: 700;
-}
-
-.features-panel {
-animation: fadeInUp 0.8s ease-out 0.8s backwards;
-}
-
-.features-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 1.25rem;
-}
-
-.feature-card {
-padding: 1.75rem;
-background: rgba(255, 255, 255, 0.05);
-border-radius: 16px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-cursor: pointer;
-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-position: relative;
-overflow: hidden;
-}
-
-.feature-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-height: 3px;
-background: linear-gradient(90deg, var(--accent-500), var(--electric-blue));
-transform: scaleX(0);
-transition: transform 0.4s ease;
-}
-
-.feature-card:hover::before {
-transform: scaleX(1);
-}
-
-.feature-card:hover {
-background: rgba(255, 255, 255, 0.1);
-transform: translateY(-6px);
-border-color: var(--accent-400);
-box-shadow: 0 12px 32px rgba(255, 107, 107, 0.2);
-}
-
-.feature-icon {
-font-size: 2.5rem;
-margin-bottom: 0.75rem;
-display: inline-block;
-transition: transform 0.3s ease;
-}
-
-.feature-card:hover .feature-icon {
-transform: scale(1.1) rotate(5deg);
-}
-
-.feature-title {
-font-weight: 700;
-margin-bottom: 0.6rem;
-font-size: 1.1rem;
-}
-
-.feature-desc {
-font-size: 0.95rem;
-color: var(--neutral-200);
-line-height: 1.5;
-}
-
-.quick-actions {
-display: flex;
-gap: 0.75rem;
-flex-wrap: wrap;
-margin-bottom: 1.5rem;
-}
-
-.quick-btn {
-padding: 0.7rem 1.3rem;
-background: rgba(255, 255, 255, 0.08);
-border: 1px solid rgba(255, 255, 255, 0.15);
-border-radius: 10px;
-color: white;
-font-size: 0.95rem;
-cursor: pointer;
-transition: all 0.3s ease;
-font-weight: 500;
-}
-
-.quick-btn:hover {
-background: rgba(255, 255, 255, 0.15);
-border-color: var(--accent-400);
-transform: translateY(-2px);
-}
-
-/* Testimonials Section */
-.testimonials-section {
-margin: 4rem 0;
-animation: fadeInUp 0.8s ease-out 1s backwards;
-}
-
-.section-header {
-text-align: center;
-margin-bottom: 3rem;
-}
-
-.section-header h2 {
-font-size: clamp(2rem, 4vw, 3rem);
-font-weight: 800;
-font-family: var(--font-display);
-margin-bottom: 1rem;
-background: linear-gradient(135deg, #FFFFFF 0%, var(--electric-blue) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
-
-.section-header p {
-color: var(--neutral-200);
-font-size: 1.1rem;
-}
-
-.testimonials-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-gap: 2rem;
-}
-
-.testimonial-card {
-background: rgba(26, 31, 58, 0.6);
-backdrop-filter: blur(30px);
-border-radius: 20px;
-padding: 2rem;
-border: 1px solid rgba(255, 255, 255, 0.1);
-transition: all 0.3s ease;
-}
-
-.testimonial-card:hover {
-transform: translateY(-6px);
-border-color: var(--accent-400);
-box-shadow: 0 12px 32px rgba(255, 107, 107, 0.2);
-}
-
-.testimonial-header {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin-bottom: 1rem;
-}
-
-.testimonial-avatar {
-width: 50px;
-height: 50px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--accent-500), var(--electric-purple));
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.5rem;
-font-weight: 700;
-}
-
-.testimonial-info h4 {
-font-weight: 700;
-margin-bottom: 0.25rem;
-}
-
-.testimonial-role {
-font-size: 0.9rem;
-color: var(--neutral-200);
-}
-
-.testimonial-rating {
-color: #FFD700;
-font-size: 1.1rem;
-margin-bottom: 0.75rem;
-}
-
-.testimonial-text {
-color: var(--neutral-200);
-line-height: 1.6;
-font-style: italic;
-}
-
-/* Stats Section */
-.stats-section {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 2rem;
-margin: 3rem 0;
-padding: 3rem 2rem;
-background: rgba(26, 31, 58, 0.4);
-backdrop-filter: blur(20px);
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat-item {
-text-align: center;
-}
-
-.stat-number {
-font-size: 3rem;
-font-weight: 800;
-font-family: var(--font-display);
-background: linear-gradient(135deg, var(--accent-500), var(--electric-blue));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-margin-bottom: 0.5rem;
-}
-
-.stat-label {
-color: var(--neutral-200);
-font-size: 1.1rem;
-}
-
-.modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(10, 14, 39, 0.95);
-backdrop-filter: blur(10px);
-z-index: 1000;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-animation: fadeIn 0.3s ease;
-}
-
-.modal.show {
-display: flex;
-}
-
-.modal-content {
-background: rgba(26, 31, 58, 0.95);
-backdrop-filter: blur(30px);
-border-radius: 20px;
-padding: 2.5rem;
-max-width: 850px;
-width: 100%;
-max-height: 85vh;
-overflow-y: auto;
-border: 1px solid rgba(255, 255, 255, 0.15);
-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-animation: slideUp 0.4s ease;
-}
-
-@keyframes slideUp {
-from {
-opacity: 0;
-transform: translateY(50px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-.modal-content::-webkit-scrollbar {
-width: 8px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-background: rgba(255, 255, 255, 0.05);
-border-radius: 10px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-background: rgba(255, 107, 107, 0.4);
-border-radius: 10px;
-}
-
-.modal-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 2rem;
-padding-bottom: 1rem;
-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.modal-title {
-font-size: 1.75rem;
-font-weight: 700;
-font-family: var(--font-display);
-}
-
-.close-btn {
-background: rgba(255, 255, 255, 0.1);
-border: none;
-color: white;
-font-size: 1.5rem;
-cursor: pointer;
-padding: 0.5rem 0.75rem;
-border-radius: 10px;
-transition: all 0.2s ease;
-}
-
-.close-btn:hover {
-background: rgba(255, 107, 107, 0.3);
-transform: rotate(90deg);
-}
-
-.code-block {
-background: rgba(0, 0, 0, 0.4);
-padding: 1.25rem;
-border-radius: 10px;
-font-family: var(--font-mono);
-font-size: 0.9rem;
-overflow-x: auto;
-margin: 1rem 0;
-border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.section-title {
-font-size: 1.4rem;
-font-weight: 700;
-margin: 2rem 0 1rem;
-display: flex;
-align-items: center;
-gap: 0.75rem;
-color: var(--accent-400);
-}
-
-.legal-section {
-margin-bottom: 2rem;
-}
-
-.legal-section h3 {
-color: var(--accent-400);
-margin-bottom: 0.75rem;
-font-size: 1.2rem;
-}
-
-.legal-section h4 {
-color: var(--electric-blue);
-margin: 1rem 0 0.5rem;
-font-size: 1.05rem;
-}
-
-.legal-section p, .legal-section ul {
-margin-bottom: 1rem;
-color: var(--neutral-200);
-line-height: 1.7;
-}
-
-.legal-section ul {
-padding-left: 2rem;
-}
-
-.legal-section li {
-margin-bottom: 0.5rem;
-}
-
-.team-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 2rem;
-margin: 2rem 0;
-}
-
-.team-member {
-text-align: center;
-padding: 2rem;
-background: rgba(255, 255, 255, 0.05);
-border-radius: 16px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-transition: all 0.3s ease;
-}
-
-.team-member:hover {
-transform: translateY(-6px);
-border-color: var(--accent-400);
-box-shadow: 0 12px 32px rgba(255, 107, 107, 0.2);
-}
-
-.team-avatar {
-width: 90px;
-height: 90px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--accent-500) 0%, var(--electric-purple) 100%);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2.5rem;
-margin: 0 auto 1.25rem;
-box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
-}
-
-.team-name {
-font-weight: 700;
-margin-bottom: 0.4rem;
-font-size: 1.15rem;
-}
-
-.team-role {
-font-size: 0.95rem;
-color: var(--accent-400);
-margin-bottom: 1rem;
-}
-
-footer {
-background: rgba(10, 14, 39, 0.8);
-padding: 3rem 1.5rem 2rem;
-margin-top: 6rem;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-content {
-max-width: 1400px;
-margin: 0 auto;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 3rem;
-}
-
-.footer-section h4 {
-margin-bottom: 1.25rem;
-color: var(--accent-400);
-font-size: 1.1rem;
-font-weight: 700;
-}
-
-.footer-links {
-list-style: none;
-}
-
-.footer-links li {
-margin-bottom: 0.75rem;
-}
-
-.footer-links a {
-color: var(--neutral-200);
-text-decoration: none;
-transition: color 0.2s ease;
-display: inline-block;
-}
-
-.footer-links a:hover {
-color: white;
-transform: translateX(3px);
-}
-
-.footer-bottom {
-text-align: center;
-padding-top: 2rem;
-margin-top: 2rem;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-color: var(--neutral-200);
-}
-
-@media (max-width: 1200px) {
-.main-grid {
-grid-template-columns: 1fr;
-}
-}
-
-@media (max-width: 768px) {
-nav {
-gap: 0.5rem;
-}
-
-.nav-btn {
-padding: 0.5rem 0.9rem;
-font-size: 0.85rem;
-}
-
-.voice-button {
-width: 110px;
-height: 110px;
-font-size: 3rem;
-}
-
-.hero h1 {
-font-size: 2.5rem;
-}
-
-.hero p {
-font-size: 1.1rem;
-}
-
-.cta-group {
-flex-direction: column;
-}
-
-.cta-primary, .cta-secondary {
-width: 100%;
-}
-
-.features-grid {
-grid-template-columns: 1fr;
-}
-
-.testimonials-grid {
-grid-template-columns: 1fr;
-}
-
-.stats-section {
-grid-template-columns: 1fr 1fr;
-}
-}
-
-@media (max-width: 480px) {
-.logo-text {
-font-size: 1.4rem;
-}
-
-.logo-icon {
-width: 40px;
-height: 40px;
-font-size: 1.5rem;
-}
-
-.stats-section {
-grid-template-columns: 1fr;
-}
-
-.stat-number {
-font-size: 2.5rem;
-}
+/* ────────────── BASIC RESET & VARIABLES ────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary-900:#0A0E27;--primary-800:#1A1F3A;--primary-700:#252B4A;--primary-600:#3D4A7A;--primary-500:#5B6FA8;
+  --accent-500:#FF6B6B;--accent-400:#FF8787;--accent-300:#FFA3A3;--accent-glow:#FF6B6B40;
+  --electric-blue:#00D9FF;--electric-purple:#B066FF;
+  --neutral-50:#F8FAFC;--neutral-100:#F1F5F9;--neutral-200:#E2E8F0;
+  --neutral-700:#334155;--neutral-900:#0F172A;
+  --success:#10B981;--warning:#F59E0B;--error:#EF4444;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+
+/* ────────────── PAGE BACKGROUND & PARTICLES ────────────── */
+body{
+  font-family:var(--font-body);
+  background:var(--primary-900);
+  color:var(--neutral-50);
+  min-height:100vh;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(circle at 20% 50%,var(--accent-glow)0%,transparent 50%),
+    radial-gradient(circle at 80% 80%,rgba(0,217,255,.15)0%,transparent 50%),
+    radial-gradient(circle at 40% 90%,rgba(176,102,255,.1)0%,transparent 50%),
+    linear-gradient(180deg,var(--primary-900)0%,#0a1628 50%,var(--primary-800)100%);
+  z-index:-1;
+  animation:bgShift 20s ease-in-out infinite;
+}
+@keyframes bgShift{0%,100%{opacity:1}50%{opacity:.8}}
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;pointer-events:none}
+.particle{
+  position:absolute;width:3px;height:3px;background:rgba(255,255,255,.3);
+  border-radius:50%;animation:float 15s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)translateX(0);opacity:0}
+  10%,90%{opacity:1}
+  100%{transform:translateY(-100vh)translateX(50px);opacity:0}
+}
+
+/* ────────────── HEADER & LOGO ────────────── */
+header{
+  padding:1.25rem 1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(26,31,58,.6);
+  backdrop-filter:blur(20px);
+  position:sticky;top:0;z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  animation:slideDown .6s ease-out;
+}
+@keyframes slideDown{
+  from{transform:translateY(-100%);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.logo{display:flex;align-items:center;gap:1rem}
+.logo-icon{
+  width:48px;height:48px;
+  background:linear-gradient(135deg,var(--accent-500)0%,var(--electric-purple)100%);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1.75rem;
+  box-shadow:0 8px 24px rgba(255,107,107,.3);
+  animation:pulse-glow 3s ease-in-out infinite;
+  position:relative;
+}
+.logo-icon::after{
+  content:'';position:absolute;inset:-2px;border-radius:14px;
+  background:linear-gradient(135deg,var(--accent-500),var(--electric-purple));
+  z-index:-1;opacity:.5;filter:blur(8px);
+}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 8px 24px rgba(255,107,107,.3)}
+  50%{box-shadow:0 8px 32px rgba(255,107,107,.5),0 0 40px rgba(255,107,107,.2)}
+}
+.logo-text{
+  font-size:1.75rem;font-weight:800;font-family:var(--font-display);
+  letter-spacing:-.03em;
+  background:linear-gradient(135deg,#FFF0,var(--electric-blue)100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.version{
+  font-size:.75rem;color:var(--accent-400);
+  background:rgba(255,107,107,.15);
+  padding:.25rem .65rem;border-radius:6px;
+  margin-left:.5rem;font-weight:600;
+  border:1px solid rgba(255,107,107,.3);
+}
+
+/* ────────────── NAVIGATION BUTTONS ────────────── */
+nav{display:flex;gap:1rem}
+.nav-btn{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;padding:.65rem 1.25rem;
+  border-radius:10px;cursor:pointer;
+  font-family:var(--font-body);font-weight:600;font-size:.95rem;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.nav-btn::before{
+  content:'';position:absolute;top:50%;left:50%;
+  width:0;height:0;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  transform:translate(-50%,-50%);
+  transition:width .6s,height .6s;
+}
+.nav-btn:hover::before{width:300px;height:300px}
+.nav-btn:hover{
+  background:rgba(255,255,255,.15);
+  border-color:var(--accent-400);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,107,107,.2);
+}
+
+/* ────────────── CONTAINER & HERO ────────────── */
+.container{max-width:1400px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+.hero{
+  text-align:center;margin-bottom:4rem;padding:3rem 0;
+  animation:fadeInUp .8s ease-out .2s backwards;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:800;line-height:1.1;margin-bottom:1.5rem;
+  font-family:var(--font-display);
+  background:linear-gradient(135deg,#FFF0,var(--electric-blue)50%,var(--electric-purple)100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;position:relative;display:inline-block;
+}
+.hero h1::after{
+  content:'';position:absolute;bottom:-10px;left:50%;
+  transform:translateX(-50%);width:60%;height:4px;
+  background:linear-gradient(90deg,transparent,var(--accent-500),transparent);
+  border-radius:2px;
+}
+.hero p{
+  font-size:1.25rem;color:var(--neutral-200);
+  max-width:750px;margin:0 auto 2.5rem;line-height:1.7;
+}
+.cta-group{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:3rem;
+}
+.cta-primary,.cta-secondary{
+  padding:1rem 2.5rem;border-radius:12px;
+  font-weight:700;font-size:1.1rem;cursor:pointer;
+  transition:all .3s ease;border:none;
+  font-family:var(--font-body);
+}
+.cta-primary{
+  background:linear-gradient(135deg,var(--accent-500)0%,var(--accent-400)100%);
+  color:#fff;box-shadow:0 8px 24px rgba(255,107,107,.4);
+}
+.cta-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(255,107,107,.5);
+}
+.cta-secondary{
+  background:rgba(255,255,255,.1);color:#fff;
+  border:2px solid rgba(255,255,255,.3);
+}
+.cta-secondary:hover{
+  background:rgba(255,255,255,.15);
+  border-color:var(--electric-blue);
+}
+
+/* ────────────── DEMO SECTION ────────────── */
+.demo-section{
+  max-width:900px;margin:0 auto 4rem;padding:2rem;
+  background:rgba(255,255,255,.05);backdrop-filter:blur(20px);
+  border-radius:20px;border:1px solid rgba(255,255,255,.1);
+  animation:fadeInUp .8s ease-out .4s backwards;
+}
+.demo-placeholder{
+  width:100%;aspect-ratio:16/9;
+  background:linear-gradient(135deg,rgba(255,107,107,.1)0%,rgba(0,217,255,.1)100%);
+  border-radius:12px;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:1rem;
+  border:2px dashed rgba(255,255,255,.2);position:relative;overflow:hidden;
+}
+.demo-placeholder::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  animation:shimmer 3s infinite;
+}
+@keyframes shimmer{0%{left:-100%}100%{left:100%}}
+.demo-placeholder svg{width:80px;height:80px;color:var(--accent-400)}
+
+/* ────────────── MAIN GRID (VOICE + CHAT) ────────────── */
+.main-grid{
+  display:grid;grid-template-columns:1fr 1.8fr;
+  gap:2rem;margin-bottom:3rem;
+  animation:fadeInUp .8s ease-out .6s backwards;
+}
+.voice-panel,.chat-panel,.features-panel{
+  background:rgba(26,31,58,.6);
+  backdrop-filter:blur(30px);
+  border-radius:20px;border:1px solid rgba(255,255,255,.1);
+  padding:2.5rem;box-shadow:0 8px 32px rgba(0,0,0,.2);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.voice-panel:hover,.chat-panel:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 48px rgba(255,107,107,.15);
+}
+
+/* ────────────── VOICE BUTTON ────────────── */
+.voice-button-container{text-align:center;margin-bottom:2.5rem}
+.voice-button{
+  width:140px;height:140px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--accent-500)0%,var(--accent-400)100%);
+  color:#fff;font-size:3.5rem;cursor:pointer;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 8px 32px rgba(255,107,107,.4);
+  position:relative;
+}
+.voice-button::before{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent-500),var(--accent-400));
+  z-index:-1;opacity:0;transition:opacity .4s ease;
+}
+.voice-button:hover{
+  transform:scale(1.08);
+  box-shadow:0 12px 48px rgba(255,107,107,.5);
+}
+.voice-button:hover::before{opacity:.6;filter:blur(12px)}
+.voice-button.listening{animation:pulse-voice 1.2s ease-in-out infinite}
+@keyframes pulse-voice{
+  0%,100%{transform:scale(1);box-shadow:0 8px 32px rgba(255,107,107,.4)}
+  50%{transform:scale(1.05);box-shadow:0 8px 48px rgba(255,107,107,.6),0 0 60px rgba(255,107,107,.3)}
+}
+
+/* ────────────── STATUS INDICATOR ────────────── */
+.status-indicator{
+  display:flex;align-items:center;justify-content:center;gap:.75rem;
+  padding:.85rem 1.75rem;background:rgba(255,255,255,.08);
+  border-radius:100px;margin:1.5rem auto;max-width:fit-content;
+  font-weight:600;border:1px solid rgba(255,255,255,.15);
+}
+.status-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--neutral-200);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.status-indicator.listening{
+  background:rgba(16,185,129,.15);
+  border-color:var(--success);
+}
+.status-indicator.listening .status-dot{background:var(--success)}
+
+/* ────────────── CHAT INPUT & MESSAGES ────────────── */
+.chat-input-container{display:flex;gap:.75rem;margin-bottom:1rem}
+.chat-input{
+  flex:1;padding:1.1rem 1.3rem;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);border-radius:14px;color:#fff;
+  font-family:var(--font-body);font-size:1rem;transition:all .3s ease;
+}
+.chat-input:focus{
+  outline:none;background:rgba(255,255,255,.12);
+  border-color:var(--accent-400);
+  box-shadow:0 0 0 3px rgba(255,107,107,.1);
+}
+.chat-input::placeholder{color:var(--neutral-200)}
+.send-btn{
+  padding:1.1rem 2rem;background:linear-gradient(135deg,var(--accent-500)0%,var(--accent-400)100%);
+  border:none;border-radius:14px;color:#fff;font-weight:700;cursor:pointer;
+  transition:all .3s ease;box-shadow:0 4px 16px rgba(255,107,107,.3);
+}
+.send-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,107,107,.4)}
+.chat-messages{
+  height:450px;overflow-y:auto;margin-bottom:1rem;padding:1.5rem;
+  background:rgba(0,0,0,.2);border-radius:14px;
+  border:1px solid rgba(255,255,255,.05);
+}
+.chat-messages::-webkit-scrollbar{width:8px}
+.chat-messages::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.05);border-radius:10px;
+}
+.chat-messages::-webkit-scrollbar-thumb{
+  background:rgba(255,107,107,.4);border-radius:10px;
+}
+.chat-messages::-webkit-scrollbar-thumb:hover{background:rgba(255,107,107,.6)}
+.message{
+  margin-bottom:1.25rem;padding:1.25rem;border-radius:14px;
+  animation:fadeIn .4s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.message.user{
+  background:rgba(59,130,246,.15);
+  border-left:3px solid var(--primary-500);
+  margin-left:15%;
+}
+.message.assistant{
+  background:rgba(255,107,107,.15);
+  border-left:3px solid var(--accent-500);
+  margin-right:15%;
+}
+.message strong{
+  display:block;margin-bottom:.6rem;font-size:.95rem;opacity:.9;font-weight:700;
+}
+
+/* ────────────── FEATURES PANEL ────────────── */
+.features-panel{animation:fadeInUp .8s ease-out .8s backwards}
+.features-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.25rem;
+}
+.feature-card{
+  padding:1.75rem;background:rgba(255,255,255,.05);
+  border-radius:16px;border:1px solid rgba(255,255,255,.1);
+  cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent-500),var(--electric-blue));
+  transform:scaleX(0);transition:transform .4s ease;
+}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-card:hover{
+  background:rgba(255,255,255,.1);
+  transform:translateY(-6px);
+  border-color:var(--accent-400);
+  box-shadow:0 12px 32px rgba(255,107,107,.2);
+}
+.feature-icon{font-size:2.5rem;margin-bottom:.75rem;display:inline-block;transition:transform .3s ease}
+.feature-card:hover .feature-icon{transform:scale(1.1) rotate(5deg)}
+.feature-title{font-weight:700;margin-bottom:.6rem;font-size:1.1rem}
+.feature-desc{font-size:.95rem;color:var(--neutral-200);line-height:1.5}
+
+/* ────────────── QUICK ACTION BUTTONS ────────────── */
+.quick-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.quick-btn{
+  padding:.7rem 1.3rem;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);border-radius:10px;
+  color:#fff;font-size:.95rem;cursor:pointer;
+  transition:all .3s ease;font-weight:500;
+}
+.quick-btn:hover{
+  background:rgba(255,255,255,.15);border-color:var(--accent-400);
+  transform:translateY(-2px);
+}
+
+/* ────────────── TESTIMONIALS SECTION ────────────── */
+.testimonials-section{
+  margin:4rem 0;animation:fadeInUp .8s ease-out 1s backwards;
+}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;font-family:var(--font-display);
+  margin-bottom:1rem;
+  background:linear-gradient(135deg,#FFF0,var(--electric-blue)100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.section-header p{color:var(--neutral-200);font-size:1.1rem}
+.testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2rem;
+}
+.testimonial-card{
+  background:rgba(26,31,58,.6);
+  backdrop-filter:blur(30px);
+  border-radius:20px;padding:2rem;
+  border:1px solid rgba(255,255,255,.1);
+  transition:all .3s ease;
+}
+.testimonial-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent-400);
+  box-shadow:0 12px 32px rgba(255,107,107,.2);
+}
+.testimonial-header{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1rem;
+}
+.testimonial-avatar{
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent-500),var(--electric-purple));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:700;
+}
+.testimonial-info h4{font-weight:700;margin-bottom:.25rem}
+.testimonial-role{font-size:.9rem;color:var(--neutral-200)}
+.testimonial-rating{color:#FFD700;font-size:1.1rem;margin-bottom:.75rem}
+.testimonial-text{color:var(--neutral-200);line-height:1.6;font-style:italic}
+
+/* ────────────── STATS SECTION ────────────── */
+.stats-section{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:2rem;margin:3rem 0;padding:3rem 2rem;
+  background:rgba(26,31,58,.4);
+  backdrop-filter:blur(20px);
+  border-radius:20px;border:1px solid rgba(255,255,255,.1);
+}
+.stat-item{text-align:center}
+.stat-number{
+  font-size:3rem;font-weight:800;font-family:var(--font-display);
+  background:linear-gradient(135deg,var(--accent-500),var(--electric-blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:.5rem;
+}
+.stat-label{color:var(--neutral-200);font-size:1.1rem}
+
+/* ────────────── MODALS ────────────── */
+.modal{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(10,14,39,.95);backdrop-filter:blur(10px);
+  z-index:1000;align-items:center;justify-content:center;
+  padding:2rem;animation:fadeIn .3s ease;
+}
+.modal.show{display:flex}
+.modal-content{
+  background:rgba(26,31,58,.95);
+  backdrop-filter:blur(30px);
+  border-radius:20px;padding:2.5rem;
+  max-width:850px;width:100%;max-height:85vh;overflow-y:auto;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  animation:slideUp .4s ease;
+}
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(50px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.modal-content::-webkit-scrollbar{width:8px}
+.modal-content::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.05);border-radius:10px;
+}
+.modal-content::-webkit-scrollbar-thumb{
+  background:rgba(255,107,107,.4);border-radius:10px;
+}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:2rem;padding-bottom:1rem;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.modal-title{
+  font-size:1.75rem;font-weight:700;font-family:var(--font-display);
+}
+.close-btn{
+  background:rgba(255,255,255,.1);border:none;color:#fff;
+  font-size:1.5rem;cursor:pointer;padding:.5rem .75rem;
+  border-radius:10px;transition:all .2s ease;
+}
+.close-btn:hover{
+  background:rgba(255,107,107,.3);transform:rotate(90deg);
+}
+.code-block{
+  background:rgba(0,0,0,.4);padding:1.25rem;border-radius:10px;
+  font-family:var(--font-mono);font-size:.9rem;overflow-x:auto;
+  margin:1rem 0;border:1px solid rgba(255,255,255,.1);
+}
+
+/* ────────────── LEGAL / TEAM ────────────── */
+.section-title{
+  font-size:1.4rem;font-weight:700;margin:2rem 0 1rem;
+  display:flex;align-items:center;gap:.75rem;color:var(--accent-400);
+}
+.legal-section{margin-bottom:2rem}
+.legal-section h3{color:var(--accent-400);margin-bottom:.75rem;font-size:1.2rem}
+.legal-section h4{color:var(--electric-blue);margin:1rem 0 .5rem;font-size:1.05rem}
+.legal-section p,.legal-section ul{margin-bottom:1rem;color:var(--neutral-200);line-height:1.7}
+.legal-section ul{padding-left:2rem}
+.legal-section li{margin-bottom:.5rem}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;margin:2rem 0;
+}
+.team-member{
+  text-align:center;padding:2rem;background:rgba(255,255,255,.05);
+  border-radius:16px;border:1px solid rgba(255,255,255,.1);
+  transition:all .3s ease;
+}
+.team-member:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent-400);
+  box-shadow:0 12px 32px rgba(255,107,107,.2);
+}
+.team-avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent-500)0%,var(--electric-purple)100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;margin:0 auto 1.25rem;
+  box-shadow:0 8px 24px rgba(255,107,107,.3);
+}
+.team-name{font-weight:700;margin-bottom:.4rem;font-size:1.15rem}
+.team-role{font-size:.95rem;color:var(--accent-400);margin-bottom:1rem}
+
+/* ────────────── FOOTER ────────────── */
+footer{
+  background:rgba(10,14,39,.8);
+  padding:3rem 1.5rem 2rem;margin-top:6rem;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.footer-content{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:3rem;
+}
+.footer-section h4{
+  margin-bottom:1.25rem;color:var(--accent-400);
+  font-size:1.1rem;font-weight:700;
+}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.75rem}
+.footer-links a{
+  color:var(--neutral-200);text-decoration:none;
+  transition:color .2s ease;display:inline-block;
+}
+.footer-links a:hover{color:#fff;transform:translateX(3px)}
+.footer-bottom{
+  text-align:center;padding-top:2rem;margin-top:2rem;
+  border-top:1px solid rgba(255,255,255,.1);
+  color:var(--neutral-200);
+}
+
+/* ────────────── RESPONSIVE BREAKPOINTS ────────────── */
+@media (max-width:1200px){.main-grid{grid-template-columns:1fr}}
+@media (max-width:768px){
+  nav{gap:.5rem}
+  .nav-btn{padding:.5rem .9rem;font-size:.85rem}
+  .voice-button{width:110px;height:110px;font-size:3rem}
+  .hero h1{font-size:2.5rem}
+  .hero p{font-size:1.1rem}
+  .cta-group{flex-direction:column}
+  .cta-primary,.cta-secondary{width:100%}
+  .features-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .stats-section{grid-template-columns:1fr 1fr}
+}
+@media (max-width:480px){
+  .logo-text{font-size:1.4rem}
+  .logo-icon{width:40px;height:40px;font-size:1.5rem}
+  .stats-section{grid-template-columns:1fr}
+  .stat-number{font-size:2.5rem}
 }
 </style>
 </head>
+
 <body>
 <!-- Particles background -->
 <div class="particles" id="particles"></div>
 
 <header>
-<div class="logo">
-<div class="logo-icon">N</div>
-<div>
-<span class="logo-text">NOVA AI</span>
-<span class="version">V3.0</span>
-</div>
-</div>
-<nav>
-<button class="nav-btn" onclick="showAbout()">👥 About</button>
-<button class="nav-btn" onclick="showHelp()">📚 Help</button>
-<button class="nav-btn" onclick="showFeatures()">✨ Features</button>
-</nav>
+  <div class="logo">
+    <div class="logo-icon">N</div>
+    <div>
+      <span class="logo-text">NOVA AI</span>
+      <span class="version">V3.0</span>
+    </div>
+  </div>
+  <nav>
+    <button class="nav-btn" onclick="showAbout()">👥 About</button>
+    <button class="nav-btn" onclick="showHelp()">📚 Help</button>
+    <!-- NEW: Reviews button → scrolls to testimonials -->
+    <button class="nav-btn" onclick="scrollToTestimonials()">⭐ Reviews</button>
+    <button class="nav-btn" onclick="showFeatures()">✨ Features</button>
+  </nav>
 </header>
 
 <div class="container">
-<div class="hero">
-<h1>🚀 Nova AI</h1>
-<p>Your intelligent voice-powered assistant for learning, creativity, and productivity. Translate languages, get study help, code assistance, mood detection, and more - all in your browser!</p>
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🚀 Nova AI</h1>
+    <p>Your intelligent voice‑powered assistant for learning, creativity, and productivity. Translate languages, get study help, code assistance, mood detection, and more – all in your browser!</p>
+    <div class="cta-group">
+      <button class="cta-primary"
+        onclick="document.getElementById('voiceButton').scrollIntoView({behavior:'smooth'});setTimeout(()=>toggleVoice(),800);">
+        🎤 Try Voice Assistant
+      </button>
+      <button class="cta-secondary" onclick="showFeatures()">Explore Features</button>
+    </div>
+  </div>
 
-<div class="cta-group">
-<button class="cta-primary" onclick="document.getElementById('voiceButton').scrollIntoView({behavior: 'smooth'}); setTimeout(() => toggleVoice(), 800);">
-🎤 Try Voice Assistant
-</button>
-<button class="cta-secondary" onclick="showFeatures()">
-Explore Features
-</button>
-</div>
-</div>
+  <!-- DEMO SECTION -->
+  <div class="demo-section">
+    <div class="demo-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <h3 style="color:var(--accent-400);font-size:1.5rem;font-weight:700;">See Nova AI in Action</h3>
+      <p style="color:var(--neutral-200);max-width:500px;text-align:center;">
+        Watch a quick demo of Nova AI's voice recognition, translation, and study features (Demo video coming soon!)
+      </p>
+    </div>
+  </div>
 
-<!-- Demo Section -->
-<div class="demo-section">
-<div class="demo-placeholder">
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-<h3 style="color: var(--accent-400); font-size: 1.5rem; font-weight: 700;">See Nova AI in Action</h3>
-<p style="color: var(--neutral-200); max-width: 500px; text-align: center;">Watch a quick demo of Nova AI's voice recognition, translation, and study features (Demo video coming soon!)</p>
-</div>
-</div>
+  <!-- STATS SECTION -->
+  <div class="stats-section">
+    <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Languages</div></div>
+    <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Free to Use</div></div>
+    <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Available</div></div>
+    <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Possibilities</div></div>
+  </div>
 
-<!-- Stats Section -->
-<div class="stats-section">
-<div class="stat-item">
-<div class="stat-number">20+</div>
-<div class="stat-label">Languages</div>
-</div>
-<div class="stat-item">
-<div class="stat-number">100%</div>
-<div class="stat-label">Free to Use</div>
-</div>
-<div class="stat-item">
-<div class="stat-number">24/7</div>
-<div class="stat-label">Available</div>
-</div>
-<div class="stat-item">
-<div class="stat-number">∞</div>
-<div class="stat-label">Possibilities</div>
-</div>
-</div>
+  <!-- MAIN GRID (VOICE + CHAT) -->
+  <div class="main-grid">
+    <!-- VOICE PANEL -->
+    <div class="voice-panel">
+      <div class="voice-button-container">
+        <button class="voice-button" id="voiceButton" onclick="toggleVoice()">🎤</button>
+        <div class="status-indicator" id="statusIndicator">
+          <span class="status-dot"></span>
+          <span id="statusText">Tap to speak</span>
+        </div>
+      </div>
+      <div class="quick-actions">
+        <button class="quick-btn" onclick="quickCommand('translate hello to hindi')">🌐 Translate</button>
+        <button class="quick-btn" onclick="quickCommand('tell me a story')">📖 Story</button>
+        <button class="quick-btn" onclick="quickCommand('quiz me on python')">📝 Quiz</button>
+        <button class="quick-btn" onclick="quickCommand('code help loop')">💻 Code</button>
+        <button class="quick-btn" onclick="quickCommand('what time is it')">⏰ Time</button>
+        <button class="quick-btn" onclick="quickCommand('detect my mood')">😊 Mood</button>
+      </div>
+    </div>
 
-<div class="main-grid">
-<div class="voice-panel">
-<div class="voice-button-container">
-<button class="voice-button" id="voiceButton" onclick="toggleVoice()">🎤</button>
-<div class="status-indicator" id="statusIndicator">
-<span class="status-dot"></span>
-<span id="statusText">Tap to speak</span>
-</div>
-</div>
+    <!-- CHAT PANEL -->
+    <div class="chat-panel">
+      <h2 style="margin-bottom:1rem;font-family:var(--font-display);">💬 Chat</h2>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-container">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type a command or question..."
+               onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
 
-<div class="quick-actions">
-<button class="quick-btn" onclick="quickCommand('translate hello to hindi')">🌐 Translate</button>
-<button class="quick-btn" onclick="quickCommand('tell me a story')">📖 Story</button>
-<button class="quick-btn" onclick="quickCommand('quiz me on python')">📝 Quiz</button>
-<button class="quick-btn" onclick="quickCommand('code help loop')">💻 Code</button>
-<button class="quick-btn" onclick="quickCommand('what time is it')">⏰ Time</button>
-<button class="quick-btn" onclick="quickCommand('detect my mood')">😊 Mood</button>
-</div>
-</div>
+  <!-- FEATURES PANEL -->
+  <div class="features-panel">
+    <h2 style="margin-bottom:1.5rem;font-family:var(--font-display);">🎯 Quick Access Features</h2>
+    <div class="features-grid">
+      <div class="feature-card" onclick="quickCommand('translate hello to spanish')">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-title">Translation</div>
+        <div class="feature-desc">Translate to 20+ languages instantly</div>
+      </div>
+      <div class="feature-card" onclick="showHelp()">
+        <div class="feature-icon">📚</div>
+        <div class="feature-title">Study Assistant</div>
+        <div class="feature-desc">Get explanations & interactive quizzes</div>
+      </div>
+      <div class="feature-card" onclick="quickCommand('detect my mood from text')">
+        <div class="feature-icon">😊</div>
+        <div class="feature-title">Mood Detection</div>
+        <div class="feature-desc">Analyze mood & get music suggestions</div>
+      </div>
+      <div class="feature-card" onclick="quickCommand('code help function')">
+        <div class="feature-icon">💻</div>
+        <div class="feature-title">Code Assistant</div>
+        <div class="feature-desc">Get code help & debugging support</div>
+      </div>
+      <div class="feature-card" onclick="quickCommand('tell me an adventure story')">
+        <div class="feature-icon">📖</div>
+        <div class="feature-title">AI Storyteller</div>
+        <div class="feature-desc">Generate creative stories on demand</div>
+      </div>
+      <div class="feature-card" onclick="quickCommand('study tips')">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Study Tips</div>
+        <div class="feature-desc">Learn effective learning strategies</div>
+      </div>
+    </div>
+  </div>
 
-<div class="chat-panel">
-<h2 style="margin-bottom: 1rem; font-family: var(--font-display);">💬 Chat</h2>
-<div class="chat-messages" id="chatMessages"></div>
-<div class="chat-input-container">
-<input type="text" class="chat-input" id="chatInput" placeholder="Type a command or question..." onkeypress="handleKeyPress(event)">
-<button class="send-btn" onclick="sendMessage()">Send</button>
-</div>
-</div>
-</div>
+  <!-- TESTIMONIALS SECTION -->
+  <div class="testimonials-section">
+    <div class="section-header">
+      <h2>❤️ Loved by Students</h2>
+      <p>See what learners are saying about Nova AI</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">P</div>
+          <div class="testimonial-info">
+            <h4>Priya Sharma</h4>
+            <div class="testimonial-role">Engineering Student</div>
+          </div>
+        </div>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"Nova AI has been a game‑changer for my coding studies! The code assistant feature helps me understand complex algorithms, and the quiz function makes learning Python so much more engaging."</p>
+      </div>
 
-<div class="features-panel">
-<h2 style="margin-bottom: 1.5rem; font-family: var(--font-display);">🎯 Quick Access Features</h2>
-<div class="features-grid">
-<div class="feature-card" onclick="quickCommand('translate hello to spanish')">
-<div class="feature-icon">🌐</div>
-<div class="feature-title">Translation</div>
-<div class="feature-desc">Translate to 20+ languages instantly</div>
-</div>
-<div class="feature-card" onclick="showHelp()">
-<div class="feature-icon">📚</div>
-<div class="feature-title">Study Assistant</div>
-<div class="feature-desc">Get explanations & interactive quizzes</div>
-</div>
-<div class="feature-card" onclick="quickCommand('detect my mood from text')">
-<div class="feature-icon">😊</div>
-<div class="feature-title">Mood Detection</div>
-<div class="feature-desc">Analyze mood & get music suggestions</div>
-</div>
-<div class="feature-card" onclick="quickCommand('code help function')">
-<div class="feature-icon">💻</div>
-<div class="feature-title">Code Assistant</div>
-<div class="feature-desc">Get code help & debugging support</div>
-</div>
-<div class="feature-card" onclick="quickCommand('tell me an adventure story')">
-<div class="feature-icon">📖</div>
-<div class="feature-title">AI Storyteller</div>
-<div class="feature-desc">Generate creative stories on demand</div>
-</div>
-<div class="feature-card" onclick="quickCommand('study tips')">
-<div class="feature-icon">🎯</div>
-<div class="feature-title">Study Tips</div>
-<div class="feature-desc">Learn effective learning strategies</div>
-</div>
-</div>
-</div>
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">R</div>
+          <div class="testimonial-info">
+            <h4>Rahul Patel</h4>
+            <div class="testimonial-role">High School Student</div>
+          </div>
+        </div>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"I use Nova AI every day for homework help. The translation feature is perfect for my language classes, and the study tips have really improved my grades. Plus, it's completely free!"</p>
+      </div>
 
-<!-- Testimonials Section -->
-<div class="testimonials-section">
-<div class="section-header">
-<h2>❤️ Loved by Students</h2>
-<p>See what learners are saying about Nova AI</p>
-</div>
-<div class="testimonials-grid">
-<div class="testimonial-card">
-<div class="testimonial-header">
-<div class="testimonial-avatar">P</div>
-<div class="testimonial-info">
-<h4>Priya Sharma</h4>
-<div class="testimonial-role">Engineering Student</div>
-</div>
-</div>
-<div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-<p class="testimonial-text">"Nova AI has been a game-changer for my coding studies! The code assistant feature helps me understand complex algorithms, and the quiz function makes learning Python so much more engaging."</p>
-</div>
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">A</div>
+          <div class="testimonial-info">
+            <h4>Anjali Mehta</h4>
+            <div class="testimonial-role">College Student</div>
+          </div>
+        </div>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"The voice recognition feature is incredible! I can practice my presentations and get instant feedback. Nova AI feels like having a personal tutor available 24/7."</p>
+      </div>
+    </div>
+  </div>
+</div> <!-- end .container -->
 
-<div class="testimonial-card">
-<div class="testimonial-header">
-<div class="testimonial-avatar">R</div>
-<div class="testimonial-info">
-<h4>Rahul Patel</h4>
-<div class="testimonial-role">High School Student</div>
-</div>
-</div>
-<div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-<p class="testimonial-text">"I use Nova AI every day for homework help. The translation feature is perfect for my language classes, and the study tips have really improved my grades. Plus, it's completely free!"</p>
-</div>
-
-<div class="testimonial-card">
-<div class="testimonial-header">
-<div class="testimonial-avatar">A</div>
-<div class="testimonial-info">
-<h4>Anjali Mehta</h4>
-<div class="testimonial-role">College Student</div>
-</div>
-</div>
-<div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-<p class="testimonial-text">"The voice recognition feature is incredible! I can practice my presentations and get instant feedback. Nova AI feels like having a personal tutor available 24/7."</p>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
-<div class="footer-content">
-<div class="footer-section">
-<h4>Nova AI</h4>
-<p>Your intelligent voice-powered assistant for learning, creativity, and productivity. Built with ❤️ by Shah Tishy for learners worldwide.</p>
-</div>
-<div class="footer-section">
-<h4>Quick Links</h4>
-<ul class="footer-links">
-<li><a href="#" onclick="showAbout(); return false;">About Us</a></li>
-<li><a href="#" onclick="showFeatures(); return false;">Features</a></li>
-<li><a href="#" onclick="showHelp(); return false;">Help & Documentation</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Legal</h4>
-<ul class="footer-links">
-<li><a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></li>
-<li><a href="#" onclick="showTerms(); return false;">Terms & Conditions</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Contact</h4>
-<ul class="footer-links">
-<li>📧 tishy5327@gmail.com</li>
-<li>👨‍💻 Shah Tishy</li>
-<li>📍 Ahmedabad, Gujarat, India</li>
-</ul>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2026 Nova AI by Shah Tishy. All rights reserved. | Made with ❤️ for learners worldwide</p>
-</div>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Nova AI</h4>
+      <p>Your intelligent voice‑powered assistant for learning, creativity, and productivity. Built with ❤️ by Shah Tishy for learners worldwide.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showAbout();return false;">About Us</a></li>
+        <li><a href="#" onclick="showFeatures();return false;">Features</a></li>
+        <li><a href="#" onclick="showHelp();return false;">Help &amp; Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPrivacy();return false;">Privacy Policy</a></li>
+        <li><a href="#" onclick="showTerms();return false;">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li>📧 tishy5327@gmail.com</li>
+        <li>👨‍💻 Shah Tishy</li>
+        <li>📍 Ahmedabad, Gujarat, India</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Nova AI by Shah Tishy. All rights reserved. | Made with ❤️ for learners worldwide</p>
+  </div>
 </footer>
 
-<!-- Modals (same as original) -->
-<div class="modal" id="aboutModal">
-<div class="modal-content">
-<div class="modal-header">
-<h2 class="modal-title">👥 About Nova AI</h2>
-<button class="close-btn" onclick="closeModal('aboutModal')">✕</button>
-</div>
-<div id="aboutContent"></div>
-</div>
-</div>
+<!-- MODALS -->
+<div class="modal" id="aboutModal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">👥 About Nova AI</h2><button class="close-btn" onclick="closeModal('aboutModal')">✕</button></div><div id="aboutContent"></div></div></div>
 
-<div class="modal" id="helpModal">
-<div class="modal-content">
-<div class="modal-header">
-<h2 class="modal-title">📚 Nova AI Commands</h2>
-<button class="close-btn" onclick="closeModal('helpModal')">✕</button>
-</div>
-<div id="helpContent"></div>
-</div>
-</div>
+<div class="modal" id="helpModal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">📚 Nova AI Commands</h2><button class="close-btn" onclick="closeModal('helpModal')">✕</button></div><div id="helpContent"></div></div></div>
 
-<div class="modal" id="featuresModal">
-<div class="modal-content">
-<div class="modal-header">
-<h2 class="modal-title">✨ All Features</h2>
-<button class="close-btn" onclick="closeModal('featuresModal')">✕</button>
-</div>
-<div id="featuresContent"></div>
-</div>
-</div>
+<div class="modal" id="featuresModal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">✨ All Features</h2><button class="close-btn" onclick="closeModal('featuresModal')">✕</button></div><div id="featuresContent"></div></div></div>
 
-<div class="modal" id="privacyModal">
-<div class="modal-content">
-<div class="modal-header">
-<h2 class="modal-title">🔒 Privacy Policy</h2>
-<button class="close-btn" onclick="closeModal('privacyModal')">✕</button>
-</div>
-<div id="privacyContent"></div>
-</div>
-</div>
+<div class="modal" id="privacyModal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🔒 Privacy Policy</h2><button class="close-btn" onclick="closeModal('privacyModal')">✕</button></div><div id="privacyContent"></div></div></div>
 
-<div class="modal" id="termsModal">
-<div class="modal-content">
-<div class="modal-header">
-<h2 class="modal-title">📜 Terms & Conditions</h2>
-<button class="close-btn" onclick="closeModal('termsModal')">✕</button>
-</div>
-<div id="termsContent"></div>
-</div>
-</div>
+<div class="modal" id="termsModal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">📜 Terms & Conditions</h2><button class="close-btn" onclick="closeModal('termsModal')">✕</button></div><div id="termsContent"></div></div></div>
 
 <script>
-// Create floating particles
-function createParticles() {
-const particlesContainer = document.getElementById('particles');
-for (let i = 0; i < 30; i++) {
-const particle = document.createElement('div');
-particle.className = 'particle';
-particle.style.left = Math.random() * 100 + '%';
-particle.style.animationDelay = Math.random() * 15 + 's';
-particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-particlesContainer.appendChild(particle);
-}
+/* ────────────────── PARTICLES (visual) ────────────────── */
+function createParticles(){
+  const container=document.getElementById('particles');
+  for(let i=0;i<30;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDelay=Math.random()*15+'s';
+    p.style.animationDuration=(10+Math.random()*10)+'s';
+    container.appendChild(p);
+  }
 }
 createParticles();
 
-// ==================== CORE NOVA AI ENGINE (same as original) ====================
-
-class NovaAI {
-constructor() {
-this.recognition = null;
-this.isListening = false;
-this.initVoiceRecognition();
-this.initWelcome();
-}
-
-initVoiceRecognition() {
-if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-this.recognition = new SpeechRecognition();
-this.recognition.continuous = false;
-this.recognition.interimResults = false;
-this.recognition.lang = 'en-US';
-
-this.recognition.onstart = () => this.onVoiceStart();
-this.recognition.onresult = (event) => this.onVoiceResult(event);
-this.recognition.onerror = (event) => this.onVoiceError(event);
-this.recognition.onend = () => this.onVoiceEnd();
-}
-}
-
-initWelcome() {
-this.addMessage('assistant', '👋 Welcome to Nova AI V3.0! I can help with:\n• Translation (20+ languages)\n• Study assistance & quizzes\n• Mood detection & music\n• Code help & debugging\n• Story generation\n• And much more!\n\nTry saying "help" or click any feature card to get started!');
-}
-
-onVoiceStart() {
-document.getElementById('voiceButton').classList.add('listening');
-document.getElementById('statusIndicator').classList.add('listening');
-document.getElementById('statusText').textContent = 'Listening...';
-}
-
-onVoiceResult(event) {
-const transcript = event.results[0][0].transcript;
-this.addMessage('user', transcript);
-this.processCommand(transcript);
-}
-
-onVoiceError(event) {
-console.error('Voice error:', event.error);
-this.addMessage('assistant', `❌ Voice error: ${event.error}. Please try again.`);
-this.resetVoiceState();
-}
-
-onVoiceEnd() {
-this.resetVoiceState();
-}
-
-resetVoiceState() {
-this.isListening = false;
-document.getElementById('voiceButton').classList.remove('listening');
-document.getElementById('statusIndicator').classList.remove('listening');
-document.getElementById('statusText').textContent = 'Tap to speak';
-}
-
-startVoice() {
-if (this.recognition && !this.isListening) {
-this.isListening = true;
-try {
-this.recognition.start();
-} catch (e) {
-console.error('Failed to start recognition:', e);
-this.resetVoiceState();
-}
-}
-}
-
-stopVoice() {
-if (this.recognition && this.isListening) {
-this.recognition.stop();
-}
-}
-
-addMessage(role, text) {
-const messagesDiv = document.getElementById('chatMessages');
-const message = document.createElement('div');
-message.className = `message ${role}`;
-message.innerHTML = `<strong>${role === 'user' ? '👤 You' : '🤖 Nova'}</strong>${text.replace(/\n/g, '<br>')}`;
-messagesDiv.appendChild(message);
-messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-
-speak(text) {
-if ('speechSynthesis' in window) {
-const utterance = new SpeechSynthesisUtterance(text);
-utterance.rate = 1.1;
-utterance.pitch = 1.0;
-window.speechSynthesis.speak(utterance);
-}
-}
-
-// ==================== BASIC Q&A SYSTEM ====================
-
-answerBasicQuestion(question) {
-const q = question.toLowerCase();
-
-if (q.includes('who is shah tishy') || q.includes('who\'s shah tishy') || q.includes('shah tishy')) {
-return `👨‍💻 SHAH TISHY\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nShah Tishy is a talented Full-Stack Developer and the creator of Nova AI!\n\n🎯 Professional Background:\n• Software Development Engineer\n• Passionate about AI and Education Technology\n• Based in Ahmedabad, Gujarat, India\n\n💡 What He Does:\n• Builds innovative AI-powered applications\n• Specializes in web development\n• Creates educational tools for students\n• Believes in making technology accessible to everyone\n\n🚀 Current Project:\nNova AI V3.0 - An intelligent voice-powered assistant designed to help students learn better through AI technology.\n\n📧 Contact: tishy5327@gmail.com\n\nShah Tishy is dedicated to creating tools that make learning easier and more engaging for students worldwide!`;
-}
-
-if (q.includes('what is nova') || q.includes('about nova') || q.includes('nova ai')) {
-return `🤖 ABOUT NOVA AI\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nNova AI is a comprehensive voice-powered AI assistant created by Shah Tishy!\n\n✨ Key Features:\n• 🌐 Multi-language translation (20+ languages)\n• 📚 Study assistance and explanations\n• 😊 Mood detection with music recommendations\n• 💻 Code help and debugging assistance\n• 📖 AI-powered storytelling\n• 🎤 Voice recognition and text-to-speech\n• 🎯 Interactive quizzes\n\n🎯 Purpose:\nBuilt to help students and learners worldwide access quality education and AI assistance - completely free in your browser!\n\n🏆 Version: V3.0\n👨‍💻 Developer: Shah Tishy\n📍 Location: Ahmedabad, Gujarat, India\n\nType "help" to see all available commands!`;
-}
-
-if (q.includes('who created') || q.includes('who made') || q.includes('who developed') || q.includes('who built')) {
-return `👨‍💻 NOVA AI CREATOR\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nNova AI was created by Shah Tishy!\n\nHe's a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners.\n\n🎯 Developer Info:\n• Name: Shah Tishy\n• Role: Full-Stack Developer\n• Expertise: AI, Web Development, Educational Technology\n• Email: tishy5327@gmail.com\n• Location: Ahmedabad, Gujarat, India\n\n💡 His Vision:\nTo build tools that make learning easier, more engaging, and more fun for students worldwide!\n\nWant to know more? Ask "who is Shah Tishy?"`;
-}
-
-if (q.includes('this website') || q.includes('this site') || q.includes('your website')) {
-return `🌐 ABOUT THIS WEBSITE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nThis is Nova AI V3.0 - an intelligent AI assistant platform!\n\n🎯 What This Site Offers:\n• Voice-powered AI interactions\n• Educational tools and study assistance\n• Translation services (20+ languages)\n• Code help and debugging\n• Mood detection and recommendations\n• Interactive storytelling\n• And much more!\n\n👨‍💻 Developed By: Shah Tishy\n📅 Version: V3.0\n🆓 Completely Free to Use\n🌍 Accessible Worldwide\n\n💡 How It Works:\nRuns entirely in your browser - no downloads, no subscriptions needed!\n\nPrivacy-focused: Your conversations stay in your browser.\n\nTry asking me anything or click the feature cards to get started!`;
-}
-
-if (q.includes('contact') || q.includes('email') || q.includes('reach')) {
-return `📧 CONTACT INFORMATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nWant to get in touch? Here's how:\n\n📧 Email: tishy5327@gmail.com\n👨‍💻 Developer: Shah Tishy\n📍 Location: Ahmedabad, Gujarat, India\n\n💬 Feedback:\nI love hearing from users! Whether you have:\n• Feature suggestions\n• Bug reports\n• Questions\n• Or just want to say hi!\n\nFeel free to reach out anytime. Your feedback helps make Nova AI better!`;
-}
-
-if (q.includes('where') && (q.includes('located') || q.includes('from') || q.includes('based'))) {
-return `📍 LOCATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nNova AI is developed in:\n🌆 Ahmedabad, Gujarat, India\n\nThis is where Shah Tishy (the creator) is based and where Nova AI was born!\n\n🌍 But Nova AI is for everyone:\nAvailable worldwide, completely free, and accessible from any browser!`;
-}
-
-if (q.includes('what can you do') || q.includes('your capabilities') || q.includes('what do you do')) {
-return `💪 MY CAPABILITIES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nI can help you with:\n\n🌐 Translation:\n• Translate to 20+ languages\n• Support for Hindi, Spanish, French, German, Japanese, and more\n\n📚 Study Assistance:\n• Explain complex concepts\n• Generate interactive quizzes\n• Provide study tips and learning strategies\n\n😊 Mood & Wellness:\n• Detect mood from text\n• Recommend music based on mood\n• Provide mood-boosting tips\n\n💻 Code Help:\n• Generate code examples\n• Explain programming errors\n• Help with debugging\n\n📖 Creative Writing:\n• Generate adventure stories\n• Create sci-fi narratives\n• Tell bedtime stories\n\n🎤 Voice Features:\n• Voice recognition\n• Text-to-speech responses\n• Hands-free operation\n\n⏰ Utilities:\n• Current time and date\n• Quick calculations\n• Information lookup\n\nType "help" to see specific commands!`;
-}
-
-return null;
-}
-
-// ==================== TRANSLATION ====================
-
-translate(text, targetLang) {
-const translations = {
-'hi': { 'hello': 'नमस्ते', 'thank you': 'धन्यवाद', 'goodbye': 'अलविदा' },
-'es': { 'hello': 'hola', 'thank you': 'gracias', 'goodbye': 'adiós' },
-'fr': { 'hello': 'bonjour', 'thank you': 'merci', 'goodbye': 'au revoir' },
-'de': { 'hello': 'hallo', 'thank you': 'danke', 'goodbye': 'auf wiedersehen' },
-'ja': { 'hello': 'こんにちは', 'thank you': 'ありがとう', 'goodbye': 'さようなら' }
-};
-
-const textLower = text.toLowerCase();
-const langTranslations = translations[targetLang] || {};
-
-return langTranslations[textLower] || `[${targetLang.toUpperCase()}] ${text}`;
-}
-
-// ==================== STUDY ASSISTANT ====================
-
-explainConcept(topic) {
-const explanations = {
-'machine learning': `🤖 MACHINE LEARNING EXPLAINED\n\nMachine Learning is like teaching a computer to learn from examples:\n\n📚 How it works:\n1. Show computer many examples (training data)\n2. Computer finds patterns\n3. Computer makes predictions on new data\n\n🎯 Types:\n• Supervised: Learning with labels (like flashcards)\n• Unsupervised: Finding patterns without labels\n• Reinforcement: Learning by trial and error\n\n💡 Real examples:\n• Netflix recommendations\n• Email spam filters\n• Voice assistants\n• Self-driving cars`,
-
-'photosynthesis': `🌱 PHOTOSYNTHESIS EXPLAINED\n\nPlants making their own food using sunlight!\n\n⚗️ The Recipe:\n☀️ Sunlight + 💧 Water + 🌫️ CO₂ → 🍃 Glucose + 💨 Oxygen\n\n📍 Process:\n1. Chlorophyll (green pigment) captures sunlight\n2. Roots absorb water from soil\n3. Leaves take CO₂ from air\n4. Chemical reaction creates glucose (food)\n5. Releases oxygen as byproduct\n\n🎯 Why important:\n• Foundation of food chain\n• Produces oxygen we breathe\n• Stores solar energy`,
-
-'python': `🐍 PYTHON PROGRAMMING\n\nPython is a beginner-friendly programming language.\n\n✨ Key Features:\n• Easy to read (looks like English)\n• Versatile (web, AI, data, games)\n• Huge community & libraries\n• Great for beginners\n\n📝 Basic Syntax:\nprint("Hello World") # Display text\nx = 10 # Variables\nif x > 5: # Conditions\n print("Greater")\n\n🎯 Popular uses:\n• Web development (Django, Flask)\n• Data science (Pandas, NumPy)\n• AI/ML (TensorFlow, PyTorch)\n• Automation scripts`
-};
-
-const topicLower = topic.toLowerCase();
-for (let key in explanations) {
-if (topicLower.includes(key)) {
-return explanations[key];
-}
-}
-
-return `I don't have a detailed explanation for "${topic}" yet. Try:\n• Machine Learning\n• Photosynthesis\n• Python`;
-}
-
-generateQuiz(subject) {
-const quizzes = {
-'python': [
-{ q: 'What keyword creates a function?', opts: ['A) func', 'B) def', 'C) function', 'D) define'], ans: 'B', exp: 'def is used to define functions in Python' },
-{ q: 'What is the output of: len([1,2,3])?', opts: ['A) 1', 'B) 2', 'C) 3', 'D) Error'], ans: 'C', exp: 'len() returns the number of items' },
-{ q: 'Which is mutable?', opts: ['A) Tuple', 'B) String', 'C) List', 'D) Integer'], ans: 'C', exp: 'Lists can be changed after creation' }
-],
-'science': [
-{ q: 'Speed of light?', opts: ['A) 3×10⁸ m/s', 'B) 3×10⁶ m/s', 'C) 3×10⁷ m/s', 'D) 3×10⁹ m/s'], ans: 'A', exp: 'Speed of light in vacuum' },
-{ q: 'What is H₂O?', opts: ['A) Hydrogen', 'B) Water', 'C) Oxygen', 'D) Acid'], ans: 'B', exp: 'Water molecule: 2 hydrogen + 1 oxygen' },
-{ q: 'Powerhouse of the cell?', opts: ['A) Nucleus', 'B) Mitochondria', 'C) Ribosome', 'D) Chloroplast'], ans: 'B', exp: 'Mitochondria produce energy (ATP)' }
-],
-'math': [
-{ q: 'What is 15% of 200?', opts: ['A) 20', 'B) 30', 'C) 25', 'D) 35'], ans: 'B', exp: '15% of 200 = (15/100) × 200 = 30' },
-{ q: 'What is √144?', opts: ['A) 11', 'B) 12', 'C) 13', 'D) 14'], ans: 'B', exp: '12 × 12 = 144' },
-{ q: 'What is 2³?', opts: ['A) 6', 'B) 8', 'C) 9', 'D) 16'], ans: 'B', exp: '2 × 2 × 2 = 8' }
-]
-};
-
-const questions = quizzes[subject] || quizzes['python'];
-let output = `\n📝 ${subject.toUpperCase()} QUIZ\n${'='.repeat(50)}\n\n`;
-
-questions.forEach((q, i) => {
-output += `Question ${i + 1}: ${q.q}\n`;
-q.opts.forEach(opt => output += ` ${opt}\n`);
-output += `\nAnswer: ${q.ans} - ${q.exp}\n\n`;
-});
-
-return output;
-}
-
-getStudyTips() {
-const tips = [
-'🧠 Pomodoro Technique: Study 25 min, break 5 min',
-'📝 Active Recall: Test yourself instead of re-reading',
-'🔄 Spaced Repetition: Review at increasing intervals',
-'🎯 Teach Others: Best way to solidify understanding',
-'💤 Sleep Well: Memory consolidation happens during sleep',
-'🏃 Exercise: Boosts brain function and memory',
-'🎵 Instrumental Music: Better than silence for some',
-'📱 Remove Distractions: Phone away during study'
-];
-
-return `\n💡 STUDY TIPS\n${'='.repeat(50)}\n\n` + tips.join('\n\n');
-}
-
-// ==================== MOOD DETECTION ====================
-
-detectMoodFromText(text) {
-const textLower = text.toLowerCase();
-
-const happyWords = ['happy', 'joy', 'great', 'awesome', 'love', 'excellent', 'wonderful', 'amazing'];
-const sadWords = ['sad', 'unhappy', 'depressed', 'down', 'miserable', 'awful', 'terrible'];
-const angryWords = ['angry', 'mad', 'furious', 'hate', 'annoyed', 'frustrated'];
-const stressedWords = ['stressed', 'anxious', 'worried', 'overwhelmed', 'nervous'];
-
-let mood = 'neutral';
-if (happyWords.some(w => textLower.includes(w))) mood = 'happy';
-else if (sadWords.some(w => textLower.includes(w))) mood = 'sad';
-else if (angryWords.some(w => textLower.includes(w))) mood = 'angry';
-else if (stressedWords.some(w => textLower.includes(w))) mood = 'stressed';
-
-return this.getMoodResponse(mood);
-}
-
-getMoodResponse(mood) {
-const emojiMap = {
-'happy': '😊', 'sad': '😢', 'angry': '😠',
-'neutral': '😐', 'stressed': '😰'
-};
-
-const musicRecs = {
-'happy': ['Happy - Pharrell Williams', 'Tum Hi Ho - Aashiqui 2', 'Dil Chahta Hai'],
-'sad': ['Tujhe Kitna Chahne Lage', 'Agar Tum Saath Ho', 'Channa Mereya'],
-'angry': ['Eye of the Tiger', 'Sultan Theme', 'Apna Time Aayega'],
-'stressed': ['Weightless - Marconi Union', 'Om Meditation', 'Rain Sounds'],
-'neutral': ['Kabira', 'Kun Faya Kun', 'Shayad']
-};
-
-const tips = {
-'happy': '• Share your happiness!\n• Help someone\n• Spread positivity',
-'sad': '• Take a walk outside\n• Call a friend\n• This too shall pass',
-'angry': '• Take deep breaths\n• Count to 10\n• Write it down',
-'stressed': '• Meditate 5 minutes\n• Deep breathing\n• Take a break',
-'neutral': '• Set small goals\n• Practice gratitude\n• Stay active'
-};
-
-const songs = musicRecs[mood];
-const emoji = emojiMap[mood];
-
-return `\n${emoji} MOOD DETECTED: ${mood.toUpperCase()}\n${'='.repeat(50)}\n\n🎵 Recommended Songs:\n${songs.map(s => `• ${s}`).join('\n')}\n\n💡 Mood Booster:\n${tips[mood]}`;
-}
-
-// ==================== CODE ASSISTANT ====================
-
-generateCode(type) {
-const templates = {
-'function': `def calculate_sum(a, b):\n """Calculate sum of two numbers"""\n return a + b\n\n# Usage\nresult = calculate_sum(5, 3)\nprint(result) # Output: 8`,
-
-'loop': `# For loop\nfor i in range(5):\n print(f"Iteration {i}")\n\n# While loop\ncount = 0\nwhile count < 5:\n print(count)\n count += 1\n\n# Loop through list\nitems = ['apple', 'banana', 'orange']\nfor item in items:\n print(item)`,
-
-'if': `# If-else statement\nx = 10\n\nif x > 0:\n print("Positive")\nelif x < 0:\n print("Negative")\nelse:\n print("Zero")\n\n# Ternary operator\nresult = "Even" if x % 2 == 0 else "Odd"`,
-
-'list': `# Create and manipulate lists\nmy_list = [1, 2, 3, 4, 5]\n\n# Append\nmy_list.append(6)\n\n# Remove\nmy_list.remove(3)\n\n# Sort\nmy_list.sort()\n\n# List comprehension\nsquares = [x**2 for x in range(10)]`
-};
-
-const typeLower = type.toLowerCase();
-for (let key in templates) {
-if (typeLower.includes(key)) {
-return `\`\`\`python\n${templates[key]}\n\`\`\``;
-}
-}
-
-return "Code pattern not found. Try: function, loop, if, list, dictionary";
-}
-
-explainError(errorType) {
-const errors = {
-'indentation': `🔴 IndentationError\n━━━━━━━━━━━━━━━━━━━━━━━━\n❌ Problem: Incorrect indentation\n\n✅ Fix: Use 4 spaces consistently\nPython requires proper indentation!\n\nExample:\n❌ Wrong:\ndef my_function():\nprint("Hello")\n\n✅ Correct:\ndef my_function():\n print("Hello")`,
-
-'syntax': `🔴 SyntaxError\n━━━━━━━━━━━━━━━━━━━━━━━━\n❌ Problem: Invalid syntax\n\nCommon causes:\n• Missing colon (:)\n• Unclosed brackets/quotes\n• Invalid variable name\n\nExample:\n❌ if x > 5\n✅ if x > 5:`,
-
-'name': `🔴 NameError\n━━━━━━━━━━━━━━━━━━━━━━━━\n❌ Problem: Variable not defined\n\n✅ Fix: Define before using\n\nExample:\n❌ print(x) # x not defined\n✅ x = 10\n print(x)`,
-
-'type': `🔴 TypeError\n━━━━━━━━━━━━━━━━━━━━━━━━\n❌ Problem: Wrong data type\n\nExample:\n❌ "5" + 5\n✅ int("5") + 5\nor\n✅ "5" + str(5)`
-};
-
-return errors[errorType] || "Paste your full error message for help!";
-}
-
-// ==================== STORYTELLING ====================
-
-generateStory(theme) {
-const stories = {
-'adventure': `🗺️ THE LOST TREASURE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nChapter 1: The Discovery\n\nArjun was an ordinary student from Mumbai until he found a mysterious old map in his grandfather's attic. The map showed a legendary treasure hidden in the ancient ruins of Hampi.\n\n"This is incredible!" Arjun whispered, studying the cryptic symbols.\n\nThe next morning, he packed his backpack and began the journey. After days of travel, he finally stood before the magnificent ruins.\n\nChapter 2: The Trials\n\nThree trials awaited:\n1. Mathematical puzzles (solved with school knowledge)\n2. Physical challenges (tested courage)\n3. Riddles of wisdom (required clever thinking)\n\nChapter 3: The Discovery\n\nDeep inside, Arjun found not gold, but ancient books containing priceless wisdom. This knowledge would change the world.\n\n💡 Moral: True treasure is knowledge, not riches.\n\nTHE END`,
-
-'scifi': `🚀 MISSION TO KEPLER-442b\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nYear 2156. Earth needed a new home. Commander Zara volunteered for the 50-year journey to planet Kepler-442b.\n\n*50 years later*\n\n"Wake up, Commander. We've arrived."\n\nBut something was wrong. The planet showed signs of intelligent life - impossible according to old data!\n\nAs the ship descended, crystalline cities appeared. Energy beings greeted Zara telepathically:\n\n"We've been waiting. Earth sent probes, we sent back clean energy technology. Did you not receive it?"\n\nZara realized: The answer to Earth's problems was already being transmitted - as signals humans dismissed as cosmic noise!\n\nReturning home with this knowledge, Zara bridged two civilizations.\n\n🌟 Moral: Sometimes answers are already in front of us.\n\nTHE END`,
-
-'bedtime': `🌙 THE STAR WHO WANTED TO DANCE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nHigh in the night sky lived a little star named Tara. While other stars stood still and twinkled, Tara loved to dance.\n\n"Stand still, Tara!" said the Moon.\n\nBut Tara couldn't help it. Her gentle movements brought joy to children below.\n\nOne night, a little girl named Mira who couldn't sleep saw Tara dancing. The graceful movements helped her relax and drift into beautiful dreams.\n\nSoon, children everywhere discovered that watching Tara dance helped them sleep peacefully.\n\nThe Moon realized: "Tara, being different brings unique gifts."\n\n✨ Sleep tight, and watch for dancing stars...\n\nTHE END`
-};
-
-return stories[theme] || stories['adventure'];
-}
-
-// ==================== COMMAND PROCESSING ====================
-
-processCommand(command) {
-const cmd = command.toLowerCase().trim();
-let response = '';
-
-const basicAnswer = this.answerBasicQuestion(cmd);
-if (basicAnswer) {
-this.addMessage('assistant', basicAnswer);
-this.speak(basicAnswer.substring(0, 200));
-return;
-}
-
-if (/^(hi|hello|hey|greetings)/.test(cmd)) {
-response = '👋 Hello! How can I help you today?';
-}
-else if (cmd.includes('help')) {
-showHelp();
-return;
-}
-else if (cmd.includes('translate')) {
-const match = cmd.match(/translate\s+(.+?)\s+to\s+(\w+)/);
-if (match) {
-const [, text, lang] = match;
-const translated = this.translate(text, lang);
-response = `🌐 Translation to ${lang.toUpperCase()}:\n${translated}`;
-} else {
-response = 'Usage: "translate [text] to [language]"\nExample: "translate hello to hindi"';
-}
-}
-else if (cmd.includes('explain')) {
-const topic = cmd.replace('explain', '').trim();
-response = this.explainConcept(topic);
-}
-else if (cmd.includes('quiz')) {
-const subject = cmd.includes('python') ? 'python' :
-cmd.includes('science') ? 'science' :
-cmd.includes('math') ? 'math' : 'python';
-response = this.generateQuiz(subject);
-}
-else if (cmd.includes('study tip')) {
-response = this.getStudyTips();
-}
-else if (cmd.includes('mood')) {
-response = 'Tell me how you\'re feeling, and I\'ll detect your mood!';
-setTimeout(() => {
-const moodText = prompt('How are you feeling?');
-if (moodText) {
-const moodResponse = this.detectMoodFromText(moodText);
-this.addMessage('assistant', moodResponse);
-this.speak('I\'ve analyzed your mood and have some suggestions for you.');
-}
-}, 100);
-return;
-}
-else if (cmd.includes('code') && (cmd.includes('help') || cmd.includes('generate'))) {
-const type = cmd.includes('function') ? 'function' :
-cmd.includes('loop') ? 'loop' :
-cmd.includes('if') ? 'if' : 'function';
-response = this.generateCode(type);
-}
-else if (cmd.includes('error') || cmd.includes('debug')) {
-const errorType = cmd.includes('indentation') ? 'indentation' :
-cmd.includes('syntax') ? 'syntax' :
-cmd.includes('name') ? 'name' :
-cmd.includes('type') ? 'type' : 'syntax';
-response = this.explainError(errorType);
-}
-else if (cmd.includes('story') || cmd.includes('tell me')) {
-const theme = cmd.includes('adventure') ? 'adventure' :
-cmd.includes('scifi') || cmd.includes('sci-fi') ? 'scifi' :
-cmd.includes('bedtime') ? 'bedtime' : 'adventure';
-response = this.generateStory(theme);
-}
-else if (cmd.includes('time')) {
-const now = new Date();
-response = `🕐 Current time: ${now.toLocaleTimeString()}`;
-}
-else if (cmd.includes('date') || cmd.includes('today')) {
-const now = new Date();
-response = `📅 Today is ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
-}
-else {
-response = `I heard: "${command}"\n\nI can help with:\n• Translation\n• Study & quizzes\n• Mood detection\n• Code assistance\n• Story generation\n• Questions about Nova AI or Shah Tishy\n• And more!\n\nType "help" to see all commands or ask "who is Shah Tishy?"`;
-}
-
-this.addMessage('assistant', response);
-this.speak(response.substring(0, 200));
-}
-}
-
-// ==================== UI FUNCTIONS ====================
-
-const nova = new NovaAI();
-
-function toggleVoice() {
-if (nova.isListening) {
-nova.stopVoice();
-} else {
-nova.startVoice();
-}
-}
-
-function sendMessage() {
-const input = document.getElementById('chatInput');
-const message = input.value.trim();
-
-if (message) {
-nova.addMessage('user', message);
-nova.processCommand(message);
-input.value = '';
-}
-}
-
-function handleKeyPress(event) {
-if (event.key === 'Enter') {
-sendMessage();
-}
-}
-
-function quickCommand(command) {
-document.getElementById('chatInput').value = command;
-sendMessage();
-}
-
-function showAbout() {
-const content = `
-<div class="legal-section">
-<h3>🚀 My Mission</h3>
-<p>Nova AI was created by me, a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners worldwide. I'm building tools that make learning easier, more engaging, and more fun.</p>
-</div>
-
-<div class="legal-section">
-<h3>💡 The Story</h3>
-<p>Started as a personal product in 2025, Nova AI began when I noticed students struggling with language barriers, coding challenges, and study organization. I asked myself: "What if I could build an AI assistant that understands students' needs?"</p>
-<p>Today, Nova AI combines voice recognition, natural language processing, and educational tools to help students learn better and faster. Built with passion and dedication by a solo developer who believes in the power of accessible education.</p>
-</div>
-
-<div class="legal-section">
-<h3>👨‍💻 Meet the Developer</h3>
-<div class="team-grid">
-<div class="team-member" style="max-width: 300px; margin: 0 auto;">
-<div class="team-avatar">👨‍💻</div>
-<div class="team-name">Shah Tishy</div>
-<div class="team-role">Full-Stack Developer</div>
-<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--neutral-200);">
-Professional software engineer passionate about AI and education, building tools to help students learn better.
-</p>
-</div>
-</div>
-</div>
-
-<div class="legal-section">
-<h3>🎯 What I Do</h3>
-<ul>
-<li><strong>Free & Accessible:</strong> Nova AI runs entirely in your browser - no downloads, no subscriptions</li>
-<li><strong>Student-First:</strong> Features designed specifically for learning and education</li>
-<li><strong>Privacy-Focused:</strong> Your conversations stay in your browser</li>
-<li><strong>Constantly Improving:</strong> Regular updates and new features based on user feedback</li>
-</ul>
-</div>
-
-<div class="legal-section">
-<h3>🌟 My Values</h3>
-<ul>
-<li><strong>Education:</strong> Making learning accessible to everyone</li>
-<li><strong>Innovation:</strong> Leveraging professional expertise to push boundaries with AI technology</li>
-<li><strong>Community:</strong> Built by a professional developer, for students and learners</li>
-<li><strong>Transparency:</strong> Open about what I do and how I do it</li>
-</ul>
-</div>
-
-<div class="legal-section">
-<h3>📍 Product Status</h3>
-<p><strong>Type:</strong> Professional AI Innovation Product</p>
-<p><strong>Developer:</strong> Shah Tishy</p>
-<p><strong>Location:</strong> Ahmedabad, Gujarat, India</p>
-<p><strong>Status:</strong> Active Development (V3.0)</p>
-<p><strong>License:</strong> Educational Use</p>
-</div>
-
-<div class="legal-section">
-<h3>📧 Get in Touch</h3>
-<p>I love hearing from users! Whether you have feedback, suggestions, or just want to say hi:</p>
-<ul>
-<li>Email: tishy5327@gmail.com</li>
-<li>Developer: Shah Tishy</li>
-<li>Feedback: Use the chat to tell me what you think!</li>
-</ul>
-</div>
-
-<div class="legal-section">
-<h3>🙏 Acknowledgments</h3>
-<p>Special thanks to the open-source communities, AI/ML researchers, and early beta testers who helped shape Nova AI into what it is today. Your feedback and support mean everything!</p>
-</div>
-`;
-
-document.getElementById('aboutContent').innerHTML = content;
-document.getElementById('aboutModal').classList.add('show');
-}
-
-function showHelp() {
-const content = `
-<div class="section-title">❓ Ask Me About</div>
-<div>• "Who is Shah Tishy?"</div>
-<div>• "What is Nova AI?"</div>
-<div>• "Who created this?"</div>
-<div>• "About this website"</div>
-<div>• "Contact information"</div>
-
-<div class="section-title">🌐 Translation</div>
-<div>• "translate hello
- to hindi"</div>
-                <div>• "translate good morning to french"</div>
-                <div>• Supported: Hindi, Spanish, French, German, Japanese, and 15+ more</div>
-
-                <div class="section-title">📚 Study Assistant</div>
-                <div>• "explain photosynthesis"</div>
-                <div>• "quiz me on python"</div>
-                <div>• "study tips"</div>
-                <div>• "explain machine learning"</div>
-
-                <div class="section-title">😊 Mood Detection</div>
-                <div>• "detect my mood"</div>
-                <div>• Type how you're feeling when prompted</div>
-                <div>• Get music recommendations & mood boosters</div>
-
-                <div class="section-title">💻 Code Help</div>
-                <div>• "code help function"</div>
-                <div>• "code help loop"</div>
-                <div>• "debug indentation error"</div>
-                <div>• "explain syntax error"</div>
-
-                <div class="section-title">📖 Story Generation</div>
-                <div>• "tell me an adventure story"</div>
-                <div>• "sci-fi story please"</div>
-                <div>• "bedtime story for kids"</div>
-
-                <div class="section-title">⏰ Utilities</div>
-                <div>• "what time is it?"</div>
-                <div>• "what's today's date?"</div>
-                <div>• "who is Shah Tishy?"</div>
-
-                <div class="section-title">🎤 Voice Commands</div>
-                <div>• Tap the microphone button to speak</div>
-                <div>• Speak naturally - I understand context</div>
-                <div>• Try: "help", "translate", "quiz me", "code help"</div>
-
-                <div class="code-block">
+/* ────────────────── NOVA AI CORE ────────────────── */
+class NovaAI{
+  constructor(){
+    this.recognition=null;
+    this.isListening=false;
+    this.initVoiceRecognition();
+    this.initWelcome();
+  }
+  /* ---- Voice ---- */
+  initVoiceRecognition(){
+    if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+      this.recognition=new SR();
+      this.recognition.continuous=false;
+      this.recognition.interimResults=false;
+      this.recognition.lang='en-US';
+      this.recognition.onstart   =()=>this.onVoiceStart();
+      this.recognition.onresult  =(e)=>this.onVoiceResult(e);
+      this.recognition.onerror   =(e)=>this.onVoiceError(e);
+      this.recognition.onend     =()=>this.onVoiceEnd();
+    }
+  }
+  initWelcome(){
+    this.addMessage('assistant',
+      `👋 Welcome to Nova AI V3.0! I can help with:
+• Translation (20+ languages)
+• Study assistance & quizzes
+• Mood detection & music
+• Code help & debugging
+• Story generation
+• And much more!
+
+Try saying “help” or click any feature card to get started!`);
+  }
+  onVoiceStart(){
+    document.getElementById('voiceButton').classList.add('listening');
+    document.getElementById('statusIndicator').classList.add('listening');
+    document.getElementById('statusText').textContent='Listening...';
+  }
+  onVoiceResult(e){
+    const txt=e.results[0][0].transcript;
+    this.addMessage('user',txt);
+    this.processCommand(txt);
+  }
+  onVoiceError(e){
+    console.error('Voice error:',e.error);
+    this.addMessage('assistant',`❌ Voice error: ${e.error}. Please try again.`);
+    this.resetVoiceState();
+  }
+  onVoiceEnd(){ this.resetVoiceState(); }
+  resetVoiceState(){
+    this.isListening=false;
+    document.getElementById('voiceButton').classList.remove('listening');
+    document.getElementById('statusIndicator').classList.remove('listening');
+    document.getElementById('statusText').textContent='Tap to speak';
+  }
+  startVoice(){
+    if(this.recognition && !this.isListening){
+      this.isListening=true;
+      try{ this.recognition.start(); }
+      catch(e){ console.error(e); this.resetVoiceState(); }
+    }
+  }
+  stopVoice(){ if(this.recognition && this.isListening) this.recognition.stop(); }
+
+  /* ---- UI / Chat ---- */
+  addMessage(role,text){
+    const box=document.getElementById('chatMessages');
+    const m=document.createElement('div');
+    m.className=`message ${role}`;
+    m.innerHTML=`<strong>${role==='user'?'👤 You':'🤖 Nova'}</strong>${text.replace(/\n/g,'<br>')}`;
+    box.appendChild(m);
+    box.scrollTop=box.scrollHeight;
+  }
+  speak(txt){
+    if('speechSynthesis' in window){
+      const u=new SpeechSynthesisUtterance(txt);
+      u.rate=1.1;u.pitch=1.0;
+      speechSynthesis.speak(u);
+    }
+  }
+
+  /* ---- BASIC Q&A ---- */
+  answerBasicQuestion(q){
+    const s=q.toLowerCase();
+    if(s.includes('who is shah tishy')||s.includes("who's shah tishy")||s.includes('shah tishy')){
+      return `👨‍💻 SHAH TISHY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Shah Tishy is a talented Full‑Stack Developer and the creator of Nova AI!
+
+🎯 Professional Background:
+• Software Development Engineer
+• Passionate about AI & Education Technology
+• Based in Ahmedabad, Gujarat, India
+
+💡 What He Does:
+• Builds innovative AI‑powered applications
+• Specializes in web development
+• Creates educational tools for students
+• Believes in making technology accessible to everyone
+
+🚀 Current Project:
+Nova AI V3.0 – an intelligent voice‑powered assistant designed to help students learn better through AI technology.
+
+📧 Contact: tishy5327@gmail.com
+
+Shah Tishy is dedicated to creating tools that make learning easier and more engaging for students worldwide!`;
+    }
+    if(s.includes('what is nova')||s.includes('about nova')||s.includes('nova ai')){
+      return `🤖 ABOUT NOVA AI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nova AI is a comprehensive voice‑powered AI assistant created by Shah Tishy!
+
+✨ Key Features:
+• 🌐 Multi‑language translation (20+ languages)
+• 📚 Study assistance and explanations
+• 😊 Mood detection with music recommendations
+• 💻 Code help and debugging assistance
+• 📖 AI‑powered storytelling
+• 🎤 Voice recognition and text‑to‑speech
+• 🎯 Interactive quizzes
+
+🎯 Purpose:
+Built to help students and learners worldwide access quality education and AI assistance – completely free in your browser!
+
+🏆 Version: V3.0
+👨‍💻 Developer: Shah Tishy
+📍 Location: Ahmedabad, Gujarat, India
+
+Type “help” to see all available commands!`;
+    }
+    if(s.includes('who created')||s.includes('who made')||s.includes('who developed')||s.includes('who built')){
+      return `👨‍💻 NOVA AI CREATOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nova AI was created by Shah Tishy!
+
+He's a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners.
+
+🎯 Developer Info:
+• Name: Shah Tishy
+• Role: Full‑Stack Developer
+• Expertise: AI, Web Development, Educational Technology
+• Email: tishy5327@gmail.com
+• Location: Ahmedabad, Gujarat, India
+
+💡 His Vision:
+To build tools that make learning easier, more engaging, and more fun for students worldwide!
+
+Want to know more? Ask “who is Shah Tishy?”`;
+    }
+    if(s.includes('this website')||s.includes('your website')||s.includes('about this site')){
+      return `🌐 ABOUT THIS WEBSITE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is Nova AI V3.0 – an intelligent AI assistant platform!
+
+🎯 What This Site Offers:
+• Voice‑powered AI interactions
+• Educational tools and study assistance
+• Translation services (20+ languages)
+• Code help and debugging
+• Mood detection and music recommendations
+• Interactive storytelling
+• And much more!
+
+👨‍💻 Developed By: Shah Tishy
+📅 Version: V3.0
+🆓 Completely Free to Use
+🌍 Accessible Worldwide
+
+💡 How It Works:
+Runs entirely in your browser – no downloads, no subscriptions needed!
+
+Privacy‑focused: Your conversations stay in your browser.`;
+    }
+    if(s.includes('contact')||s.includes('email')||s.includes('reach')){
+      return `📧 CONTACT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Want to get in touch? Here’s how:
+
+📧 Email: tishy5327@gmail.com
+👨‍💻 Developer: Shah Tishy
+📍 Location: Ahmedabad, Gujarat, India
+
+💬 Feedback:
+I love hearing from users! Whether you have:
+• Feature suggestions
+• Bug reports
+• Questions
+• Or just want to say hi!
+
+Feel free to reach out anytime. Your feedback helps make Nova AI better!`;
+    }
+    if(s.includes('where') && (s.includes('located')||s.includes('from')||s.includes('based'))){
+      return `📍 LOCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nova AI is developed in:
+
+🌆 Ahmedabad, Gujarat, India
+
+This is where Shah Tishy (the creator) is based and where Nova AI was born!
+
+🌍 But Nova AI is for everyone:
+Available worldwide, completely free, and accessible from any browser!`;
+    }
+    if(s.includes('what can you do')||s.includes('your capabilities')||s.includes('what do you do')){
+      return `💪 MY CAPABILITIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+I can help you with:
+
+🌐 Translation:
+• Translate to 20+ languages
+• Support for Hindi, Spanish, French, German, Japanese, and more
+
+📚 Study Assistance:
+• Explain complex concepts
+• Generate interactive quizzes
+• Provide study tips and learning strategies
+
+😊 Mood & Wellness:
+• Detect mood from text
+• Recommend music based on mood
+• Provide mood‑boosting tips
+
+💻 Code Help:
+• Generate code examples
+• Explain programming errors
+• Help with debugging
+
+📖 Creative Writing:
+• Generate adventure stories
+• Create sci‑fi narratives
+• Tell bedtime stories
+
+🎤 Voice Features:
+• Voice recognition
+• Text‑to‑speech responses
+• Hands‑free operation
+
+⏰ Utilities:
+• Current time and date
+• Quick calculations
+• Information lookup
+
+Type “help” to see specific commands!`;
+    }
+    return null;
+  }
+
+  /* ---- TRANSLATION ---- */
+  translate(txt,target){
+    const dict={
+      hi:{hello:'नमस्ते',thank:'धन्यवाद',goodbye:'अलविदा'},
+      es:{hello:'hola',thank:'gracias',goodbye:'adiós'},
+      fr:{hello:'bonjour',thank:'merci',goodbye:'au revoir'},
+      de:{hello:'hallo',thank:'danke',goodbye:'auf wiedersehen'},
+      ja:{hello:'こんにちは',thank:'ありがとう',goodbye:'さようなら'}
+    };
+    const key=target.toLowerCase();
+    const low=txt.toLowerCase();
+    const map=dict[key]||{};
+    return map[low]||`[${target.toUpperCase()}] ${txt}`;
+  }
+
+  /* ---- STUDY ASSISTANT ---- */
+  explainConcept(topic){
+    const lib={
+      'machine learning':`🤖 MACHINE LEARNING EXPLAINED
+
+Machine Learning is like teaching a computer to learn from examples:
+
+📚 How it works:
+1. Show the computer many examples (training data)
+2. The computer finds patterns
+3. It makes predictions on new data
+
+🎯 Types:
+• Supervised – learning with labels (like flashcards)
+• Unsupervised – finding patterns without labels
+• Reinforcement – learning by trial & error
+
+💡 Real examples:
+• Netflix recommendations
+• Email spam filters
+• Voice assistants`,
+      photosynthesis:`🌱 PHOTOSYNTHESIS EXPLAINED
+
+Plants making their own food using sunlight!
+
+⚗️ The recipe:
+☀️ Sunlight + 💧 Water + 🌫️ CO₂ → 🍃 Glucose + 💨 Oxygen
+
+📍 Process:
+1. Chlorophyll (green pigment) captures sunlight
+2. Roots absorb water from soil
+3. Leaves take CO₂ from air
+4. Chemical reaction creates glucose (food)
+5. Releases oxygen as by‑product
+
+🎯 Why important:
+• Foundation of the food chain
+• Produces oxygen we breathe
+• Stores solar energy`,
+      python:`🐍 PYTHON PROGRAMMING
+
+Python is a beginner‑friendly programming language.
+
+✨ Key Features:
+• Easy to read (looks like English)
+• Versatile (web, AI, data, games)
+• Huge community & libraries
+• Great for beginners
+
+📝 Basic Syntax:
+print("Hello World")  # display text
+x = 10                # variable
+if x > 5:             # condition
+    print("Greater")
+
+🎯 Popular uses:
+• Web development (Django, Flask)
+• Data science (Pandas, NumPy)
+• AI/ML (TensorFlow, PyTorch)
+• Automation scripts`;
+    };
+    const low=topic.toLowerCase();
+    for(const k in lib) if(low.includes(k)) return lib[k];
+    return `I don’t have a detailed explanation for “${topic}”. Try: Machine Learning, Photosynthesis, Python.`;
+  }
+
+  generateQuiz(subject){
+    const banks={
+      python:[
+        {q:'What keyword creates a function?',opts:['A) func','B) def','C) function','D) define'],ans:'B',exp:'def is used to define functions in Python'},
+        {q:'What is the output of: len([1,2,3])?',opts:['A) 1','B) 2','C) 3','D) Error'],ans:'C',exp:'len() returns the number of items'},
+        {q:'Which is mutable?',opts:['A) Tuple','B) String','C) List','D) Integer'],ans:'C',exp:'Lists can be changed after creation'}
+      ],
+      science:[
+        {q:'Speed of light?',opts:['A) 3×10⁸ m/s','B) 3×10⁶ m/s','C) 3×10⁷ m/s','D) 3×10⁹ m/s'],ans:'A',exp:'Speed of light in vacuum'},
+        {q:'What is H₂O?',opts:['A) Hydrogen','B) Water','C) Oxygen','D) Acid'],ans:'B',exp:'Water molecule: 2 hydrogen + 1 oxygen'},
+        {q:'Powerhouse of the cell?',opts:['A) Nucleus','B) Mitochondria','C) Ribosome','D) Chloroplast'],ans:'B',exp:'Mitochondria produce energy (ATP)'}
+      ],
+      math:[
+        {q:'What is 15% of 200?',opts:['A) 20','B) 30','C) 25','D) 35'],ans:'B',exp:'15% of 200 = (15/100) × 200 = 30'},
+        {q:'What is √144?',opts:['A) 11','B) 12','C) 13','D) 14'],ans:'B',exp:'12 × 12 = 144'},
+        {q:'What is 2³?',opts:['A) 6','B) 8','C) 9','D) 16'],ans:'B',exp:'2 × 2 × 2 = 8'}
+      ]
+    };
+    const questions=banks[subject]||banks['python'];
+    let out=`📝 ${subject.toUpperCase()} QUIZ\n${'='.repeat(50)}\n\n`;
+    questions.forEach((q,i)=>{
+      out+=`Question ${i+1}: ${q.q}\n`;
+      q.opts.forEach(opt=>out+=`   ${opt}\n`);
+      out+=`\nAnswer: ${q.ans} - ${q.exp}\n\n`;
+    });
+    return out;
+  }
+
+  getStudyTips(){
+    const tips=[
+      '🧠 Pomodoro Technique: Study 25 min, break 5 min',
+      '📝 Active Recall: Test yourself instead of re‑reading',
+      '🔄 Spaced Repetition: Review at increasing intervals',
+      '🎯 Teach Others: Best way to solidify understanding',
+      '💤 Sleep Well: Memory consolidation happens during sleep',
+      '🏃 Exercise: Boosts brain function and memory',
+      '🎵 Instrumental Music: Better than silence for some',
+      '📱 Remove Distractions: Phone away during study'
+    ];
+    return `💡 STUDY TIPS\n${'='.repeat(50)}\n\n`+tips.join('\n\n');
+  }
+
+  /* ---- MOOD DETECTION ---- */
+  detectMoodFromText(txt){
+    const low=txt.toLowerCase();
+    const happy=['happy','joy','great','awesome','love','excellent','wonderful','amazing'];
+    const sad=['sad','unhappy','depressed','down','miserable','awful','terrible'];
+    const angry=['angry','mad','furious','hate','annoyed','frustrated'];
+    const stressed=['stressed','anxious','worried','overwhelmed','nervous'];
+    let mood='neutral';
+    if(happy.some(w=>low.includes(w))) mood='happy';
+    else if(sad.some(w=>low.includes(w))) mood='sad';
+    else if(angry.some(w=>low.includes(w))) mood='angry';
+    else if(stressed.some(w=>low.includes(w))) mood='stressed';
+    return this.getMoodResponse(mood);
+  }
+  getMoodResponse(mood){
+    const emoji={happy:'😊',sad:'😢',angry:'😠',neutral:'😐',stressed:'😰'};
+    const music={
+      happy:['Happy - Pharrell Williams','Tum Hi Ho - Aashiqui 2','Dil Chahta Hai'],
+      sad:['Tujhe Kitna Chahne Lage','Agar Tum Saath Ho','Channa Mereya'],
+      angry:['Eye of the Tiger','Sultan Theme','Apna Time Aayega'],
+      stressed:['Weightless - Marconi Union','Om Meditation','Rain Sounds'],
+      neutral:['Kabira','Kun Faya Kun','Shayad']
+    };
+    const tips={
+      happy:'• Share your happiness!\n• Help someone\n• Spread positivity',
+      sad:'• Take a walk outside\n• Call a friend\n• This too shall pass',
+      angry:'• Take deep breaths\n• Count to 10\n• Write it down',
+      stressed:'• Meditate 5 min\n• Deep breathing\n• Take a break',
+      neutral:'• Set small goals\n• Practice gratitude\n• Stay active'
+    };
+    const songs=music[mood];
+    const tip=tips[mood];
+    return `\n${emoji[mood]} MOOD DETECTED: ${mood.toUpperCase()}\n${'='.repeat(50)}\n\n🎵 Recommended Songs:\n${songs.map(s=>`• ${s}`).join('\n')}\n\n💡 Mood Booster:\n${tip}`;
+  }
+
+  /* ---- CODE ASSISTANT ---- */
+  generateCode(type){
+    const lib={
+      function:`def calculate_sum(a, b):
+    """Calculate sum of two numbers"""
+    return a + b
+
+# Usage
+result = calculate_sum(5, 3)
+print(result)  # Output: 8`,
+      loop:`# For loop
+for i in range(5):
+    print(f"Iteration {i}")
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# Loop through list
+items = ['apple', 'banana', 'orange']
+for item in items:
+    print(item)`,
+      if:`# If‑else statement
+x = 10
+
+if x > 0:
+    print("Positive")
+elif x < 0:
+    print("Negative")
+else:
+    print("Zero")
+
+# Ternary operator
+result = "Even" if x % 2 == 0 else "Odd"`,
+      list:`# Create and manipulate lists
+my_list = [1, 2, 3, 4, 5]
+
+# Append
+my_list.append(6)
+
+# Remove
+my_list.remove(3)
+
+# Sort
+my_list.sort()
+
+# List comprehension
+squares = [x**2 for x in range(10)]`
+    };
+    const low=type.toLowerCase();
+    for(const k in lib) if(low.includes(k)) return `\`\`\`python\n${lib[k]}\n\`\`\``;
+    return 'Code pattern not found. Try: function, loop, if, list, dictionary';
+  }
+
+  explainError(err){
+    const lib={
+      indentation:`🔴 IndentationError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Incorrect indentation
+
+✅ Fix: Use 4 spaces consistently
+Python requires proper indentation!
+
+Example:
+❌ Wrong:
+def my_function():
+print("Hello")
+
+✅ Correct:
+def my_function():
+    print("Hello")`,
+      syntax:`🔴 SyntaxError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Invalid syntax
+
+Common causes:
+• Missing colon (:)
+• Unclosed brackets/quotes
+• Invalid variable name
+
+Example:
+❌ if x > 5
+✅ if x > 5:`,
+      name:`🔴 NameError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Variable not defined
+
+✅ Fix: Define before using
+
+Example:
+❌ print(x)  # x not defined
+✅ x = 10
+    print(x)`,
+      type:`🔴 TypeError
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ Problem: Wrong data type
+
+Example:
+❌ "5" + 5
+✅ int("5") + 5
+or
+✅ "5" + str(5)`
+    };
+    return lib[err]||'Paste your full error message for help!';
+  }
+
+  /* ---- STORYTELLING ---- */
+  generateStory(theme){
+    const stories={
+      adventure:`🗺️ THE LOST TREASURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Chapter 1: The Discovery
+
+Arjun was an ordinary student from Mumbai until he found a mysterious old map in his grandfather's attic. The map showed a legendary treasure hidden in the ancient ruins of Hampi.
+
+"This is incredible!" Arjun whispered, studying the cryptic symbols.
+
+The next morning, he packed his backpack and began the journey. After days of travel, he finally stood before the magnificent ruins.
+
+Chapter 2: The Trials
+
+Three trials awaited:
+1. Mathematical puzzles (solved with school knowledge)
+2. Physical challenges (tested courage)
+3. Riddles of wisdom (required clever thinking)
+
+Chapter 3: The Discovery
+
+Deep inside, Arjun found not gold, but ancient books containing priceless wisdom. This knowledge would change the world.
+
+💡 Moral: True treasure is knowledge, not riches.
+
+THE END`,
+      scifi:`🚀 MISSION TO KEPLER‑442b
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Year 2156. Earth needed a new home. Commander Zara volunteered for the 50‑year journey to planet Kepler‑442b.
+
+*50 years later*
+"Wake up, Commander. We've arrived."
+
+But something was wrong. The planet showed signs of intelligent life – impossible according to old data!
+
+As the ship descended, crystalline cities appeared. Energy beings greeted Zara telepathically:
+
+"We've been waiting. Earth sent probes, we sent back clean energy technology. Did you not receive it?"
+
+Zara realized: The answer to Earth's problems was already being transmitted – as signals humans dismissed as cosmic noise!
+
+Returning home with this knowledge, Zara bridged two civilizations.
+
+🌟 Moral: Sometimes answers are already in front of us.
+
+THE END`,
+      bedtime:`🌙 THE STAR WHO WANTED TO DANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+High in the night sky lived a little star named Tara. While other stars stood still and twinkled, Tara loved to dance.
+
+"Stand still, Tara!" said the Moon.
+
+But Tara couldn't help it. Her gentle movements brought joy to children below.
+
+One night, a little girl named Mira who couldn't sleep saw Tara dancing. The graceful movements helped her relax and drift into beautiful dreams.
+
+Soon, children everywhere discovered that watching Tara dance helped them sleep peacefully.
+
+The Moon realized: "Tara, being different brings unique gifts."
+
+✨ Sleep tight, and watch for dancing stars...
+
+THE END`
+    };
+    return stories[theme]||stories['adventure'];
+  }
+
+  /* ---- COMMAND PROCESSING ---- */
+  processCommand(command){
+    const cmd=command.toLowerCase().trim();
+    // 1️⃣ Check basic Q&A
+    const basic=this.answerBasicQuestion(cmd);
+    if(basic){ this.addMessage('assistant',basic); this.speak(basic.substring(0,200)); return; }
+
+    // 2️⃣ Simple greetings
+    if(/^(hi|hello|hey|greetings)/.test(cmd)){
+      this.reply('👋 Hello! How can I help you today?'); return;
+    }
+
+    // 3️⃣ Help
+    if(cmd.includes('help')){ showHelp(); return; }
+
+    // 4️⃣ Translation
+    if(cmd.includes('translate')){
+      const m=cmd.match(/translate\s+(.+?)\s+to\s+(\w+)/);
+      if(m){
+        const [,txt,lang]=m;
+        const tr=this.translate(txt,lang);
+        this.reply(`🌐 Translation to ${lang.toUpperCase()}:\n${tr}`);
+      }else{
+        this.reply('Usage: "translate [text] to [language]"\nExample: "translate hello to hindi"');
+      }
+      return;
+    }
+
+    // 5️⃣ Explain
+    if(cmd.includes('explain')){
+      const topic=cmd.replace('explain','').trim();
+      this.reply(this.explainConcept(topic));
+      return;
+    }
+
+    // 6️⃣ Quiz
+    if(cmd.includes('quiz')){
+      const subj=cmd.includes('python')?'python':
+                 cmd.includes('science')?'science':
+                 cmd.includes('math')?'math':'python';
+      this.reply(this.generateQuiz(subj));
+      return;
+    }
+
+    // 7️⃣ Study tips
+    if(cmd.includes('study tip')){
+      this.reply(this.getStudyTips());
+      return;
+    }
+
+    // 8️⃣ Mood detection
+    if(cmd.includes('mood')){
+      this.reply('Tell me how you\'re feeling, and I\'ll detect your mood!');
+      setTimeout(()=>{
+        const txt=prompt('How are you feeling?');
+        if(txt){ this.reply(this.detectMoodFromText(txt)); }
+      },100);
+      return;
+    }
+
+    // 9️⃣ Code assistance
+    if(cmd.includes('code') && (cmd.includes('help')||cmd.includes('generate'))){
+      const type=cmd.includes('function')?'function':
+                 cmd.includes('loop')?'loop':
+                 cmd.includes('if')?'if':'function';
+      this.reply(this.generateCode(type));
+      return;
+    }
+
+    // 🔟 Error explanation
+    if(cmd.includes('error')||cmd.includes('debug')){
+      const err=cmd.includes('indentation')?'indentation':
+                cmd.includes('syntax')?'syntax':
+                cmd.includes('name')?'name':
+                cmd.includes('type')?'type':'syntax';
+      this.reply(this.explainError(err));
+      return;
+    }
+
+    // 📖 Storytelling
+    if(cmd.includes('story')||cmd.includes('tell me')){
+      const theme=cmd.includes('adventure')?'adventure':
+                  cmd.includes('scifi')||cmd.includes('sci‑fi')?'scifi':
+                  cmd.includes('bedtime')?'bedtime':'adventure';
+      this.reply(this.generateStory(theme));
+      return;
+    }
+
+    // 🕒 Time
+    if(cmd.includes('time')){
+      const now=new Date();
+      this.reply(`🕐 Current time: ${now.toLocaleTimeString()}`);
+      return;
+    }
+
+    // 📅 Date
+    if(cmd.includes('date')||cmd.includes('today')){
+      const now=new Date();
+      this.reply(`📅 Today is ${now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}`);
+      return;
+    }
+
+    // ❓ Fallback
+    this.reply(`I heard: "${command}"\n\nI can help with:
+• Translation
+• Study & quizzes
+• Mood detection
+• Code assistance
+• Story generation
+• Questions about Nova AI or Shah Tishy
+• And more!
+
+Type "help" to see all commands or ask "who is Shah Tishy?"`);
+  }
+
+  reply(msg){
+    this.addMessage('assistant',msg);
+    this.speak(msg.substring(0,200));
+  }
+}
+
+/* ────────────────── UI FUNCTIONS ────────────────── */
+const nova=new NovaAI();
+
+function toggleVoice(){
+  if(nova.isListening) nova.stopVoice();
+  else nova.startVoice();
+}
+function sendMessage(){
+  const inp=document.getElementById('chatInput');
+  const txt=inp.value.trim();
+  if(txt){
+    nova.addMessage('user',txt);
+    nova.processCommand(txt);
+    inp.value='';
+  }
+}
+function handleKeyPress(e){
+  if(e.key==='Enter') sendMessage();
+}
+function quickCommand(txt){
+  document.getElementById('chatInput').value=txt;
+  sendMessage();
+}
+
+/* ──────── MODAL HELPERS ──────── */
+function showModal(id){
+  document.getElementById(id).classList.add('show');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('show');
+}
+
+/* ──────── CONTENT POPULATORS ──────── */
+function showAbout(){
+  const html=`
+    <div class="legal-section">
+      <h3>🚀 My Mission</h3>
+      <p>Nova AI was created by me, a passionate Software Development Engineer who believes that advanced AI assistance should be accessible to everyone, especially students and learners worldwide. I'm building tools that make learning easier, more engaging, and more fun.</p>
+    </div>
+    <div class="legal-section">
+      <h3>💡 The Story</h3>
+      <p>Started as a personal product in 2025, Nova AI began when I noticed students struggling with language barriers, coding challenges, and study organization. I asked myself: "What if I could build an AI assistant that understands students' needs?"</p>
+      <p>Today, Nova AI combines voice recognition, natural language processing, and educational tools to help students learn better and faster. Built with passion and dedication by a solo developer who believes in the power of accessible education.</p>
+    </div>
+    <div class="legal-section">
+      <h3>👨‍💻 Meet the Developer</h3>
+      <div class="team-grid">
+        <div class="team-member" style="max-width:300px;margin:0 auto;">
+          <div class="team-avatar">👨‍💻</div>
+          <div class="team-name">Shah Tishy</div>
+          <div class="team-role">Full‑Stack Developer</div>
+          <p style="margin-top:1rem;font-size:.9rem;color:var(--neutral-200);">
+            Professional software engineer passionate about AI and education, building tools to help students learn better.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="legal-section"><h3>🎯 What I Do</h3>
+      <ul>
+        <li><strong>Free & Accessible:</strong> Runs entirely in your browser – no downloads, no subscriptions</li>
+        <li><strong>Student‑First:</strong> Features designed specifically for learning and education</li>
+        <li><strong>Privacy‑Focused:</strong> Your conversations stay in your browser</li>
+        <li><strong>Constantly Improving:</strong> Regular updates and new features based on user feedback</li>
+      </ul>
+    </div>
+    <div class="legal-section"><h3>🌟 My Values</h3>
+      <ul>
+        <li><strong>Education:</strong> Making learning accessible to everyone</li>
+        <li><strong>Innovation:</strong> Leveraging professional expertise to push boundaries with AI technology</li>
+        <li><strong>Community:</strong> Built by a professional developer, for students and learners</li>
+        <li><strong>Transparency:</strong> Open about what I do and how I do it</li>
+      </ul>
+    </div>
+    <div class="legal-section"><h3>📍 Product Status</h3>
+      <p><strong>Type:</strong> Professional AI Innovation Product</p>
+      <p><strong>Developer:</strong> Shah Tishy</p>
+      <p><strong>Location:</strong> Ahmedabad, Gujarat, India</p>
+      <p><strong>Status:</strong> Active Development (V3.0)</p>
+      <p><strong>License:</strong> Educational Use</p>
+    </div>
+    <div class="legal-section"><h3>📧 Get in Touch</h3>
+      <p>I love hearing from users! Whether you have feedback, suggestions, or just want to say hi:</p>
+      <ul>
+        <li>Email: tishy5327@gmail.com</li>
+        <li>Developer: Shah Tishy</li>
+        <li>Feedback: Use the chat to tell me what you think!</li>
+      </ul>
+    </div>
+    <div class="legal-section"><h3>🙏 Acknowledgments</h3>
+      <p>Special thanks to the open‑source communities, AI/ML researchers, and early beta testers who helped shape Nova AI into what it is today. Your feedback and support mean everything!</p>
+    </div>`;
+  document.getElementById('aboutContent').innerHTML=html;
+  showModal('aboutModal');
+}
+
+function showHelp(){
+  const html=`
+    <div class="section-title">❓ Ask Me About</div>
+    <div>• "Who is Shah Tishy?"</div>
+    <div>• "What is Nova AI?"</div>
+    <div>• "Who created this?"</div>
+    <div>• "About this website"</div>
+    <div>• "Contact information"</div>
+
+    <div class="section-title">🌐 Translation</div>
+    <div>• "translate hello to hindi"</div>
+    <div>• "translate good morning to french"</div>
+    <div>• Supported: Hindi, Spanish, French, German, Japanese, and 15+ more</div>
+
+    <div class="section-title">📚 Study Assistant</div>
+    <div>• "explain photosynthesis"</div>
+    <div>• "quiz me on python"</div>
+    <div>• "study tips"</div>
+    <div>• "explain machine learning"</div>
+
+    <div class="section-title">😊 Mood Detection</div>
+    <div>• "detect my mood"</div>
+    <div>• Type how you're feeling when prompted</div>
+    <div>• Get music recommendations & mood boosters</div>
+
+    <div class="section-title">💻 Code Help</div>
+    <div>• "code help function"</div>
+    <div>• "code help loop"</div>
+    <div>• "debug indentation error"</div>
+    <div>• "explain syntax error"</div>
+
+    <div class="section-title">📖 Story Generation</div>
+    <div>• "tell me an adventure story"</div>
+    <div>• "sci‑fi story please"</div>
+    <div>• "bedtime story for kids"</div>
+
+    <div class="section-title">⏰ Utilities</div>
+    <div>• "what time is it?"</div>
+    <div>• "what's today's date?"</div>
+    <div>• "who is Shah Tishy?"</div>
+
+    <div class="section-title">🎤 Voice Commands</div>
+    <div>• Tap the microphone button to speak</div>
+    <div>• Speak naturally - I understand context</div>
+    <div>• Try: "help", "translate", "quiz me", "code help"</div>
+
+    <div class="code-block">
 # Example Commands:
 "translate good morning to spanish"
 "explain photosynthesis"
@@ -1983,283 +1654,214 @@ const content = `
 "detect my mood"
 "tell me a bedtime story"
 "what time is it?"
-                </div>
+    </div>
 
-                <p style="margin-top: 1.5rem; color: var(--neutral-200);">
-                    💡 Pro Tip: Combine commands for powerful results!<br>
-                    Example: "translate explain photosynthesis to hindi"
-                </p>
-            `;
-            
-            document.getElementById('helpContent').innerHTML = content;
-            document.getElementById('helpModal').classList.add('show');
-        }
+    <p style="margin-top:1.5rem;color:var(--neutral-200);">
+      💡 Pro Tip: Combine commands for powerful results!<br>
+      Example: "translate explain photosynthesis to hindi"
+    </p>`;
+  document.getElementById('helpContent').innerHTML=html;
+  showModal('helpModal');
+}
 
-        function showFeatures() {
-            const content = `
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🌐</div>
-                        <div class="feature-title">Multi-Language Translation</div>
-                        <div class="feature-desc">Translate text to 20+ languages instantly with voice input support</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📚</div>
-                        <div class="feature-title">Smart Study Assistant</div>
-                        <div class="feature-desc">Get detailed explanations, interactive quizzes, and personalized study tips</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">😊</div>
-                        <div class="feature-title">Emotion & Mood Detection</div>
-                        <div class="feature-desc">Analyze text for emotional tone and get personalized music recommendations</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💻</div>
-                        <div class="feature-title">AI Code Assistant</div>
-                        <div class="feature-desc">Generate code snippets, debug errors, and learn programming concepts</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📖</div>
-                        <div class="feature-title">Creative Storytelling</div>
-                        <div class="feature-desc">Generate engaging stories across multiple genres with rich narratives</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎤</div>
-                        <div class="feature-title">Voice Recognition</div>
-                        <div class="feature-desc">Hands-free interaction with advanced speech-to-text capabilities</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎧</div>
-                        <div class="feature-title">Text-to-Speech</div>
-                        <div class="feature-desc">Natural sounding voice responses for accessibility and convenience</div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <div class="feature-title">Privacy First</div>
-                        <div class="feature-desc">All processing happens locally in your browser - your data never leaves your device</div>
-                    </div>
-                </div>
+function showFeatures(){
+  const html=`
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title">Multi‑Language Translation</div><div class="feature-desc">Translate text to 20+ languages instantly with voice input support</div></div>
+      <div class="feature-card"><div class="feature-icon">📚</div><div class="feature-title">Smart Study Assistant</div><div class="feature-desc">Get detailed explanations, interactive quizzes, and personalized study tips</div></div>
+      <div class="feature-card"><div class="feature-icon">😊</div><div class="feature-title">Emotion & Mood Detection</div><div class="feature-desc">Analyze text for emotional tone and get personalized music recommendations</div></div>
+      <div class="feature-card"><div class="feature-icon">💻</div><div class="feature-title">AI Code Assistant</div><div class="feature-desc">Generate code snippets, debug errors, and learn programming concepts</div></div>
+      <div class="feature-card"><div class="feature-icon">📖</div><div class="feature-title">Creative Storytelling</div><div class="feature-desc">Generate engaging stories across multiple genres with rich narratives</div></div>
+      <div class="feature-card"><div class="feature-icon">🎤</div><div class="feature-title">Voice Recognition</div><div class="feature-desc">Hands‑free interaction with advanced speech‑to‑text capabilities</div></div>
+      <div class="feature-card"><div class="feature-icon">🎧</div><div class="feature-title">Text‑to‑Speech</div><div class="feature-desc">Natural sounding voice responses for accessibility and convenience</div></div>
+      <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">Privacy First</div><div class="feature-desc">All processing happens locally in your browser – your data never leaves your device</div></div>
+    </div>
 
-                <div class="legal-section">
-                    <h3>🚀 Advanced Features</h3>
-                    <ul>
-                        <li><strong>Contextual Understanding:</strong> Remembers conversation context for better responses</li>
-                        <li><strong>Multi-modal Interaction:</strong> Works via voice, text, or quick buttons</li>
-                        <li><strong>Educational Focus:</strong> Specifically designed for student needs and learning</li>
-                        <li><strong>Continuous Updates:</strong> New features added regularly based on user feedback</li>
-                        <li><strong>Cross-Platform:</strong> Works on desktop, tablet, and mobile browsers</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h3>🚀 Advanced Features</h3>
+      <ul>
+        <li><strong>Contextual Understanding:</strong> Remembers conversation context for better responses</li>
+        <li><strong>Multi‑modal Interaction:</strong> Works via voice, text, or quick buttons</li>
+        <li><strong>Educational Focus:</strong> Specifically designed for student needs and learning</li>
+        <li><strong>Continuous Updates:</strong> New features added regularly based on user feedback</li>
+        <li><strong>Cross‑Platform:</strong> Works on desktop, tablet, and mobile browsers</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h3>🎯 Use Cases</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
-                            <strong>Students</strong><br>
-                            Homework help, language learning, exam prep
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
-                            <strong>Developers</strong><br>
-                            Code debugging, concept explanations, best practices
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
-                            <strong>Language Learners</strong><br>
-                            Translation practice, pronunciation guides
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
-                            <strong>Writers</strong><br>
-                            Creative inspiration, story ideas, character development
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('featuresContent').innerHTML = content;
-            document.getElementById('featuresModal').classList.add('show');
-        }
+    <div class="legal-section"><h3>🎯 Use Cases</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem;">
+        <div style="background:rgba(255,255,255,.05);padding:1rem;border-radius:10px;">
+          <strong>Students</strong><br>Homework help, language learning, exam prep
+        </div>
+        <div style="background:rgba(255,255,255,.05);padding:1rem;border-radius:10px;">
+          <strong>Developers</strong><br>Code debugging, concept explanations, best practices
+        </div>
+        <div style="background:rgba(255,255,255,.05);padding:1rem;border-radius:10px;">
+          <strong>Language Learners</strong><br>Translation practice, pronunciation guides
+        </div>
+        <div style="background:rgba(255,255,255,.05);padding:1rem;border-radius:10px;">
+          <strong>Writers</strong><br>Creative inspiration, story ideas, character development
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('featuresContent').innerHTML=html;
+  showModal('featuresModal');
+}
 
-        function showPrivacy() {
-            const content = `
-                <div class="legal-section">
-                    <h3>🔒 Privacy Policy</h3>
-                    <p>Last Updated: June 2026</p>
-                    <p>Nova AI is committed to protecting your privacy. This policy explains how we handle your information when you use our services.</p>
-                </div>
+function showPrivacy(){
+  const html=`
+    <div class="legal-section"><h3>🔒 Privacy Policy</h3>
+      <p>Last Updated: June 2026</p>
+      <p>Nova AI is committed to protecting your privacy. This policy explains how we handle your information when you use our services.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🛡️ No Data Collection</h4>
-                    <p>Nova AI operates entirely in your browser. We do not collect, store, or transmit any personal data or conversation content. All processing happens locally on your device.</p>
-                </div>
+    <div class="legal-section"><h4>🛡️ No Data Collection</h4>
+      <p>Nova AI operates entirely in your browser. We do not collect, store, or transmit any personal data or conversation content. All processing happens locally on your device.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🎙️ Voice Data</h4>
-                    <p>When you use voice features:</p>
-                    <ul>
-                        <li>Voice input is processed locally by your browser's speech recognition API</li>
-                        <li>No audio recordings are stored or transmitted</li>
-                        <li>Microphone access is only active when you press the voice button</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>🎙️ Voice Data</h4>
+      <p>When you use voice features:</p>
+      <ul>
+        <li>Voice input is processed locally by your browser's speech recognition API</li>
+        <li>No audio recordings are stored or transmitted</li>
+        <li>Microphone access is only active when you press the voice button</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🍪 Cookies & Tracking</h4>
-                    <p>We do not use cookies or tracking technologies. There are no third-party analytics or advertising scripts on this site.</p>
-                </div>
+    <div class="legal-section"><h4>🍪 Cookies & Tracking</h4>
+      <p>We do not use cookies or tracking technologies. There are no third‑party analytics or advertising scripts on this site.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🌐 Third-Party Services</h4>
-                    <p>This site may use browser APIs such as:</p>
-                    <ul>
-                        <li>Web Speech API (for voice recognition)</li>
-                        <li>Speech Synthesis API (for text-to-speech)</li>
-                        <li>These services run locally in your browser</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>🌐 Third‑Party Services</h4>
+      <p>This site may use browser APIs such as:</p>
+      <ul>
+        <li>Web Speech API (for voice recognition)</li>
+        <li>Speech Synthesis API (for text‑to‑speech)</li>
+        <li>All run locally in your browser</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>📱 Local Storage</h4>
-                    <p>We may use browser local storage to save:</p>
-                    <ul>
-                        <li>User preferences (theme, language)</li>
-                        <li>Chat history (stored only on your device)</li>
-                        <li>Feature settings</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>📱 Local Storage</h4>
+      <p>We may use browser local storage to save:</p>
+      <ul>
+        <li>User preferences (theme, language)</li>
+        <li>Chat history (saved only on your device)</li>
+        <li>Feature settings</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🔒 Security</h4>
-                    <p>Since no data leaves your device, there is no risk of data breaches or unauthorized access from our side.</p>
-                </div>
+    <div class="legal-section"><h4>🔒 Security</h4>
+      <p>Since no data leaves your device, there is no risk of data breaches or unauthorized access from our side.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🧒 Children's Privacy</h4>
-                    <p>Nova AI is designed for educational use and is safe for children. We recommend parental guidance for young users.</p>
-                </div>
+    <div class="legal-section"><h4>🧒 Children's Privacy</h4>
+      <p>Nova AI is designed for educational use and is safe for children. We recommend parental guidance for young users.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>🔄 Changes to This Policy</h4>
-                    <p>We may update this policy occasionally. Any changes will be posted here with an updated date.</p>
-                </div>
+    <div class="legal-section"><h4>🔄 Changes to This Policy</h4>
+      <p>We may update this policy occasionally. Any changes will be posted here with an updated date.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>📬 Contact</h4>
-                    <p>If you have questions about this privacy policy:</p>
-                    <p>Email: tishy5327@gmail.com<br>
-                    Developer: Shah Tishy<br>
-                    Location: Ahmedabad, Gujarat, India</p>
-                </div>
-            `;
-            
-            document.getElementById('privacyContent').innerHTML = content;
-            document.getElementById('privacyModal').classList.add('show');
-        }
+    <div class="legal-section"><h4>📬 Contact</h4>
+      <p>If you have questions about this privacy policy:</p>
+      <p>Email: tishy5327@gmail.com<br>
+         Developer: Shah Tishy<br>
+         Location: Ahmedabad, Gujarat, India</p>
+    </div>`;
+  document.getElementById('privacyContent').innerHTML=html;
+  showModal('privacyModal');
+}
 
-        function showTerms() {
-            const content = `
-                <div class="legal-section">
-                    <h3>📜 Terms & Conditions</h3>
-                    <p>Effective Date: June 2026</p>
-                    <p>By using Nova AI, you agree to these terms. Please read them carefully.</p>
-                </div>
+function showTerms(){
+  const html=`
+    <div class="legal-section"><h3>📜 Terms & Conditions</h3>
+      <p>Effective Date: June 2026</p>
+      <p>By using Nova AI, you agree to these terms. Please read them carefully.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>1. Service Description</h4>
-                    <p>Nova AI is a free browser-based AI assistant providing educational and productivity tools including voice recognition, translation, study assistance, and more.</p>
-                </div>
+    <div class="legal-section"><h4>1. Service Description</h4>
+      <p>Nova AI is a free browser‑based AI assistant providing educational and productivity tools including voice recognition, translation, study assistance, mood detection, code help, storytelling, and more.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>2. Intellectual Property</h4>
-                    <p>All content, code, and materials in Nova AI are owned by Shah Tishy. You may use the service for personal and educational purposes but may not redistribute or modify the core application.</p>
-                </div>
+    <div class="legal-section"><h4>2. Intellectual Property</h4>
+      <p>All content, code, and materials in Nova AI are owned by Shah Tishy. You may use the service for personal and educational purposes but may not redistribute or modify the core application.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>3. User Responsibilities</h4>
-                    <p>You agree to:</p>
-                    <ul>
-                        <li>Use the service responsibly and ethically</li>
-                        <li>Not attempt to reverse-engineer or hack the system</li>
-                        <li>Provide accurate information when using features</li>
-                        <li>Respect the rights of others in your usage</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>3. User Responsibilities</h4>
+      <p>You agree to:</p>
+      <ul>
+        <li>Use the service responsibly and ethically</li>
+        <li>Not attempt to reverse‑engineer or hack the system</li>
+        <li>Provide accurate information when using features</li>
+        <li>Respect the rights of others in your usage</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>4. Limitations of Liability</h4>
-                    <p>Nova AI is provided "as-is" without warranties. We are not liable for:</p>
-                    <ul>
-                        <li>Accuracy of generated content or translations</li>
-                        <li>Any indirect, incidental, or consequential damages</li>
-                        <li>Service interruptions or technical issues</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>4. Limitations of Liability</h4>
+      <p>Nova AI is provided "as‑is" without warranties. We are not liable for:</p>
+      <ul>
+        <li>Accuracy of generated content or translations</li>
+        <li>Any indirect, incidental, or consequential damages</li>
+        <li>Service interruptions or technical issues</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>5. No Warranty</h4>
-                    <p>The service is provided without any warranty of fitness for a particular purpose. Results may vary.</p>
-                </div>
+    <div class="legal-section"><h4>5. No Warranty</h4>
+      <p>The service is provided without any warranty of fitness for a particular purpose. Results may vary.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>6. Modifications to Service</h4>
-                    <p>We reserve the right to modify or discontinue the service at any time without notice.</p>
-                </div>
+    <div class="legal-section"><h4>6. Modifications to Service</h4>
+      <p>We reserve the right to modify or discontinue the service at any time without notice.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>7. Governing Law</h4>
-                    <p>These terms are governed by the laws of India. Any disputes will be handled in courts located in Ahmedabad, Gujarat.</p>
-                </div>
+    <div class="legal-section"><h4>7. Governing Law</h4>
+      <p>These terms are governed by the laws of India. Any disputes will be handled in courts located in Ahmedabad, Gujarat.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>8. Disclaimer</h4>
-                    <p>Nova AI is an educational tool. Always verify critical information from authoritative sources. The developer is not responsible for decisions made based on AI-generated content.</p>
-                </div>
+    <div class="legal-section"><h4>8. Disclaimer</h4>
+      <p>Nova AI is an educational tool. Always verify critical information from authoritative sources. The developer is not responsible for decisions made based on AI‑generated content.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>9. Acceptable Use</h4>
-                    <p>Prohibited activities include:</p>
-                    <ul>
-                        <li>Using for illegal purposes</li>
-                        <li>Harassment or abuse of the system</li>
-                        <li>Automated scraping or data mining</li>
-                        <li>Interference with service operation</li>
-                    </ul>
-                </div>
+    <div class="legal-section"><h4>9. Acceptable Use</h4>
+      <p>Prohibited activities include:</p>
+      <ul>
+        <li>Using for illegal purposes</li>
+        <li>Harassment or abuse of the system</li>
+        <li>Automated scraping or data mining</li>
+        <li>Interference with service operation</li>
+      </ul>
+    </div>
 
-                <div class="legal-section">
-                    <h4>10. Termination</h4>
-                    <p>We may terminate or suspend access to the service immediately, without prior notice, for any reason, including breach of terms.</p>
-                </div>
+    <div class="legal-section"><h4>10. Termination</h4>
+      <p>We may terminate or suspend access to the service immediately, without prior notice, for any reason, including breach of terms.</p>
+    </div>
 
-                <div class="legal-section">
-                    <h4>📧 Contact Information</h4>
-                    <p>For questions regarding these terms:<br>
-                    Email: tishy5327@gmail.com<br>
-                    Developer: Shah Tishy<br>
-                    Location: Ahmedabad, Gujarat, India</p>
-                </div>
-            `;
-            
-            document.getElementById('termsContent').innerHTML = content;
-            document.getElementById('termsModal').classList.add('show');
-        }
+    <div class="legal-section"><h4>📧 Contact Information</h4>
+      <p>For questions regarding these terms:</p>
+      <p>Email: tishy5327@gmail.com<br>
+         Developer: Shah Tishy<br>
+         Location: Ahmedabad, Gujarat, India</p>
+    </div>`;
+  document.getElementById('termsContent').innerHTML=html;
+  showModal('termsModal');
+}
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
-        }
+/* ──────── Scroll to Testimonials ──────── */
+function scrollToTestimonials(){
+  const el=document.querySelector('.testimonials-section');
+  if(el){
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
 
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('show');
-            }
-        }
-
-        // Close modals with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal.show');
-                modals.forEach(modal => modal.classList.remove('show'));
-            }
-        });
-    </script>
+/* ──────── Close Modals on Overlay / ESC ──────── */
+window.onclick=e=>{
+  if(e.target.classList.contains('modal')) e.target.classList.remove('show');
+};
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal.show').forEach(m=>m.classList.remove('show'));
+  }
+});
+</script>
 </body>
 </html>
